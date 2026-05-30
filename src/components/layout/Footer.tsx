@@ -1,57 +1,86 @@
 import Link from 'next/link'
-import { Code2, Mail } from 'lucide-react'
+import { ArrowUpRight, Code2, Mail } from 'lucide-react'
 
-const footerLinks = [
+const sitemap = [
+  { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/skills', label: 'Skills' },
   { href: '/projects', label: 'Projects' },
   { href: '/contact', label: 'Contact' },
 ]
 
+const contactLinks = [
+  {
+    href: 'mailto:your.email@example.com',
+    label: 'your.email@example.com',
+    icon: Mail,
+  },
+  {
+    href: 'https://github.com/yourusername',
+    label: 'github.com/yourusername',
+    icon: Code2,
+  },
+]
+
 export function Footer() {
   return (
-    <footer className='relative z-10 px-4 pb-6 sm:px-6 lg:px-8'>
-      <div className='mx-auto flex w-full max-w-7xl flex-col gap-6 border-t border-slate-900/10 pt-6 md:flex-row md:items-center md:justify-between dark:border-white/10'>
-        <div>
-          <p className='font-mono text-sm font-semibold tracking-widest text-slate-950 uppercase dark:text-white'>
-            Alireza
-          </p>
-          <p className='mt-2 max-w-md text-sm leading-6 text-slate-500 dark:text-zinc-500'>
-            React / Next.js developer building clean interfaces with a terminal
-            soul and a product brain.
-          </p>
+    <footer className='relative z-10 px-4 pb-8 sm:px-6 lg:px-8'>
+      <div className='mx-auto w-full max-w-7xl border-t border-slate-900/10 pt-10 dark:border-white/10'>
+        <div className='grid gap-10 rounded-[2rem] border border-slate-900/10 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-950/10 sm:p-8 lg:grid-cols-[1.25fr_0.75fr_0.9fr] dark:border-white/10 dark:bg-white/7 dark:shadow-black/20'>
+          <div>
+            <p className='font-mono text-xs font-semibold tracking-widest text-cyan-200 uppercase'>
+              end of line
+            </p>
+            <h2 className='mt-4 max-w-xl text-3xl font-semibold tracking-normal'>
+              Clean interfaces, fast flows, and code that stays readable.
+            </h2>
+            <p className='mt-4 max-w-lg leading-7 text-zinc-400'>
+              This portfolio is terminal-first on purpose: direct, keyboard
+              friendly, and a little weird in the right places.
+            </p>
+          </div>
+
+          <div>
+            <p className='text-sm font-semibold text-zinc-200'>Sitemap</p>
+            <div className='mt-4 grid gap-2'>
+              {sitemap.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className='group inline-flex w-fit items-center gap-2 text-sm text-zinc-400 transition hover:text-white focus-visible:ring-2 focus-visible:ring-cyan-300/60 focus-visible:outline-none'
+                >
+                  {link.label}
+                  <ArrowUpRight className='h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100' />
+                </Link>
+              ))}
+            </div>
+          </div>
+
+          <div>
+            <p className='text-sm font-semibold text-zinc-200'>Contact</p>
+            <div className='mt-4 grid gap-3'>
+              {contactLinks.map((link) => {
+                const Icon = link.icon
+
+                return (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    target={link.href.startsWith('http') ? '_blank' : undefined}
+                    className='inline-flex min-w-0 items-center gap-3 rounded-2xl border border-white/10 bg-white/5 px-4 py-3 text-sm text-zinc-300 transition hover:border-cyan-300/30 hover:bg-cyan-300/10 hover:text-white focus-visible:ring-2 focus-visible:ring-cyan-300/60 focus-visible:outline-none'
+                  >
+                    <Icon className='h-4 w-4 shrink-0' />
+                    <span className='truncate'>{link.label}</span>
+                  </Link>
+                )
+              })}
+            </div>
+          </div>
         </div>
 
-        <div className='flex flex-col gap-4 sm:flex-row sm:items-center'>
-          <nav className='flex flex-wrap gap-2' aria-label='Footer navigation'>
-            {footerLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className='rounded-full px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-950/5 hover:text-violet-700 focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:outline-none dark:text-zinc-400 dark:hover:bg-white/8 dark:hover:text-violet-200'
-              >
-                {link.label}
-              </Link>
-            ))}
-          </nav>
-
-          <div className='flex gap-2'>
-            <Link
-              href='mailto:your.email@example.com'
-              className='grid h-10 w-10 place-items-center rounded-full border border-slate-900/10 bg-white/55 text-slate-700 shadow-sm shadow-slate-900/5 backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-violet-700 focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-zinc-300 dark:hover:text-violet-200'
-              aria-label='Email Alireza'
-            >
-              <Mail className='h-4 w-4' />
-            </Link>
-            <Link
-              href='https://github.com/yourusername'
-              target='_blank'
-              className='grid h-10 w-10 place-items-center rounded-full border border-slate-900/10 bg-white/55 text-slate-700 shadow-sm shadow-slate-900/5 backdrop-blur-xl transition hover:-translate-y-0.5 hover:text-violet-700 focus-visible:ring-2 focus-visible:ring-violet-400/70 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-zinc-300 dark:hover:text-violet-200'
-              aria-label='Open GitHub'
-            >
-              <Code2 className='h-4 w-4' />
-            </Link>
-          </div>
+        <div className='flex flex-col gap-2 px-2 pt-5 text-xs text-slate-500 sm:flex-row sm:items-center sm:justify-between dark:text-zinc-600'>
+          <p>Built with Next.js, TypeScript, and Tailwind CSS.</p>
+          <p>© 2026 Alireza. All rights reserved.</p>
         </div>
       </div>
     </footer>
