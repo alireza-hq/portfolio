@@ -15,7 +15,7 @@ const BOOT_LINES = [
 
 export default function Terminal() {
   const { resolvedTheme, setTheme } = useTheme()
-  const [isActive, setIsActive] = useState(false)
+  const [focusRequest, setFocusRequest] = useState(0)
   const bodyRef = useRef<HTMLDivElement>(null)
 
   const toggleTheme = useCallback(() => {
@@ -44,7 +44,7 @@ export default function Terminal() {
       )}
       role='application'
       aria-label='Developer terminal'
-      onClick={() => setIsActive(true)}
+      onClick={() => setFocusRequest((current) => current + 1)}
     >
       <div
         className='flex items-center justify-between border-b border-slate-200 bg-slate-50/90 px-4 py-3 dark:border-zinc-800 dark:bg-zinc-900'
@@ -90,7 +90,10 @@ export default function Terminal() {
           aria-hidden='true'
         />
 
-        <TerminalInput onExecute={executeCommand} isActive={isActive} />
+        <TerminalInput
+          onExecute={executeCommand}
+          focusRequest={focusRequest}
+        />
       </div>
     </div>
   )

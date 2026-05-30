@@ -6,22 +6,24 @@ import { ChevronRight } from 'lucide-react'
 
 type TerminalInputProps = {
   onExecute: (command: string) => void
-  isActive: boolean
+  focusRequest: number
 }
 
 export const TerminalInput = memo(function TerminalInput({
   onExecute,
-  isActive,
+  focusRequest,
 }: TerminalInputProps) {
   const [value, setValue] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
   const { addCommand, getPreviousCommand, getNextCommand } = useCommandHistory()
 
   useEffect(() => {
-    if (isActive) {
-      inputRef.current?.focus()
-    }
-  }, [isActive])
+    inputRef.current?.focus({ preventScroll: true })
+  }, [])
+
+  useEffect(() => {
+    inputRef.current?.focus({ preventScroll: true })
+  }, [focusRequest])
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Enter') {
