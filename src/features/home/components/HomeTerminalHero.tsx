@@ -4,7 +4,7 @@ import Terminal from '@/features/terminal/components/Terminal'
 
 export function HomeTerminalHero() {
   return (
-    <section className='mx-auto flex min-h-[calc(100vh-7rem)] w-full max-w-6xl flex-col items-center justify-center gap-8 px-4 pt-28 pb-16 text-center sm:px-6 lg:px-8'>
+    <section className='relative z-10 mx-auto flex min-h-[calc(100vh-7rem)] w-full max-w-6xl flex-col items-center justify-center gap-8 px-4 pt-28 pb-16 text-center sm:px-6 lg:px-8'>
       <div className='inline-flex items-center gap-2 rounded-full border border-slate-900/10 bg-white/55 px-3 py-2 text-sm font-medium text-slate-600 shadow-sm shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/5 dark:text-zinc-300'>
         <Sparkles className='h-4 w-4 text-violet-600 dark:text-violet-300' />
         Terminal-first portfolio
