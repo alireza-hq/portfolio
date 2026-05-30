@@ -656,13 +656,13 @@ html.dark {
 }
 
 .custom-cursor {
-  --cursor-x: 0px;
-  --cursor-y: 0px;
+  --cursor-x: 50vw;
+  --cursor-y: 50vh;
   position: fixed;
   inset: 0;
   z-index: 100;
   pointer-events: none;
-  opacity: 0;
+  opacity: 1;
   transition: opacity 160ms ease;
 }
 
@@ -683,7 +683,7 @@ html.dark {
 .custom-cursor__ring {
   width: 2.35rem;
   height: 2.35rem;
-  border: 1px solid rgb(168 85 247 / 0.62);
+  border: 1.5px solid rgb(168 85 247 / 0.78);
   transform: translate(-50%, -50%);
   transition:
     width 180ms ease,
@@ -696,10 +696,12 @@ html.dark {
 }
 
 .custom-cursor__dot {
-  width: 0.42rem;
-  height: 0.42rem;
+  width: 0.5rem;
+  height: 0.5rem;
   background: rgb(168 85 247);
-  box-shadow: 0 0 18px rgb(168 85 247 / 0.7);
+  box-shadow:
+    0 0 0 1px rgb(255 255 255 / 0.5),
+    0 0 22px rgb(168 85 247 / 0.86);
   transform: translate(-50%, -50%);
   transition:
     width 160ms ease,
@@ -708,9 +710,9 @@ html.dark {
 }
 
 .custom-cursor__glow {
-  width: 5.5rem;
-  height: 5.5rem;
-  background: radial-gradient(circle, rgb(168 85 247 / 0.28), transparent 66%);
+  width: 4.8rem;
+  height: 4.8rem;
+  background: radial-gradient(circle, rgb(168 85 247 / 0.2), transparent 66%);
   transform: translate(-50%, -50%);
   animation: cursor-glow 2.4s ease-in-out infinite;
   transition:
