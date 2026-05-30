@@ -4,6 +4,7 @@ import '../styles/globals.css'
 import { Navbar } from '@/components/layout/Navbar'
 import { AnimatedBackground } from '@/components/layout/AnimatedBackground'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
+import { Footer } from '@/components/layout/Footer'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,6 +37,7 @@ export default function RootLayout({
           <AnimatedBackground />
           <Navbar />
           {children}
+          <Footer />
         </ThemeProvider>
       </body>
     </html>

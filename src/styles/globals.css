@@ -10,6 +10,62 @@ html.dark {
   background: #09090b;
 }
 
+@keyframes brand-type {
+  0%,
+  12% {
+    width: 0ch;
+  }
+
+  42%,
+  72% {
+    width: 7ch;
+  }
+
+  100% {
+    width: 0ch;
+  }
+}
+
+@keyframes brand-caret {
+  0%,
+  46% {
+    opacity: 1;
+  }
+
+  47%,
+  100% {
+    opacity: 0;
+  }
+}
+
+.brand-type-link {
+  width: 9.4ch;
+}
+
+.brand-type {
+  display: inline-block;
+  width: 7ch;
+  overflow: hidden;
+  white-space: nowrap;
+  vertical-align: bottom;
+  animation: brand-type 4.6s steps(7, end) infinite;
+}
+
+.brand-type::before {
+  content: 'ALIREZA';
+}
+
+.brand-type::after {
+  content: '';
+  display: inline-block;
+  width: 1px;
+  height: 1em;
+  margin-left: 0.2ch;
+  background: currentColor;
+  vertical-align: -0.14em;
+  animation: brand-caret 720ms step-end infinite;
+}
+
 @keyframes background-aura {
   0%,
   100% {
