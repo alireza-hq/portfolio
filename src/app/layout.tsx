@@ -1,6 +1,8 @@
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import '../styles/globals.css'
+import { Navbar } from '@/components/layout/Navbar'
+import { AnimatedBackground } from '@/components/layout/AnimatedBackground'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -27,7 +29,11 @@ export default function RootLayout({
       lang='en'
       className={`${geistSans.variable} ${geistMono.variable} h-full scroll-smooth antialiased`}
     >
-      <body className='flex min-h-full flex-col'>{children}</body>
+      <body className='relative isolate flex min-h-full flex-col overflow-x-hidden bg-zinc-950 text-zinc-100'>
+        <AnimatedBackground />
+        <Navbar />
+        {children}
+      </body>
     </html>
   )
 }
