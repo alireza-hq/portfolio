@@ -100,13 +100,36 @@ html.dark {
 @keyframes background-particle {
   0%,
   100% {
-    opacity: 0.12;
+    opacity: 0.08;
     transform: translate3d(0, 0, 0);
   }
 
   50% {
-    opacity: 0.32;
+    opacity: 0.2;
     transform: translate3d(16px, -22px, 0);
+  }
+}
+
+@keyframes background-beam {
+  from {
+    transform: translate3d(-28vw, 18vh, 0) rotate(-18deg);
+  }
+
+  to {
+    transform: translate3d(128vw, -28vh, 0) rotate(-18deg);
+  }
+}
+
+@keyframes background-pixel {
+  0%,
+  100% {
+    opacity: 0.16;
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  50% {
+    opacity: 0.5;
+    transform: translate3d(24px, -38px, 0) scale(1.4);
   }
 }
 
@@ -209,6 +232,53 @@ html.dark {
   );
 }
 
+.portfolio-background__beam {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 34rem;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(124 58 237 / 0.22),
+    transparent
+  );
+  opacity: 0.35;
+  filter: blur(0.5px);
+  animation: background-beam 12s linear infinite;
+}
+
+.portfolio-background__beam--two {
+  top: 26%;
+  width: 42rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(14 165 233 / 0.2),
+    transparent
+  );
+  animation-delay: -4s;
+  animation-duration: 15s;
+}
+
+.portfolio-background__beam--three {
+  top: 70%;
+  width: 28rem;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgb(245 158 11 / 0.16),
+    transparent
+  );
+  animation-delay: -8s;
+  animation-duration: 18s;
+}
+
+.dark .portfolio-background__beam {
+  opacity: 0.55;
+}
+
 .portfolio-background__vignette {
   position: absolute;
   inset: 0;
@@ -244,8 +314,23 @@ html.dark {
 .dark .portfolio-background__particle {
   border-color: rgb(255 255 255 / 0.055);
   background: rgb(9 9 11 / 0.18);
-  color: rgb(216 180 254 / 0.38);
+  color: rgb(216 180 254 / 0.3);
   text-shadow: 0 0 18px rgb(34 211 238 / 0.16);
+}
+
+.portfolio-background__pixel {
+  position: absolute;
+  width: 0.35rem;
+  height: 0.35rem;
+  border-radius: 9999px;
+  background: rgb(124 58 237 / 0.35);
+  box-shadow: 0 0 22px rgb(124 58 237 / 0.25);
+  animation: background-pixel 8s ease-in-out infinite;
+}
+
+.dark .portfolio-background__pixel {
+  background: rgb(34 211 238 / 0.42);
+  box-shadow: 0 0 24px rgb(34 211 238 / 0.28);
 }
 
 .delay-0 {
@@ -266,8 +351,10 @@ html.dark {
 
 @media (prefers-reduced-motion: reduce) {
   .portfolio-background__aura,
+  .portfolio-background__beam,
   .portfolio-background__grid,
   .portfolio-background__scanline,
+  .portfolio-background__pixel,
   .portfolio-background__particle {
     animation: none;
   }

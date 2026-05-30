@@ -5,6 +5,15 @@ const particles = [
   { text: 'git commit -m glow', className: 'right-[16%] bottom-[14%] delay-6' },
 ]
 
+const pixels = [
+  'left-[12%] top-[40%] delay-0',
+  'left-[34%] top-[18%] delay-2',
+  'right-[28%] top-[34%] delay-4',
+  'right-[12%] top-[58%] delay-6',
+  'left-[24%] bottom-[18%] delay-2',
+  'right-[38%] bottom-[24%] delay-0',
+]
+
 export function AnimatedBackground() {
   return (
     <div
@@ -16,6 +25,9 @@ export function AnimatedBackground() {
       <div className='portfolio-background__aura portfolio-background__aura--amber' />
       <div className='portfolio-background__grid' />
       <div className='portfolio-background__scanline' />
+      <div className='portfolio-background__beam portfolio-background__beam--one' />
+      <div className='portfolio-background__beam portfolio-background__beam--two' />
+      <div className='portfolio-background__beam portfolio-background__beam--three' />
       <div className='portfolio-background__vignette' />
 
       {particles.map((particle) => (
@@ -25,6 +37,13 @@ export function AnimatedBackground() {
         >
           {particle.text}
         </span>
+      ))}
+
+      {pixels.map((pixel) => (
+        <span
+          key={pixel}
+          className={`portfolio-background__pixel ${pixel}`}
+        />
       ))}
     </div>
   )
