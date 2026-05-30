@@ -83,7 +83,7 @@ export function Navbar() {
           <Link
             href='/resume.pdf'
             download
-            className='hidden items-center gap-2 rounded-full border border-slate-900/10 bg-slate-950 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-slate-900/10 transition duration-200 hover:-translate-y-0.5 hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-cyan-500/60 focus-visible:outline-none md:inline-flex dark:border-white/10 dark:bg-white/8 dark:text-zinc-100 dark:shadow-inner dark:shadow-white/5 dark:hover:border-cyan-300/30 dark:hover:bg-cyan-400/10 dark:hover:text-white'
+            className='hidden items-center gap-2 rounded-full border border-slate-900/10 bg-slate-950 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-slate-900/10 transition duration-200 hover:bg-slate-800 focus-visible:ring-2 focus-visible:ring-cyan-500/60 focus-visible:outline-none md:inline-flex dark:border-white/10 dark:bg-white/8 dark:text-zinc-100 dark:shadow-inner dark:shadow-white/5 dark:hover:border-cyan-300/30 dark:hover:bg-cyan-400/10 dark:hover:text-white'
           >
             <Download className='h-4 w-4' />
             Resume
