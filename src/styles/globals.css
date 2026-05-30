@@ -681,10 +681,10 @@ html.dark {
 }
 
 .custom-cursor__ring {
-  width: 2.55rem;
-  height: 2.55rem;
-  border: 2px solid rgb(168 85 247 / 0.95);
-  background: rgb(168 85 247 / 0.06);
+  width: 1.7rem;
+  height: 1.7rem;
+  border: 1.5px solid rgb(168 85 247 / 0.86);
+  background: rgb(168 85 247 / 0.045);
   transform: translate(-50%, -50%);
   transition:
     width 180ms ease,
@@ -693,12 +693,11 @@ html.dark {
     background 180ms ease,
     transform 120ms ease;
   animation: cursor-ring 2.2s ease-in-out infinite;
-  backdrop-filter: invert(0.08);
 }
 
 .custom-cursor__dot {
-  width: 0.62rem;
-  height: 0.62rem;
+  width: 0.36rem;
+  height: 0.36rem;
   background: rgb(168 85 247);
   box-shadow:
     0 0 0 1px rgb(255 255 255 / 0.5),
@@ -711,9 +710,9 @@ html.dark {
 }
 
 .custom-cursor__glow {
-  width: 5.4rem;
-  height: 5.4rem;
-  background: radial-gradient(circle, rgb(168 85 247 / 0.28), transparent 66%);
+  width: 3.4rem;
+  height: 3.4rem;
+  background: radial-gradient(circle, rgb(168 85 247 / 0.16), transparent 66%);
   transform: translate(-50%, -50%);
   animation: cursor-glow 2.4s ease-in-out infinite;
   transition:
@@ -723,15 +722,15 @@ html.dark {
 }
 
 .custom-cursor--interactive .custom-cursor__ring {
-  width: 3.15rem;
-  height: 3.15rem;
+  width: 2.35rem;
+  height: 2.35rem;
   border-color: rgb(192 132 252 / 0.9);
   background: rgb(168 85 247 / 0.08);
 }
 
 .custom-cursor--interactive .custom-cursor__dot {
-  width: 0.24rem;
-  height: 0.24rem;
+  width: 0.22rem;
+  height: 0.22rem;
   opacity: 0.75;
 }
 

@@ -219,9 +219,16 @@ export function AnimatedBackground() {
 
   useEffect(() => {
     let frameId = 0
+    let lastFrame = 0
     const items = [...particles, ...nodes, ...pixels]
 
     function animate(now: number) {
+      if (now - lastFrame < 33) {
+        frameId = requestAnimationFrame(animate)
+        return
+      }
+
+      lastFrame = now
       const time = now / 1000
 
       for (const item of items) {
