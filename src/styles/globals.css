@@ -660,7 +660,7 @@ html.dark {
   --cursor-y: 50vh;
   position: fixed;
   inset: 0;
-  z-index: 100;
+  z-index: 2147483647;
   pointer-events: none;
   opacity: 1;
   transition: opacity 160ms ease;
@@ -681,9 +681,10 @@ html.dark {
 }
 
 .custom-cursor__ring {
-  width: 2.35rem;
-  height: 2.35rem;
-  border: 1.5px solid rgb(168 85 247 / 0.78);
+  width: 2.55rem;
+  height: 2.55rem;
+  border: 2px solid rgb(168 85 247 / 0.95);
+  background: rgb(168 85 247 / 0.06);
   transform: translate(-50%, -50%);
   transition:
     width 180ms ease,
@@ -696,8 +697,8 @@ html.dark {
 }
 
 .custom-cursor__dot {
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.62rem;
+  height: 0.62rem;
   background: rgb(168 85 247);
   box-shadow:
     0 0 0 1px rgb(255 255 255 / 0.5),
@@ -710,9 +711,9 @@ html.dark {
 }
 
 .custom-cursor__glow {
-  width: 4.8rem;
-  height: 4.8rem;
-  background: radial-gradient(circle, rgb(168 85 247 / 0.2), transparent 66%);
+  width: 5.4rem;
+  height: 5.4rem;
+  background: radial-gradient(circle, rgb(168 85 247 / 0.28), transparent 66%);
   transform: translate(-50%, -50%);
   animation: cursor-glow 2.4s ease-in-out infinite;
   transition:
@@ -740,12 +741,6 @@ html.dark {
 
 .custom-cursor--pressed .custom-cursor__glow {
   opacity: 0.44;
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .custom-cursor {
-    display: none;
-  }
 }
 
 @keyframes terminal-fade-in {
@@ -778,8 +773,4 @@ html.dark {
 
 .animate-terminal-cursor {
   animation: terminal-cursor 1s step-end infinite;
-}
-
-button {
-  cursor: pointer;
 }

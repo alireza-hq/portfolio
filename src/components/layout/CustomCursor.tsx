@@ -38,6 +38,15 @@ export function CustomCursor() {
       )
     }
 
+    function handleMouseMove(event: MouseEvent) {
+      moveCursor(event.clientX, event.clientY)
+      cursorElement.classList.add('custom-cursor--visible')
+      cursorElement.classList.toggle(
+        'custom-cursor--interactive',
+        isInteractive(event.target),
+      )
+    }
+
     function handlePointerDown() {
       cursorElement.classList.add('custom-cursor--pressed')
     }
@@ -55,6 +64,7 @@ export function CustomCursor() {
     }
 
     window.addEventListener('pointermove', handlePointerMove)
+    window.addEventListener('mousemove', handleMouseMove)
     window.addEventListener('pointerdown', handlePointerDown)
     window.addEventListener('pointerup', handlePointerUp)
     document.documentElement.addEventListener('mouseleave', handlePointerLeave)
@@ -62,6 +72,7 @@ export function CustomCursor() {
 
     return () => {
       window.removeEventListener('pointermove', handlePointerMove)
+      window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('pointerdown', handlePointerDown)
       window.removeEventListener('pointerup', handlePointerUp)
       document.documentElement.removeEventListener(
