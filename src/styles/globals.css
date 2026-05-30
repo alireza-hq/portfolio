@@ -1,5 +1,15 @@
 @import 'tailwindcss';
 
+@custom-variant dark (&:where(.dark, .dark *));
+
+html {
+  background: #f8fafc;
+}
+
+html.dark {
+  background: #09090b;
+}
+
 @keyframes background-aura {
   0%,
   100% {
@@ -45,6 +55,10 @@
 }
 
 .portfolio-background {
+  color-scheme: light;
+}
+
+.dark .portfolio-background {
   color-scheme: dark;
 }
 
@@ -54,21 +68,21 @@
   aspect-ratio: 1;
   border-radius: 9999px;
   filter: blur(72px);
-  opacity: 0.34;
-  mix-blend-mode: screen;
+  opacity: 0.2;
+  mix-blend-mode: multiply;
   animation: background-aura 16s ease-in-out infinite;
 }
 
 .portfolio-background__aura--violet {
   top: -18rem;
   left: -14rem;
-  background: radial-gradient(circle, #8b5cf6 0%, transparent 62%);
+  background: radial-gradient(circle, #a78bfa 0%, transparent 62%);
 }
 
 .portfolio-background__aura--cyan {
   right: -16rem;
   bottom: -12rem;
-  background: radial-gradient(circle, #06b6d4 0%, transparent 60%);
+  background: radial-gradient(circle, #38bdf8 0%, transparent 60%);
   animation-delay: -5s;
 }
 
@@ -76,20 +90,44 @@
   top: 38%;
   left: 48%;
   width: min(34rem, 70vw);
+  background: radial-gradient(circle, #fbbf24 0%, transparent 64%);
+  opacity: 0.12;
+  animation-delay: -9s;
+}
+
+.dark .portfolio-background__aura {
+  opacity: 0.34;
+  mix-blend-mode: screen;
+}
+
+.dark .portfolio-background__aura--violet {
+  background: radial-gradient(circle, #8b5cf6 0%, transparent 62%);
+}
+
+.dark .portfolio-background__aura--cyan {
+  background: radial-gradient(circle, #06b6d4 0%, transparent 60%);
+}
+
+.dark .portfolio-background__aura--amber {
   background: radial-gradient(circle, #f59e0b 0%, transparent 64%);
   opacity: 0.16;
-  animation-delay: -9s;
 }
 
 .portfolio-background__grid {
   position: absolute;
   inset: -72px;
   background-image:
-    linear-gradient(rgb(255 255 255 / 0.065) 1px, transparent 1px),
-    linear-gradient(90deg, rgb(255 255 255 / 0.105) 1px, transparent 1px);
+    linear-gradient(rgb(15 23 42 / 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(15 23 42 / 0.07) 1px, transparent 1px);
   background-size: 72px 72px;
   mask-image: radial-gradient(circle at center, black 0%, transparent 72%);
   animation: background-grid 18s linear infinite;
+}
+
+.dark .portfolio-background__grid {
+  background-image:
+    linear-gradient(rgb(255 255 255 / 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(255 255 255 / 0.055) 1px, transparent 1px);
 }
 
 .portfolio-background__scanline {
@@ -100,15 +138,34 @@
   background: linear-gradient(
     180deg,
     transparent,
-    rgb(125 211 252 / 0.08),
+    rgb(124 58 237 / 0.055),
     transparent
   );
   animation: background-scanline 7s linear infinite;
 }
 
+.dark .portfolio-background__scanline {
+  background: linear-gradient(
+    180deg,
+    transparent,
+    rgb(125 211 252 / 0.08),
+    transparent
+  );
+}
+
 .portfolio-background__vignette {
   position: absolute;
   inset: 0;
+  background:
+    radial-gradient(
+      circle at center,
+      transparent 0%,
+      rgb(248 250 252 / 0.12) 42%
+    ),
+    linear-gradient(180deg, rgb(248 250 252 / 0.12), rgb(248 250 252 / 0.72));
+}
+
+.dark .portfolio-background__vignette {
   background:
     radial-gradient(circle at center, transparent 0%, rgb(9 9 11 / 0.2) 42%),
     linear-gradient(180deg, rgb(9 9 11 / 0.35), rgb(9 9 11 / 0.82));
@@ -116,16 +173,23 @@
 
 .portfolio-background__particle {
   position: absolute;
-  border: 1px solid rgb(255 255 255 / 0.08);
+  border: 1px solid rgb(15 23 42 / 0.06);
   border-radius: 0.5rem;
-  background: rgb(9 9 11 / 0.28);
+  background: rgb(255 255 255 / 0.22);
   padding: 0.45rem 0.7rem;
   font-family: var(--font-geist-mono), monospace;
   font-size: clamp(0.68rem, 1.2vw, 0.82rem);
-  color: rgb(216 180 254 / 0.72);
-  text-shadow: 0 0 18px rgb(34 211 238 / 0.28);
+  color: rgb(79 70 229 / 0.28);
+  text-shadow: none;
   backdrop-filter: blur(10px);
   animation: background-particle 9s ease-in-out infinite;
+}
+
+.dark .portfolio-background__particle {
+  border-color: rgb(255 255 255 / 0.055);
+  background: rgb(9 9 11 / 0.18);
+  color: rgb(216 180 254 / 0.38);
+  text-shadow: 0 0 18px rgb(34 211 238 / 0.16);
 }
 
 .delay-0 {
@@ -183,4 +247,8 @@
 
 .animate-terminal-cursor {
   animation: terminal-cursor 1s step-end infinite;
+}
+
+button {
+  cursor: pointer;
 }

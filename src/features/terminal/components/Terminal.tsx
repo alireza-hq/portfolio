@@ -1,7 +1,9 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useTheme } from 'next-themes'
 import { useTerminal } from '@/features/terminal/hooks/useTerminal'
+import { cn } from '@/lib/utils'
 
 import { TerminalOutput } from './TerminalOutput'
 import { TerminalInput } from './TerminalInput'
@@ -12,92 +14,74 @@ const BOOT_LINES = [
 ]
 
 export default function Terminal() {
-  const { theme, lines, executeCommand } = useTerminal()
-
+  const { resolvedTheme, setTheme } = useTheme()
   const [isActive, setIsActive] = useState(false)
-
   const bottomRef = useRef<HTMLDivElement>(null)
+
+  const toggleTheme = useCallback(() => {
+    setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
+  }, [resolvedTheme, setTheme])
+
+  const { lines, executeCommand } = useTerminal({ onToggleTheme: toggleTheme })
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [lines])
 
-  const isDark = theme === 'dark'
-
-  const containerBg = isDark
-    ? 'bg-zinc-950 border-zinc-800 shadow-2xl shadow-black/60'
-    : 'bg-zinc-50 border-zinc-300 shadow-xl shadow-zinc-400/40'
-
-  const titleText = isDark ? 'text-zinc-500' : 'text-zinc-500'
-  const bodyBg = isDark ? '' : ''
-  const dividerColor = isDark ? 'border-zinc-800' : 'border-zinc-200'
-  const scrollbarClass = isDark
-    ? '[&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent'
-    : '[&::-webkit-scrollbar-thumb]:bg-zinc-300 [&::-webkit-scrollbar-track]:bg-transparent'
-
   return (
     <div
-      className={`relative mx-auto flex w-full max-w-4xl flex-col overflow-hidden rounded-xl border font-mono transition-colors duration-300 ${containerBg} `}
+      className={cn(
+        'relative mx-auto flex w-full max-w-4xl flex-col overflow-hidden rounded-2xl border font-mono transition-colors duration-300',
+        'border-slate-200/80 bg-white/80 shadow-2xl shadow-slate-900/10 backdrop-blur-xl',
+        'dark:border-zinc-800 dark:bg-zinc-950/92 dark:shadow-black/60',
+      )}
       role='application'
       aria-label='Developer terminal'
+      onClick={() => setIsActive(true)}
     >
-      {/* ── Title bar ─────────────────────────────────────────────────── */}
       <div
-        className={[
-          'flex items-center justify-between border-b px-4 py-3',
-          isDark ? 'border-zinc-800 bg-zinc-900' : 'border-zinc-300 bg-white',
-        ].join(' ')}
+        className='flex items-center justify-between border-b border-slate-200 bg-slate-50/90 px-4 py-3 dark:border-zinc-800 dark:bg-zinc-900'
         aria-hidden='true'
       >
-        {/* Traffic lights */}
         <div className='flex gap-2'>
           <span className='h-3 w-3 rounded-full bg-red-500' />
           <span className='h-3 w-3 rounded-full bg-yellow-500' />
           <span className='h-3 w-3 rounded-full bg-emerald-500' />
         </div>
 
-        {/* Title */}
-        <span
-          className={`flex-1 text-center text-xs tracking-widest uppercase ${titleText}`}
-        >
+        <span className='flex-1 text-center text-xs tracking-widest text-slate-500 uppercase dark:text-zinc-500'>
           alireza@portfolio ~ terminal
         </span>
 
         <div className='w-14' />
       </div>
 
-      {/* ── Body ──────────────────────────────────────────────────────── */}
-      <div
-        className={`flex max-h-[70vh] min-h-105 flex-col gap-4 overflow-y-auto px-5 py-4 [&::-webkit-scrollbar]:w-1.5 ${scrollbarClass} ${bodyBg} `}
-      >
-        {/* Boot lines */}
+      <div className='flex max-h-[70vh] min-h-105 flex-col gap-4 overflow-y-auto px-5 py-4 text-slate-800 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 dark:text-zinc-200 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-700'>
         <div className='space-y-0.5' aria-label='Terminal welcome message'>
-          {BOOT_LINES.map((line, i) => (
+          {BOOT_LINES.map((line, index) => (
             <p
-              key={i}
-              className={`font-mono text-xs ${
-                i === 0
-                  ? isDark
-                    ? 'font-semibold text-violet-400'
-                    : 'font-semibold text-violet-600'
-                  : isDark
-                    ? 'text-zinc-500'
-                    : 'text-zinc-400'
-              }`}
+              key={line}
+              className={cn(
+                'font-mono text-xs',
+                index === 0
+                  ? 'font-semibold text-violet-600 dark:text-violet-400'
+                  : 'text-slate-500 dark:text-zinc-500',
+              )}
             >
               {line}
             </p>
           ))}
         </div>
 
-        {/* Command history output */}
         <TerminalOutput lines={lines} />
 
-        {/* Divider before input */}
-        <div className={`border-t ${dividerColor}`} aria-hidden='true' />
+        <div
+          className='border-t border-slate-200 dark:border-zinc-800'
+          aria-hidden='true'
+        />
 
-        {/* Live input */}
         <TerminalInput onExecute={executeCommand} isActive={isActive} />
+        <div ref={bottomRef} />
       </div>
     </div>
   )

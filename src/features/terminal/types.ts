@@ -1,11 +1,7 @@
 import type { ReactNode } from 'react'
 
-export type TerminalTheme = 'dark' | 'light'
-
 export type CommandContext = {
-  setTheme: (
-    theme: TerminalTheme | ((prev: TerminalTheme) => TerminalTheme),
-  ) => void
+  toggleTheme: () => void
   clear: () => void
 }
 

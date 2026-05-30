@@ -49,7 +49,7 @@ export const TerminalInput = memo(function TerminalInput({
 
   return (
     <div className='flex items-center gap-3'>
-      <div className='flex items-center gap-2 text-violet-400'>
+      <div className='flex items-center gap-2 text-violet-600 dark:text-violet-400'>
         <ChevronRight className='h-4.5 w-4.5' />
         <span className='hidden sm:inline'>portfolio</span>
         <span>$</span>
@@ -61,7 +61,7 @@ export const TerminalInput = memo(function TerminalInput({
           value={value}
           onChange={(event) => setValue(event.target.value)}
           onKeyDown={handleKeyDown}
-          className='w-full bg-transparent text-zinc-100 caret-transparent outline-none placeholder:text-zinc-600'
+          className='w-full bg-transparent text-slate-900 caret-transparent outline-none placeholder:text-slate-400 dark:text-zinc-100 dark:placeholder:text-zinc-600'
           placeholder='Type a command...'
           spellCheck={false}
           autoCapitalize='none'
@@ -69,7 +69,7 @@ export const TerminalInput = memo(function TerminalInput({
           aria-label='Terminal command input'
         />
 
-        <span className='animate-terminal-cursor pointer-events-none absolute top-0 left-0 h-5 w-2 bg-zinc-200' />
+        <span className='animate-terminal-cursor pointer-events-none absolute top-0 left-0 h-5 w-2 bg-slate-700 dark:bg-zinc-200' />
       </div>
     </div>
   )

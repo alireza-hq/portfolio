@@ -17,14 +17,18 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       type: 'output',
       content: (
         <div className='space-y-2'>
-          <p className='text-terminal-muted'>Available commands:</p>
+          <p className='text-slate-500 dark:text-zinc-400'>
+            Available commands:
+          </p>
           <div className='grid gap-1'>
             {Object.values(commandRegistry).map((command) => (
               <div key={command.name} className='flex gap-3'>
-                <span className='min-w-20 font-semibold text-violet-400'>
+                <span className='min-w-20 font-semibold text-violet-600 dark:text-violet-400'>
                   {command.name}
                 </span>
-                <span className='text-zinc-400'>{command.description}</span>
+                <span className='text-slate-500 dark:text-zinc-400'>
+                  {command.description}
+                </span>
               </div>
             ))}
           </div>
@@ -40,9 +44,12 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       type: 'output',
       content: (
         <p>
-          I’m <span className='text-sky-400'>{developer.name}</span>, a frontend
-          developer focused on building fast, clean, modern web apps with React,
-          Next.js, TypeScript, and polished UI.
+          I&apos;m{' '}
+          <span className='text-sky-600 dark:text-sky-400'>
+            {developer.name}
+          </span>
+          , a frontend developer focused on building fast, clean, modern web
+          apps with React, Next.js, TypeScript, and polished UI.
         </p>
       ),
     }),
@@ -55,7 +62,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       type: 'output',
       content: (
         <div className='space-y-2'>
-          <p className='text-zinc-300'>Tech stack:</p>
+          <p className='text-slate-700 dark:text-zinc-300'>Tech stack:</p>
           <div className='flex flex-wrap gap-2'>
             {[
               'React',
@@ -71,7 +78,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
             ].map((skill) => (
               <span
                 key={skill}
-                className='rounded-md border border-zinc-700 bg-zinc-900 px-2 py-1 text-xs text-zinc-300'
+                className='rounded-md border border-slate-200 bg-slate-50 px-2 py-1 text-xs text-slate-700 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-300'
               >
                 {skill}
               </span>
@@ -107,8 +114,12 @@ export const commandRegistry: Record<string, TerminalCommand> = {
             },
           ].map((project) => (
             <div key={project.name}>
-              <p className='font-semibold text-sky-400'>{project.name}</p>
-              <p className='text-zinc-400'>{project.description}</p>
+              <p className='font-semibold text-sky-600 dark:text-sky-400'>
+                {project.name}
+              </p>
+              <p className='text-slate-500 dark:text-zinc-400'>
+                {project.description}
+              </p>
             </div>
           ))}
         </div>
@@ -126,7 +137,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
           <p>
             Email:{' '}
             <a
-              className='text-sky-400 hover:underline'
+              className='text-sky-600 hover:underline dark:text-sky-400'
               href={`mailto:${developer.email}`}
             >
               {developer.email}
@@ -135,7 +146,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
           <p>
             GitHub:{' '}
             <a
-              className='text-sky-400 hover:underline'
+              className='text-sky-600 hover:underline dark:text-sky-400'
               href={developer.github}
               target='_blank'
             >
@@ -145,7 +156,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
           <p>
             LinkedIn:{' '}
             <a
-              className='text-sky-400 hover:underline'
+              className='text-sky-600 hover:underline dark:text-sky-400'
               href={developer.linkedin}
               target='_blank'
             >
@@ -174,13 +185,13 @@ export const commandRegistry: Record<string, TerminalCommand> = {
 
   theme: {
     name: 'theme',
-    description: 'Toggle terminal theme',
+    description: 'Toggle site theme',
     execute: (_args: string[], context: CommandContext): CommandResult => {
-      context.setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'))
+      context.toggleTheme()
 
       return {
         type: 'output',
-        content: 'Terminal theme toggled.',
+        content: 'Site theme toggled.',
       }
     },
   },
@@ -202,7 +213,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
     description: 'Display short intro',
     execute: () => ({
       type: 'output',
-      content: `${developer.name} — ${developer.role}`,
+      content: `${developer.name} - ${developer.role}`,
     }),
   },
 }

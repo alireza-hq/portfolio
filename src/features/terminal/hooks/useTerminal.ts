@@ -1,8 +1,12 @@
 'use client'
 
 import { useCallback, useMemo, useState } from 'react'
-import type { CommandContext, TerminalLine, TerminalTheme } from '../types'
+import type { CommandContext, TerminalLine } from '../types'
 import { commandRegistry } from '../components/commandRegistry'
+
+type UseTerminalOptions = {
+  onToggleTheme?: () => void
+}
 
 function createLine(
   kind: TerminalLine['kind'],
@@ -19,8 +23,7 @@ function normalizeCommand(input: string) {
   return input.trim().replace(/\s+/g, ' ')
 }
 
-export function useTerminal() {
-  const [theme, setTheme] = useState<TerminalTheme>('dark')
+export function useTerminal({ onToggleTheme }: UseTerminalOptions = {}) {
   const [lines, setLines] = useState<TerminalLine[]>([])
 
   const clear = useCallback(() => {
@@ -29,10 +32,10 @@ export function useTerminal() {
 
   const context = useMemo<CommandContext>(
     () => ({
-      setTheme,
+      toggleTheme: () => onToggleTheme?.(),
       clear,
     }),
-    [clear],
+    [clear, onToggleTheme],
   )
 
   const executeCommand = useCallback(
@@ -81,7 +84,6 @@ export function useTerminal() {
   )
 
   return {
-    theme,
     lines,
     executeCommand,
   }

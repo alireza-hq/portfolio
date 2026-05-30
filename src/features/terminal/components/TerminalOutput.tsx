@@ -12,7 +12,7 @@ export function TerminalOutput({ lines }: TerminalOutputProps) {
         <div key={line.id} className='animate-terminal-fade-in'>
           {line.kind === 'command' ? (
             <div className='flex gap-2'>
-              <div className='flex items-center gap-2 text-violet-400'>
+              <div className='flex items-center gap-2 text-violet-600 dark:text-violet-400'>
                 <ChevronRight className='h-4.5 w-4.5' />
                 <span className='hidden sm:inline'>portfolio</span>
                 <span>$</span>
@@ -25,8 +25,8 @@ export function TerminalOutput({ lines }: TerminalOutputProps) {
                 line.kind === 'error'
                   ? 'text-red-400'
                   : line.kind === 'system'
-                    ? 'text-zinc-400'
-                    : 'text-zinc-300'
+                    ? 'text-slate-500 dark:text-zinc-400'
+                    : 'text-slate-700 dark:text-zinc-300'
               }
             >
               {line.content}
