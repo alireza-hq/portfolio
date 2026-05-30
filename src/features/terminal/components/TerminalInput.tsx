@@ -70,7 +70,7 @@ export const TerminalInput = memo(function TerminalInput({
         />
 
         <span
-          className='pointer-events-none absolute inset-0 text-left whitespace-pre text-slate-900 dark:text-zinc-100'
+          className='pointer-events-none absolute inset-0 z-20 text-left whitespace-pre text-slate-900 dark:text-zinc-100'
           aria-hidden='true'
         >
           {value}
