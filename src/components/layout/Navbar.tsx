@@ -37,7 +37,7 @@ export function Navbar() {
   return (
     <header className='pointer-events-none fixed inset-x-0 top-4 z-50 flex justify-center px-3 sm:top-6 sm:px-6'>
       <nav
-        className='pointer-events-auto grid w-full max-w-5xl grid-cols-[auto_1fr_auto] items-center gap-2 rounded-full border border-slate-900/10 bg-white/55 px-2 py-2 shadow-2xl shadow-slate-900/10 ring-1 ring-white/70 backdrop-blur-2xl dark:border-white/10 dark:bg-zinc-950/45 dark:shadow-black/30 dark:ring-white/5'
+        className='pointer-events-auto grid w-full max-w-5xl grid-cols-[auto_1fr_auto] items-center gap-2 rounded-full border border-slate-900/10 bg-white/55 px-2 py-2 shadow-2xl ring-1 shadow-slate-900/10 ring-white/70 backdrop-blur-2xl dark:border-white/10 dark:bg-zinc-950/45 dark:shadow-black/30 dark:ring-white/5'
         aria-label='Primary navigation'
       >
         <Link
@@ -49,7 +49,7 @@ export function Navbar() {
           <span className='sr-only'>Alireza</span>
         </Link>
 
-        <div className='flex min-w-0 items-center justify-center gap-1 overflow-x-auto [scrollbar-width:none] [&::-webkit-scrollbar]:hidden'>
+        <div className='flex min-w-0 [scrollbar-width:none] items-center justify-center gap-1 overflow-x-auto [&::-webkit-scrollbar]:hidden'>
           {navLinks.map((link) => {
             const isActive = pathname === link.href
 
