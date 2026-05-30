@@ -42,7 +42,7 @@ export function Navbar() {
       >
         <Link
           href='/'
-          className='brand-type-link rounded-full px-3 py-2 font-mono text-xs font-semibold tracking-widest text-slate-800 uppercase transition hover:text-purple-700 focus-visible:ring-2 focus-visible:ring-purple-500/60 focus-visible:outline-none dark:text-zinc-100 dark:hover:text-purple-200'
+          className='brand-type-link rounded-full px-3 py-2 font-mono text-xs font-semibold tracking-widest text-slate-800 uppercase transition hover:text-purple-700 focus-visible:ring-1 focus-visible:ring-purple-500/60 focus-visible:outline-none dark:text-zinc-100 dark:hover:text-purple-200'
           aria-label='Go home'
         >
           <span className='brand-type' aria-hidden='true' />
@@ -59,7 +59,7 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   'group relative shrink-0 rounded-full px-3 py-2 text-sm font-medium transition duration-200 focus-visible:ring-2 focus-visible:ring-purple-500/60 focus-visible:outline-none sm:px-4',
-                  'text-slate-600 hover:-translate-y-0.5 hover:bg-slate-950/5 hover:text-slate-950',
+                  'text-slate-600 hover:bg-slate-950/5 hover:text-slate-950',
                   'dark:text-zinc-300 dark:hover:bg-purple-400/10 dark:hover:text-white',
                   isActive &&
                     'bg-slate-950/7 text-slate-950 dark:bg-white/10 dark:text-white',

@@ -45,7 +45,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       content: (
         <p>
           I&apos;m{' '}
-          <span className='text-sky-600 dark:text-sky-400'>
+          <span className='text-violet-600 dark:text-violet-400'>
             {developer.name}
           </span>
           , a frontend developer focused on building fast, clean, modern web
@@ -178,6 +178,12 @@ export const commandRegistry: Record<string, TerminalCommand> = {
   },
 
   clear: {
+    name: 'clear',
+    description: 'Clear terminal output',
+    execute: () => ({ type: 'clear' }),
+  },
+
+  cls: {
     name: 'clear',
     description: 'Clear terminal output',
     execute: () => ({ type: 'clear' }),

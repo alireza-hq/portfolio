@@ -41,7 +41,7 @@ export function AboutPage() {
   return (
     <main className='relative z-10 min-h-screen px-4 pt-32 pb-20 sm:px-6 lg:px-8'>
       <section className='mx-auto w-full max-w-7xl'>
-        <div className='grid min-h-[28rem] overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 text-white shadow-2xl shadow-slate-950/15 lg:grid-cols-[1.05fr_0.95fr] dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/30'>
+        <div className='rounded-4 grid min-h-112 overflow-hidden border border-slate-900/10 bg-slate-950 text-white shadow-2xl shadow-slate-950/15 lg:grid-cols-[1.05fr_0.95fr] dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/30'>
           <div className='relative flex flex-col justify-between p-6 sm:p-8 lg:p-10'>
             <div>
               <p className='font-mono text-sm font-semibold text-purple-300'>
@@ -69,10 +69,10 @@ export function AboutPage() {
             </div>
           </div>
 
-          <div className='relative min-h-72 border-t border-white/10 bg-white/[0.03] p-6 sm:p-8 lg:border-t-0 lg:border-l lg:p-10'>
+          <div className='relative min-h-72 border-t border-white/10 bg-white/3 p-6 sm:p-8 lg:border-t-0 lg:border-l lg:p-10'>
             <div className='absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgb(168_85_247/0.16)_48%,transparent_100%)]' />
             <div className='relative flex h-full flex-col justify-end'>
-              <div className='font-mono text-[clamp(4rem,11vw,9rem)] leading-none font-semibold tracking-normal text-white/8'>
+              <div className='font-mono text-[clamp(4rem,11vw,9rem)] leading-none font-semibold tracking-normal text-white/8 select-none'>
                 UI
               </div>
               <div className='mt-6 max-w-sm'>
@@ -89,7 +89,7 @@ export function AboutPage() {
         </div>
 
         <div className='mt-8 grid gap-8 lg:grid-cols-[0.8fr_1.2fr]'>
-          <section className='rounded-[2rem] border border-slate-900/10 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
+          <section className='rounded-4xl border border-slate-900/10 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
             <div className='flex items-center justify-between gap-4 border-b border-slate-900/10 pb-5 dark:border-white/10'>
               <div>
                 <p className='font-mono text-xs font-semibold tracking-widest text-purple-600 uppercase dark:text-purple-300'>
@@ -99,13 +99,13 @@ export function AboutPage() {
                   Learning path
                 </h2>
               </div>
-              <span className='education-orb h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_24px_rgb(168_85_247/0.75)]' />
+              <span className='education-orb h-3 w-3 rounded-full border border-purple-500/45 bg-purple-500/30 shadow-[0_0_24px_rgb(168_85_247/0.75)]' />
             </div>
 
             <div className='relative mt-6 grid gap-6 pl-6 before:absolute before:top-2 before:bottom-2 before:left-1 before:w-px before:bg-slate-900/10 dark:before:bg-white/12'>
               {education.map((item) => (
                 <article key={item.title} className='relative'>
-                  <span className='education-orb absolute top-1 -left-[1.42rem] h-3 w-3 rounded-full border-2 border-white bg-purple-500 dark:border-zinc-950' />
+                  <span className='education-orb absolute top-1 left-[-25.35px] h-3 w-3 rounded-full border-2 border-white bg-purple-500 dark:border-zinc-950' />
                   <p className='font-mono text-xs text-slate-500 dark:text-zinc-500'>
                     {item.period}
                   </p>
@@ -121,7 +121,7 @@ export function AboutPage() {
           </section>
 
           <section className='grid gap-8'>
-            <div className='rounded-[2rem] border border-slate-900/10 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
+            <div className='rounded-4xl border border-slate-900/10 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
               <p className='font-mono text-xs font-semibold tracking-widest text-purple-600 uppercase dark:text-purple-300'>
                 certifications
               </p>
@@ -143,7 +143,7 @@ export function AboutPage() {
               </div>
             </div>
 
-            <div className='grid overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white/80 shadow-xl shadow-slate-900/5 backdrop-blur-md sm:grid-cols-[0.9fr_1.1fr] dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
+            <div className='grid overflow-hidden rounded-4xl border border-slate-900/10 bg-white/80 shadow-xl shadow-slate-900/5 backdrop-blur-md sm:grid-cols-[0.9fr_1.1fr] dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
               <div className='relative flex min-h-64 flex-col justify-between overflow-hidden bg-slate-100/80 p-6 dark:bg-white/5'>
                 <div className='absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-purple-500/12 blur-2xl' />
                 <p className='font-mono text-xs font-semibold tracking-widest text-purple-600 uppercase dark:text-purple-300'>

@@ -19,7 +19,7 @@ type FloatingText = FloatingItem & {
 
 const particles: FloatingText[] = [
   {
-    key: 'npm',
+    key: 'pnpm',
     text: 'pnpm run dev',
     className: 'portfolio-background__particle',
     x: 7,
@@ -53,7 +53,7 @@ const particles: FloatingText[] = [
   },
   {
     key: 'git',
-    text: 'git commit -m glow',
+    text: 'git commit -m "feat: add glow"',
     className: 'portfolio-background__particle',
     x: 68,
     y: 76,
