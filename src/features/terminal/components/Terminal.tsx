@@ -38,7 +38,7 @@ export default function Terminal() {
   return (
     <div
       className={cn(
-        'relative mx-auto flex w-full max-w-4xl flex-col overflow-hidden rounded-2xl border font-mono transition-colors duration-300',
+        'relative mx-auto flex w-full max-w-4xl flex-col overflow-hidden rounded-2xl border text-left font-mono transition-colors duration-300',
         'border-slate-200/80 bg-white/80 shadow-2xl shadow-slate-900/10 backdrop-blur-xl',
         'dark:border-zinc-800 dark:bg-zinc-950/92 dark:shadow-black/60',
       )}
@@ -65,7 +65,7 @@ export default function Terminal() {
 
       <div
         ref={bodyRef}
-        className='flex max-h-[70vh] min-h-105 flex-col gap-4 overflow-y-auto px-5 py-4 text-slate-800 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 dark:text-zinc-200 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-700'
+        className='flex max-h-[70vh] min-h-105 flex-col gap-4 overflow-y-auto px-5 py-4 text-left text-slate-800 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 dark:text-zinc-200 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-700'
       >
         <div className='space-y-0.5' aria-label='Terminal welcome message'>
           {BOOT_LINES.map((line, index) => (
