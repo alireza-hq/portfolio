@@ -127,46 +127,46 @@ html.dark {
 @keyframes background-particle {
   0%,
   100% {
-    opacity: 0.08;
+    opacity: 0.16;
     transform: translate3d(0, 0, 0);
   }
 
   25% {
-    opacity: 0.16;
-    transform: translate3d(34px, 28px, 0) rotate(1deg);
+    opacity: 0.34;
+    transform: translate3d(12vw, 9vh, 0) rotate(2deg);
   }
 
   50% {
-    opacity: 0.2;
-    transform: translate3d(-28px, -38px, 0) rotate(-1deg);
+    opacity: 0.42;
+    transform: translate3d(-8vw, -12vh, 0) rotate(-2deg);
   }
 
   75% {
-    opacity: 0.12;
-    transform: translate3d(42px, -12px, 0) rotate(0.5deg);
+    opacity: 0.26;
+    transform: translate3d(15vw, -5vh, 0) rotate(1deg);
   }
 }
 
 @keyframes background-particle-alt {
   0%,
   100% {
-    opacity: 0.1;
+    opacity: 0.18;
     transform: translate3d(0, 0, 0);
   }
 
   30% {
-    opacity: 0.2;
-    transform: translate3d(-46px, 18px, 0) rotate(-1deg);
+    opacity: 0.38;
+    transform: translate3d(-14vw, 7vh, 0) rotate(-2deg);
   }
 
   60% {
-    opacity: 0.14;
-    transform: translate3d(26px, 46px, 0) rotate(1deg);
+    opacity: 0.3;
+    transform: translate3d(8vw, 14vh, 0) rotate(2deg);
   }
 
   80% {
-    opacity: 0.18;
-    transform: translate3d(-18px, -34px, 0);
+    opacity: 0.34;
+    transform: translate3d(-6vw, -13vh, 0);
   }
 }
 
@@ -177,6 +177,63 @@ html.dark {
 
   to {
     transform: translate3d(128vw, -28vh, 0) rotate(-18deg);
+  }
+}
+
+@keyframes background-node-a {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  20% {
+    transform: translate3d(18vw, -8vh, 0) scale(1.25);
+  }
+
+  50% {
+    transform: translate3d(6vw, 16vh, 0) scale(0.9);
+  }
+
+  75% {
+    transform: translate3d(-10vw, 7vh, 0) scale(1.15);
+  }
+}
+
+@keyframes background-node-b {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  25% {
+    transform: translate3d(-15vw, 10vh, 0) scale(0.85);
+  }
+
+  55% {
+    transform: translate3d(11vw, -12vh, 0) scale(1.35);
+  }
+
+  80% {
+    transform: translate3d(4vw, 15vh, 0) scale(1);
+  }
+}
+
+@keyframes background-node-c {
+  0%,
+  100% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+
+  30% {
+    transform: translate3d(10vw, 14vh, 0) scale(1.2);
+  }
+
+  60% {
+    transform: translate3d(-13vw, -9vh, 0) scale(0.9);
+  }
+
+  85% {
+    transform: translate3d(16vw, -2vh, 0) scale(1.1);
   }
 }
 
@@ -388,13 +445,13 @@ html.dark {
 
 .portfolio-background__particle {
   position: absolute;
-  border: 1px solid rgb(15 23 42 / 0.06);
+  border: 1px solid rgb(15 23 42 / 0.08);
   border-radius: 0.5rem;
-  background: rgb(255 255 255 / 0.22);
+  background: rgb(255 255 255 / 0.42);
   padding: 0.45rem 0.7rem;
   font-family: var(--font-geist-mono), monospace;
   font-size: clamp(0.68rem, 1.2vw, 0.82rem);
-  color: rgb(79 70 229 / 0.28);
+  color: rgb(15 23 42 / 0.38);
   text-shadow: none;
   backdrop-filter: blur(10px);
 }
@@ -416,10 +473,46 @@ html.dark {
 }
 
 .dark .portfolio-background__particle {
-  border-color: rgb(255 255 255 / 0.055);
-  background: rgb(9 9 11 / 0.18);
-  color: rgb(216 180 254 / 0.3);
-  text-shadow: 0 0 18px rgb(34 211 238 / 0.16);
+  border-color: rgb(255 255 255 / 0.08);
+  background: rgb(9 9 11 / 0.34);
+  color: rgb(226 232 240 / 0.5);
+  text-shadow: 0 0 18px rgb(34 211 238 / 0.22);
+}
+
+.portfolio-background__node {
+  position: absolute;
+  width: 1.15rem;
+  height: 1.15rem;
+  border: 1px solid rgb(14 165 233 / 0.32);
+  border-radius: 9999px;
+  background:
+    radial-gradient(circle at 35% 35%, rgb(255 255 255 / 0.9), transparent 22%),
+    radial-gradient(circle, rgb(14 165 233 / 0.42), rgb(124 58 237 / 0.16));
+  box-shadow:
+    0 0 26px rgb(14 165 233 / 0.28),
+    0 0 64px rgb(124 58 237 / 0.12);
+}
+
+.dark .portfolio-background__node {
+  border-color: rgb(125 211 252 / 0.38);
+  background:
+    radial-gradient(circle at 35% 35%, rgb(255 255 255 / 0.8), transparent 20%),
+    radial-gradient(circle, rgb(34 211 238 / 0.46), rgb(139 92 246 / 0.18));
+  box-shadow:
+    0 0 30px rgb(34 211 238 / 0.32),
+    0 0 72px rgb(139 92 246 / 0.18);
+}
+
+.motion-node-a {
+  animation: background-node-a 9s ease-in-out infinite;
+}
+
+.motion-node-b {
+  animation: background-node-b 11s ease-in-out infinite;
+}
+
+.motion-node-c {
+  animation: background-node-c 13s ease-in-out infinite;
 }
 
 .portfolio-background__pixel {
@@ -464,10 +557,27 @@ html.dark {
   animation-delay: -6s;
 }
 
+.delay-1 {
+  animation-delay: -1s;
+}
+
+.delay-3 {
+  animation-delay: -3s;
+}
+
+.delay-5 {
+  animation-delay: -5s;
+}
+
+.delay-7 {
+  animation-delay: -7s;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .portfolio-background__aura,
   .portfolio-background__beam,
   .portfolio-background__grid,
+  .portfolio-background__node,
   .portfolio-background__scanline,
   .portfolio-background__pixel,
   .portfolio-background__particle {

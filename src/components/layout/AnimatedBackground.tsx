@@ -1,6 +1,12 @@
 const particles = [
-  { text: 'npm run dev', className: 'top-[14%] left-[8%] motion-float-a delay-0' },
-  { text: '<React />', className: 'top-[26%] right-[10%] motion-float-b delay-2' },
+  {
+    text: 'npm run dev',
+    className: 'top-[12%] left-[7%] motion-float-a delay-0',
+  },
+  {
+    text: '<React />',
+    className: 'top-[22%] right-[8%] motion-float-b delay-2',
+  },
   {
     text: 'const craft = true',
     className: 'bottom-[24%] left-[12%] motion-float-c delay-4',
@@ -9,6 +15,17 @@ const particles = [
     text: 'git commit -m glow',
     className: 'right-[16%] bottom-[14%] motion-float-d delay-6',
   },
+]
+
+const nodes = [
+  'left-[9%] top-[18%] motion-node-a delay-0',
+  'left-[18%] bottom-[16%] motion-node-b delay-3',
+  'left-[45%] top-[12%] motion-node-c delay-6',
+  'right-[18%] top-[20%] motion-node-b delay-1',
+  'right-[10%] bottom-[22%] motion-node-a delay-4',
+  'left-[58%] bottom-[12%] motion-node-c delay-2',
+  'right-[38%] top-[48%] motion-node-a delay-5',
+  'left-[30%] top-[62%] motion-node-b delay-7',
 ]
 
 const pixels = [
@@ -35,6 +52,10 @@ export function AnimatedBackground() {
       <div className='portfolio-background__beam portfolio-background__beam--two' />
       <div className='portfolio-background__beam portfolio-background__beam--three' />
       <div className='portfolio-background__vignette' />
+
+      {nodes.map((node) => (
+        <span key={node} className={`portfolio-background__node ${node}`} />
+      ))}
 
       {particles.map((particle) => (
         <span
