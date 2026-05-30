@@ -34,10 +34,6 @@ export function CustomCursor() {
   const [cursor, setCursor] = useState(initialCursor)
 
   useEffect(() => {
-    const finePointer = window.matchMedia('(pointer: fine)').matches
-
-    if (!finePointer) return
-
     function handlePointerMove(event: PointerEvent) {
       setCursor((current) => ({
         ...current,
