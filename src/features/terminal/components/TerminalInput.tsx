@@ -14,6 +14,7 @@ export const TerminalInput = memo(function TerminalInput({
   focusRequest,
 }: TerminalInputProps) {
   const [value, setValue] = useState('')
+  const [isFocused, setIsFocused] = useState(false)
   const inputRef = useRef<HTMLInputElement>(null)
   const { addCommand, getPreviousCommand, getNextCommand } = useCommandHistory()
 
@@ -63,6 +64,8 @@ export const TerminalInput = memo(function TerminalInput({
           value={value}
           onChange={(event) => setValue(event.target.value)}
           onKeyDown={handleKeyDown}
+          onFocus={() => setIsFocused(true)}
+          onBlur={() => setIsFocused(false)}
           className='relative z-10 w-full bg-transparent text-left text-transparent caret-transparent outline-none placeholder:text-slate-400 dark:placeholder:text-zinc-600'
           placeholder='Type a command...'
           spellCheck={false}
@@ -76,7 +79,9 @@ export const TerminalInput = memo(function TerminalInput({
           aria-hidden='true'
         >
           {value}
-          <span className='animate-terminal-cursor ml-px inline-block h-5 w-2 align-[-0.2rem] bg-slate-700 dark:bg-zinc-200' />
+          {isFocused ? (
+            <span className='animate-terminal-cursor ml-px inline-block h-5 w-2 align-[-0.2rem] bg-slate-700 dark:bg-zinc-200' />
+          ) : null}
         </span>
       </div>
     </div>

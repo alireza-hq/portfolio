@@ -1,5 +1,7 @@
 import Link from 'next/link'
-import { ArrowUpRight, Code2, Mail } from 'lucide-react'
+import { ArrowUpRight } from 'lucide-react'
+import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
+import { MdOutlineMail } from 'react-icons/md'
 
 const sitemap = [
   { href: '/', label: 'Home' },
@@ -11,14 +13,19 @@ const sitemap = [
 
 const contactLinks = [
   {
-    href: 'mailto:your.email@example.com',
-    label: 'your.email@example.com',
-    icon: Mail,
-  },
-  {
     href: 'https://github.com/yourusername',
     label: 'github.com/yourusername',
-    icon: Code2,
+    icon: FaGithub,
+  },
+  {
+    href: 'https://linkedin.com/in/yourusername',
+    label: 'linkedin.com/in/yourusername',
+    icon: FaLinkedinIn,
+  },
+  {
+    href: 'mailto:your.email@example.com',
+    label: 'your.email@example.com',
+    icon: MdOutlineMail,
   },
 ]
 

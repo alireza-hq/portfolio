@@ -12,10 +12,22 @@ const education = [
 ]
 
 const certifications = [
-  'Responsive Web Design',
-  'JavaScript Algorithms and Data Structures',
-  'React / Next.js production patterns',
-  'TypeScript application architecture',
+  {
+    title: 'Responsive Web Design',
+    issuer: 'Certification',
+  },
+  {
+    title: 'JavaScript Algorithms and Data Structures',
+    issuer: 'Certification',
+  },
+  {
+    title: 'React / Next.js production patterns',
+    issuer: 'Specialization',
+  },
+  {
+    title: 'TypeScript application architecture',
+    issuer: 'Specialization',
+  },
 ]
 
 const values = [
@@ -87,13 +99,13 @@ export function AboutPage() {
                   Learning path
                 </h2>
               </div>
-              <span className='h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_24px_rgb(168_85_247/0.75)]' />
+              <span className='education-orb h-3 w-3 rounded-full bg-purple-500 shadow-[0_0_24px_rgb(168_85_247/0.75)]' />
             </div>
 
             <div className='relative mt-6 grid gap-6 pl-6 before:absolute before:top-2 before:bottom-2 before:left-1 before:w-px before:bg-slate-900/10 dark:before:bg-white/12'>
               {education.map((item) => (
                 <article key={item.title} className='relative'>
-                  <span className='absolute top-1 -left-[1.42rem] h-3 w-3 rounded-full border-2 border-white bg-purple-500 dark:border-zinc-950' />
+                  <span className='education-orb absolute top-1 -left-[1.42rem] h-3 w-3 rounded-full border-2 border-white bg-purple-500 dark:border-zinc-950' />
                   <p className='font-mono text-xs text-slate-500 dark:text-zinc-500'>
                     {item.period}
                   </p>
@@ -113,27 +125,38 @@ export function AboutPage() {
               <p className='font-mono text-xs font-semibold tracking-widest text-purple-600 uppercase dark:text-purple-300'>
                 certifications
               </p>
-              <div className='mt-5 flex flex-wrap gap-3'>
-                {certifications.map((item, index) => (
-                  <span
-                    key={item}
-                    className='rounded-full border border-slate-900/10 bg-slate-50 px-4 py-2 text-sm font-medium text-slate-700 shadow-sm shadow-slate-900/5 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300'
-                    style={{ transform: `translateY(${index % 2 ? 6 : 0}px)` }}
+              <div className='mt-5 grid gap-3 sm:grid-cols-2'>
+                {certifications.map((item) => (
+                  <a
+                    key={item.title}
+                    href='#'
+                    className='group rounded-2xl border border-slate-900/10 bg-slate-50/90 p-4 shadow-sm shadow-slate-900/5 transition hover:-translate-y-0.5 hover:border-purple-400/40 hover:bg-white dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10'
                   >
-                    {item}
-                  </span>
+                    <span className='font-mono text-[0.65rem] font-semibold tracking-widest text-purple-600 uppercase dark:text-purple-300'>
+                      {item.issuer}
+                    </span>
+                    <span className='mt-2 block text-sm font-semibold text-slate-800 group-hover:text-purple-700 dark:text-zinc-200 dark:group-hover:text-purple-200'>
+                      {item.title}
+                    </span>
+                  </a>
                 ))}
               </div>
             </div>
 
             <div className='grid overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white/80 shadow-xl shadow-slate-900/5 backdrop-blur-md sm:grid-cols-[0.9fr_1.1fr] dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
-              <div className='flex flex-col justify-between bg-slate-100/80 p-6 dark:bg-white/5'>
+              <div className='relative flex min-h-64 flex-col justify-between overflow-hidden bg-slate-100/80 p-6 dark:bg-white/5'>
+                <div className='absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-purple-500/12 blur-2xl' />
                 <p className='font-mono text-xs font-semibold tracking-widest text-purple-600 uppercase dark:text-purple-300'>
                   principles
                 </p>
-                <h2 className='mt-12 text-2xl font-semibold text-slate-950 dark:text-white'>
-                  How I like the work to feel.
-                </h2>
+                <div className='relative'>
+                  <p className='font-mono text-7xl leading-none font-semibold text-slate-950/5 dark:text-white/8'>
+                    04
+                  </p>
+                  <h2 className='mt-4 text-2xl font-semibold text-slate-950 dark:text-white'>
+                    How I like the work to feel.
+                  </h2>
+                </div>
               </div>
 
               <div className='grid divide-y divide-slate-900/10 dark:divide-white/10'>

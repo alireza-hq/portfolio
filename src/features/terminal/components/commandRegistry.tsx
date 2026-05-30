@@ -135,15 +135,6 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       content: (
         <div className='space-y-1'>
           <p>
-            Email:{' '}
-            <a
-              className='text-sky-600 hover:underline dark:text-sky-400'
-              href={`mailto:${developer.email}`}
-            >
-              {developer.email}
-            </a>
-          </p>
-          <p>
             GitHub:{' '}
             <a
               className='text-sky-600 hover:underline dark:text-sky-400'
@@ -161,6 +152,15 @@ export const commandRegistry: Record<string, TerminalCommand> = {
               target='_blank'
             >
               {developer.linkedin}
+            </a>
+          </p>
+          <p>
+            Email:{' '}
+            <a
+              className='text-sky-600 hover:underline dark:text-sky-400'
+              href={`mailto:${developer.email}`}
+            >
+              {developer.email}
             </a>
           </p>
         </div>
