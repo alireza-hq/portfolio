@@ -16,7 +16,7 @@ const BOOT_LINES = [
 export default function Terminal() {
   const { resolvedTheme, setTheme } = useTheme()
   const [isActive, setIsActive] = useState(false)
-  const bottomRef = useRef<HTMLDivElement>(null)
+  const bodyRef = useRef<HTMLDivElement>(null)
 
   const toggleTheme = useCallback(() => {
     setTheme(resolvedTheme === 'dark' ? 'light' : 'dark')
@@ -25,7 +25,14 @@ export default function Terminal() {
   const { lines, executeCommand } = useTerminal({ onToggleTheme: toggleTheme })
 
   useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
+    const body = bodyRef.current
+
+    if (!body) return
+
+    body.scrollTo({
+      top: body.scrollHeight,
+      behavior: 'smooth',
+    })
   }, [lines])
 
   return (
@@ -56,7 +63,10 @@ export default function Terminal() {
         <div className='w-14' />
       </div>
 
-      <div className='flex max-h-[70vh] min-h-105 flex-col gap-4 overflow-y-auto px-5 py-4 text-slate-800 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 dark:text-zinc-200 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-700'>
+      <div
+        ref={bodyRef}
+        className='flex max-h-[70vh] min-h-105 flex-col gap-4 overflow-y-auto px-5 py-4 text-slate-800 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-track]:bg-transparent [&::-webkit-scrollbar-thumb]:bg-slate-300 dark:text-zinc-200 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-700'
+      >
         <div className='space-y-0.5' aria-label='Terminal welcome message'>
           {BOOT_LINES.map((line, index) => (
             <p
@@ -81,7 +91,6 @@ export default function Terminal() {
         />
 
         <TerminalInput onExecute={executeCommand} isActive={isActive} />
-        <div ref={bottomRef} />
       </div>
     </div>
   )

@@ -61,7 +61,7 @@ export const TerminalInput = memo(function TerminalInput({
           value={value}
           onChange={(event) => setValue(event.target.value)}
           onKeyDown={handleKeyDown}
-          className='w-full bg-transparent text-slate-900 caret-transparent outline-none placeholder:text-slate-400 dark:text-zinc-100 dark:placeholder:text-zinc-600'
+          className='relative z-10 w-full bg-transparent text-transparent caret-transparent outline-none placeholder:text-slate-400 dark:placeholder:text-zinc-600'
           placeholder='Type a command...'
           spellCheck={false}
           autoCapitalize='none'
@@ -69,7 +69,13 @@ export const TerminalInput = memo(function TerminalInput({
           aria-label='Terminal command input'
         />
 
-        <span className='animate-terminal-cursor pointer-events-none absolute top-0 left-0 h-5 w-2 bg-slate-700 dark:bg-zinc-200' />
+        <span
+          className='pointer-events-none absolute inset-0 whitespace-pre text-slate-900 dark:text-zinc-100'
+          aria-hidden='true'
+        >
+          {value}
+          <span className='animate-terminal-cursor ml-px inline-block h-5 w-2 align-[-0.2rem] bg-slate-700 dark:bg-zinc-200' />
+        </span>
       </div>
     </div>
   )
