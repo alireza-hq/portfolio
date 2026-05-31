@@ -388,6 +388,25 @@ const softSkills = [
   },
 ]
 
+const quickActions = [
+  {
+    label: 'Inspect stack by category',
+    href: '#stack-map',
+  },
+  {
+    label: 'Open icon inspector',
+    href: '#stack-inspector',
+  },
+  {
+    label: 'Tune soft-skill modules',
+    href: '#soft-skills',
+  },
+  {
+    label: 'Use the terminal',
+    href: '/',
+  },
+]
+
 export function SkillsPage() {
   const [activeTabId, setActiveTabId] = useState(stackTabs[0].id)
   const activeTab =
@@ -466,7 +485,10 @@ export function SkillsPage() {
           </div>
         </div>
 
-        <section className='mt-12 overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 text-white shadow-2xl shadow-slate-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
+        <section
+          id='stack-inspector'
+          className='mt-12 scroll-mt-28 overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 text-white shadow-2xl shadow-slate-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'
+        >
           <div className='flex flex-col gap-4 border-b border-white/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between'>
             <div className='flex items-center gap-3'>
               <div className='grid h-10 w-10 place-items-center rounded-2xl bg-sky-300/12 text-sky-200 ring-1 ring-sky-200/15'>
@@ -667,7 +689,69 @@ export function SkillsPage() {
           </div>
         </section>
 
-        <section className='mt-4 grid gap-4 lg:grid-cols-[0.95fr_1.05fr]'>
+        <div
+          id='stack-map'
+          className='mt-4 grid scroll-mt-28 gap-4 lg:grid-cols-[1fr_1fr]'
+        >
+          <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/20'>
+            <div className='flex items-center gap-3'>
+              <div className='grid h-11 w-11 place-items-center rounded-2xl bg-sky-500/10 text-sky-700 ring-1 ring-sky-500/15 dark:bg-sky-400/10 dark:text-sky-200'>
+                <Layers3 className='h-5 w-5' />
+              </div>
+              <div>
+                <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
+                  stack map
+                </p>
+                <h2 className='mt-1 text-2xl font-semibold text-slate-950 dark:text-white'>
+                  How the pieces connect.
+                </h2>
+              </div>
+            </div>
+            <div className='mt-6 grid gap-3 sm:grid-cols-2'>
+              {stackTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  type='button'
+                  onClick={() => selectTab(tab)}
+                  className='rounded-2xl border border-slate-900/10 bg-slate-50/80 p-4 text-left transition hover:-translate-y-0.5 hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/9'
+                >
+                  <span className='font-semibold text-slate-950 dark:text-white'>
+                    {tab.label}
+                  </span>
+                  <span className='mt-2 block text-sm leading-6 text-slate-500 dark:text-zinc-400'>
+                    {tab.items.map((item) => item.name).join(' / ')}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </section>
+
+          <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
+            <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
+              quick actions
+            </p>
+            <h2 className='mt-3 text-2xl font-semibold text-slate-950 dark:text-white'>
+              Recruiter-friendly without being boring.
+            </h2>
+            <div className='mt-6 grid gap-3'>
+              {quickActions.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className='flex items-center justify-between rounded-2xl border border-slate-900/10 bg-slate-50/80 px-4 py-3 text-sm font-medium text-slate-700 transition hover:-translate-y-0.5 hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300 dark:hover:bg-white/8'
+                >
+                  <span>{item.label}</span>
+                  <ArrowUpRight className='h-4 w-4 text-sky-600 dark:text-sky-300' />
+                </a>
+              ))}
+            </div>
+          </section>
+        </div>
+
+        <section
+          id='soft-skills'
+          className='mt-4 grid scroll-mt-28 gap-4 lg:grid-cols-[0.95fr_1.05fr]'
+        >
           <div className='rounded-[2rem] border border-slate-900/10 bg-white/75 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/75 dark:shadow-black/20'>
             <div className='flex items-center justify-between gap-4'>
               <div>
@@ -759,63 +843,6 @@ export function SkillsPage() {
             </div>
           </div>
         </section>
-
-        <div className='mt-4 grid gap-4 lg:grid-cols-[1fr_1fr]'>
-          <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/20'>
-            <div className='flex items-center gap-3'>
-              <div className='grid h-11 w-11 place-items-center rounded-2xl bg-sky-500/10 text-sky-700 ring-1 ring-sky-500/15 dark:bg-sky-400/10 dark:text-sky-200'>
-                <Layers3 className='h-5 w-5' />
-              </div>
-              <div>
-                <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
-                  stack map
-                </p>
-                <h2 className='mt-1 text-2xl font-semibold text-slate-950 dark:text-white'>
-                  How the pieces connect.
-                </h2>
-              </div>
-            </div>
-            <div className='mt-6 grid gap-3 sm:grid-cols-2'>
-              {stackTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  type='button'
-                  onClick={() => selectTab(tab)}
-                  className='rounded-2xl border border-slate-900/10 bg-slate-50/80 p-4 text-left transition hover:-translate-y-0.5 hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/9'
-                >
-                  <span className='font-semibold text-slate-950 dark:text-white'>
-                    {tab.label}
-                  </span>
-                  <span className='mt-2 block text-sm leading-6 text-slate-500 dark:text-zinc-400'>
-                    {tab.items.map((item) => item.name).join(' / ')}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </section>
-
-          <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
-            <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
-              quick actions
-            </p>
-            <h2 className='mt-3 text-2xl font-semibold text-slate-950 dark:text-white'>
-              Recruiter-friendly without being boring.
-            </h2>
-            <div className='mt-6 grid gap-3'>
-              {['Inspect stack by category', 'Hover icons to reveal labels', 'Tap tiles on mobile', 'Use the terminal for commands'].map(
-                (item) => (
-                  <div
-                    key={item}
-                    className='flex items-center justify-between rounded-2xl border border-slate-900/10 bg-slate-50/80 px-4 py-3 text-sm font-medium text-slate-700 dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300'
-                  >
-                    <span>{item}</span>
-                    <ArrowUpRight className='h-4 w-4 text-sky-600 dark:text-sky-300' />
-                  </div>
-                ),
-              )}
-            </div>
-          </section>
-        </div>
       </section>
     </main>
   )
