@@ -7,8 +7,6 @@ import {
   ExternalLink,
   LayoutDashboard,
   Lightbulb,
-  MousePointerClick,
-  ShieldCheck,
   SlidersHorizontal,
   Sparkles,
   TerminalSquare,
@@ -108,24 +106,6 @@ const projects: Project[] = [
     ],
     architecture:
       'The interface is shaped around operational states: queue, selected item, action confirmation, and audit trail.',
-  },
-]
-
-const principles = [
-  {
-    title: 'Browse like software',
-    copy: 'Projects behave like selectable artifacts with state, actions, and inspection.',
-    icon: MousePointerClick,
-  },
-  {
-    title: 'Image as interface',
-    copy: 'Previews are abstract UI snapshots, so the page feels designed before real screenshots arrive.',
-    icon: Lightbulb,
-  },
-  {
-    title: 'Details on demand',
-    copy: 'The build story opens only when someone asks for it.',
-    icon: ShieldCheck,
   },
 ]
 
@@ -405,26 +385,46 @@ export function ProjectsPage() {
           })}
         </div>
 
-        <div className='mt-4 grid gap-4 md:grid-cols-3'>
-          {principles.map((principle) => {
-            const Icon = principle.icon
+        <section className='mt-4 rounded-[2rem] border border-slate-900/10 bg-white/70 p-5 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
+          <div className='flex flex-col gap-4 md:flex-row md:items-center md:justify-between'>
+            <div>
+              <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
+                atlas signals
+              </p>
+              <h2 className='mt-2 text-2xl font-semibold text-slate-950 dark:text-white'>
+                What changes when you select a project.
+              </h2>
+            </div>
+            <button
+              type='button'
+              onClick={() => setIsModalOpen(true)}
+              className='inline-flex w-fit items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
+            >
+              Inspect active build
+              <Lightbulb className='h-4 w-4' />
+            </button>
+          </div>
 
-            return (
-              <article
-                key={principle.title}
-                className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-sky-400/35 dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'
+          <div className='mt-5 grid gap-3 lg:grid-cols-3'>
+            {[
+              ['Artifact', activeProject.name],
+              ['Surface', activeProject.type],
+              ['Build notes', `${activeProject.process.length} steps`],
+            ].map(([label, value]) => (
+              <div
+                key={label}
+                className='rounded-2xl border border-slate-900/10 bg-slate-50/80 px-4 py-3 dark:border-white/10 dark:bg-zinc-950/45'
               >
-                <Icon className='h-5 w-5 text-sky-600 dark:text-sky-300' />
-                <h3 className='mt-5 text-xl font-semibold text-slate-950 dark:text-white'>
-                  {principle.title}
-                </h3>
-                <p className='mt-3 leading-7 text-slate-600 dark:text-zinc-400'>
-                  {principle.copy}
+                <p className='font-mono text-xs text-slate-500 dark:text-zinc-500'>
+                  {label}
                 </p>
-              </article>
-            )
-          })}
-        </div>
+                <p className='mt-1 font-semibold text-slate-950 dark:text-white'>
+                  {value}
+                </p>
+              </div>
+            ))}
+          </div>
+        </section>
       </section>
 
       {isModalOpen ? (
