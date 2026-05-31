@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { MdOutlineMail } from 'react-icons/md'
+import { socials } from '@/data/socials'
 
 const sitemap = [
   { href: '/', label: 'Home' },
@@ -11,23 +12,11 @@ const sitemap = [
   { href: '/contact', label: 'Contact' },
 ]
 
-const contactLinks = [
-  {
-    href: 'https://github.com/yourusername',
-    label: 'github.com/yourusername',
-    icon: FaGithub,
-  },
-  {
-    href: 'https://linkedin.com/in/yourusername',
-    label: 'linkedin.com/in/yourusername',
-    icon: FaLinkedinIn,
-  },
-  {
-    href: 'mailto:your.email@example.com',
-    label: 'your.email@example.com',
-    icon: MdOutlineMail,
-  },
-]
+const socialIcons = {
+  email: MdOutlineMail,
+  github: FaGithub,
+  linkedin: FaLinkedinIn,
+}
 
 export function Footer() {
   return (
@@ -66,8 +55,8 @@ export function Footer() {
           <div>
             <p className='text-sm font-semibold text-white'>Contact</p>
             <div className='mt-4 grid gap-3'>
-              {contactLinks.map((link) => {
-                const Icon = link.icon
+              {socials.map((link) => {
+                const Icon = socialIcons[link.id]
 
                 return (
                   <Link
@@ -77,7 +66,7 @@ export function Footer() {
                     className='inline-flex min-w-0 items-center gap-3 rounded-xl border border-white/12 bg-white/10 px-4 py-3 text-sm text-zinc-100 transition hover:border-cyan-300/35 hover:bg-cyan-300/12 hover:text-white focus-visible:ring-2 focus-visible:ring-cyan-300/60 focus-visible:outline-none'
                   >
                     <Icon className='h-4 w-4 shrink-0' />
-                    <span className='truncate'>{link.label}</span>
+                    <span className='truncate'>{link.value}</span>
                   </Link>
                 )
               })}

@@ -3,27 +3,13 @@ import { ArrowUpRight } from 'lucide-react'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { MdOutlineMail } from 'react-icons/md'
 import { ContactForm } from './ContactForm'
+import { socials } from '@/data/socials'
 
-const socials = [
-  {
-    label: 'GitHub',
-    href: 'https://github.com/yourusername',
-    value: 'github.com/yourusername',
-    icon: FaGithub,
-  },
-  {
-    label: 'LinkedIn',
-    href: 'https://linkedin.com/in/yourusername',
-    value: 'linkedin.com/in/yourusername',
-    icon: FaLinkedinIn,
-  },
-  {
-    label: 'Email',
-    href: 'mailto:your.email@example.com',
-    value: 'your.email@example.com',
-    icon: MdOutlineMail,
-  },
-]
+const socialIcons = {
+  email: MdOutlineMail,
+  github: FaGithub,
+  linkedin: FaLinkedinIn,
+}
 
 export function ContactPage() {
   return (
@@ -45,7 +31,7 @@ export function ContactPage() {
 
           <div className='mt-10 grid gap-3'>
             {socials.map((social) => {
-              const Icon = social.icon
+              const Icon = socialIcons[social.id]
 
               return (
                 <Link

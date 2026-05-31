@@ -14,50 +14,13 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import { projectFilters, projects } from '@/data/projects'
 
-const filters = ['All', 'Interactive', 'Dashboard', 'Tooling'] as const
-
-const projects = [
-  {
-    name: 'Portfolio Terminal',
-    type: 'Interactive portfolio',
-    category: 'Interactive',
-    status: 'Live concept',
-    score: 96,
-    icon: TerminalSquare,
-    description:
-      'A command-driven personal site with discovery, theme control, custom motion, and a developer identity that feels hands-on.',
-    metrics: ['Command UX', 'Theme system', 'Motion layer'],
-    stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-    preview: ['help', 'skills --interactive', 'contact --socials'],
-  },
-  {
-    name: 'Commerce Dashboard',
-    type: 'Full-stack app',
-    category: 'Dashboard',
-    status: 'Case study',
-    score: 91,
-    icon: LayoutDashboard,
-    description:
-      'Product, order, and admin workflows shaped for fast scanning, clean forms, and reliable daily operation.',
-    metrics: ['Dense tables', 'Form flows', 'Admin actions'],
-    stack: ['Next.js', 'Prisma', 'PostgreSQL', 'React Hook Form'],
-    preview: ['orders.filter(active)', 'inventory.sync()', 'admin.audit()'],
-  },
-  {
-    name: 'Ops Interface',
-    type: 'Internal tool',
-    category: 'Tooling',
-    status: 'Prototype',
-    score: 88,
-    icon: Boxes,
-    description:
-      'Protected workflows, stateful views, and focused controls for teams that need speed more than decoration.',
-    metrics: ['Protected routes', 'Bulk actions', 'Stateful filters'],
-    stack: ['TypeScript', 'REST APIs', 'Zod', 'Git'],
-    preview: ['queue.watch()', 'route.guard()', 'batch.resolve()'],
-  },
-]
+const projectIcons = {
+  'Portfolio Terminal': TerminalSquare,
+  'Commerce Dashboard': LayoutDashboard,
+  'Ops Interface': Boxes,
+}
 
 const principles = [
   {
@@ -79,7 +42,7 @@ const principles = [
 
 export function ProjectsPage() {
   const [activeFilter, setActiveFilter] =
-    useState<(typeof filters)[number]>('All')
+    useState<(typeof projectFilters)[number]>('All')
   const visibleProjects = useMemo(
     () =>
       activeFilter === 'All'
@@ -87,12 +50,14 @@ export function ProjectsPage() {
         : projects.filter((project) => project.category === activeFilter),
     [activeFilter],
   )
-  const [activeProjectName, setActiveProjectName] = useState(projects[0].name)
+  const [activeProjectName, setActiveProjectName] = useState<string>(
+    projects[0].name,
+  )
   const activeProject =
     visibleProjects.find((project) => project.name === activeProjectName) ??
     visibleProjects[0]
 
-  function selectFilter(filter: (typeof filters)[number]) {
+  function selectFilter(filter: (typeof projectFilters)[number]) {
     setActiveFilter(filter)
     const nextProject =
       filter === 'All'
@@ -102,7 +67,7 @@ export function ProjectsPage() {
     if (nextProject) setActiveProjectName(nextProject.name)
   }
 
-  const ActiveIcon = activeProject.icon
+  const ActiveIcon = projectIcons[activeProject.name]
 
   return (
     <main className='relative z-10 min-h-screen px-4 pt-32 pb-20 sm:px-6 lg:px-8'>
@@ -129,7 +94,7 @@ export function ProjectsPage() {
               </p>
             </div>
             <div className='mt-4 flex flex-wrap gap-2'>
-              {filters.map((filter) => (
+              {projectFilters.map((filter) => (
                 <button
                   key={filter}
                   type='button'
@@ -151,7 +116,7 @@ export function ProjectsPage() {
         <div className='mt-12 grid gap-4 lg:grid-cols-[0.86fr_1.14fr]'>
           <div className='grid gap-3'>
             {visibleProjects.map((project) => {
-              const Icon = project.icon
+              const Icon = projectIcons[project.name]
               const isActive = activeProject.name === project.name
 
               return (
@@ -226,6 +191,25 @@ export function ProjectsPage() {
                   {activeProject.description}
                 </p>
 
+                <div className='mt-6 grid gap-3 sm:grid-cols-2'>
+                  {activeProject.features.map((feature) => (
+                    <div
+                      key={feature}
+                      className='rounded-2xl border border-white/10 bg-white/6 px-4 py-3 text-sm text-zinc-300'
+                    >
+                      {feature}
+                    </div>
+                  ))}
+                  {activeProject.challenges.map((challenge) => (
+                    <div
+                      key={challenge}
+                      className='rounded-2xl border border-sky-300/15 bg-sky-300/8 px-4 py-3 text-sm text-sky-100'
+                    >
+                      {challenge}
+                    </div>
+                  ))}
+                </div>
+
                 <div className='mt-6 flex flex-wrap gap-2'>
                   {activeProject.stack.map((item) => (
                     <span
@@ -263,6 +247,21 @@ export function ProjectsPage() {
                       <span className='text-sky-300'>$</span> {line}
                     </p>
                   ))}
+                </div>
+                <div className='mt-6 flex flex-wrap gap-2'>
+                  <a
+                    href={activeProject.links.demo}
+                    className='rounded-full bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition hover:-translate-y-0.5 hover:bg-sky-100 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
+                  >
+                    Open demo
+                  </a>
+                  <a
+                    href={activeProject.links.github}
+                    target='_blank'
+                    className='rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-sky-300/35 hover:bg-sky-300/10 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
+                  >
+                    GitHub
+                  </a>
                 </div>
               </div>
             </div>

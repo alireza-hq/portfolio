@@ -12,9 +12,9 @@ export const useContact = () => {
     reset,
   } = useForm<ContactFormValues>({ resolver: zodResolver(contactFormSchema) })
 
-  const onSubmit = (values: ContactFormValues) => {
+  const onSubmit = async (values: ContactFormValues) => {
     console.log(values)
-    alert('Sent!')
+    await new Promise((resolve) => setTimeout(resolve, 450))
     reset()
   }
 

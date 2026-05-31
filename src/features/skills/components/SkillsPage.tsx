@@ -15,54 +15,13 @@ import {
 } from 'lucide-react'
 
 import { cn } from '@/lib/utils'
+import { skillGroups, skillModes, toolbox } from '@/data/skills'
 
-const modes = [
-  {
-    id: 'launch',
-    label: 'Launch UI',
-    tagline: 'Portfolio, dashboard, landing, product shell.',
-    score: 94,
-    output: ['next build', 'typecheck passed', 'interaction polish applied'],
-    stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-  },
-  {
-    id: 'system',
-    label: 'Design System',
-    tagline: 'Reusable primitives, states, tokens, and layout rules.',
-    score: 89,
-    output: ['component map generated', 'states normalized', 'visual QA ready'],
-    stack: ['Accessibility', 'Tailwind CSS', 'State modeling', 'Git'],
-  },
-  {
-    id: 'fullstack',
-    label: 'Full Flow',
-    tagline: 'Forms, validation, API contracts, and data-backed screens.',
-    score: 86,
-    output: ['schema connected', 'form validation active', 'API path traced'],
-    stack: ['React Hook Form', 'Zod', 'Prisma', 'PostgreSQL'],
-  },
-]
-
-const skillGroups = [
-  {
-    title: 'Interface Engineering',
-    description: 'Responsive product UI with strong state boundaries.',
-    icon: Layers3,
-    items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Accessibility'],
-  },
-  {
-    title: 'Application Logic',
-    description: 'Forms, commands, data flow, and client-side architecture.',
-    icon: Braces,
-    items: ['State modeling', 'React Hook Form', 'Zod', 'REST APIs', 'Prisma'],
-  },
-  {
-    title: 'Backend Adjacent',
-    description: 'Backend fluency for complete web experiences.',
-    icon: Database,
-    items: ['Node.js', 'Express', 'PostgreSQL', 'Auth flows', 'API contracts'],
-  },
-]
+const skillIcons = {
+  braces: Braces,
+  database: Database,
+  layers: Layers3,
+}
 
 const strengths = [
   {
@@ -91,31 +50,31 @@ const strengths = [
   },
 ]
 
-const toolbox = [
-  'Next.js App Router',
-  'React Server Components',
-  'Tailwind CSS v4',
-  'TypeScript',
-  'React Hook Form',
-  'Zod',
-  'pnpm',
-  'Git',
-]
-
 export function SkillsPage() {
-  const [activeMode, setActiveMode] = useState(modes[0])
-  const [selectedTools, setSelectedTools] = useState<string[]>(modes[0].stack)
+  const [activeMode, setActiveMode] =
+    useState<(typeof skillModes)[number]>(skillModes[0])
+  const [selectedTools, setSelectedTools] = useState<string[]>(
+    [...skillModes[0].stack],
+  )
+  const [activeToolName, setActiveToolName] = useState<string>(toolbox[0].name)
+  const activeTool =
+    toolbox.find((tool) => tool.name === activeToolName) ?? toolbox[0]
 
   const selectedStrength = useMemo(() => {
     return Math.min(99, activeMode.score + selectedTools.length)
   }, [activeMode.score, selectedTools.length])
 
-  function selectMode(mode: (typeof modes)[number]) {
+  function selectMode(mode: (typeof skillModes)[number]) {
     setActiveMode(mode)
-    setSelectedTools(mode.stack)
+    const modeStack: string[] = [...mode.stack]
+    setSelectedTools(modeStack)
+    setActiveToolName(
+      toolbox.find((tool) => modeStack.includes(tool.name))?.name ?? toolbox[0].name,
+    )
   }
 
   function toggleTool(tool: string) {
+    setActiveToolName(tool)
     setSelectedTools((current) =>
       current.includes(tool)
         ? current.filter((item) => item !== tool)
@@ -152,7 +111,7 @@ export function SkillsPage() {
 
             <div className='grid gap-6 p-5 sm:p-6 lg:grid-cols-[0.9fr_1.1fr]'>
               <div className='grid gap-3'>
-                {modes.map((mode) => {
+                {skillModes.map((mode) => {
                   const isActive = activeMode.id === mode.id
 
                   return (
@@ -220,7 +179,7 @@ export function SkillsPage() {
 
         <div className='mt-12 grid gap-4 lg:grid-cols-3'>
           {skillGroups.map((group) => {
-            const Icon = group.icon
+            const Icon = skillIcons[group.icon]
 
             return (
               <section
@@ -319,22 +278,24 @@ export function SkillsPage() {
             </h2>
 
             <div className='mt-6 grid gap-2'>
-              {toolbox.map((item) => {
-                const isSelected = selectedTools.includes(item)
+              {toolbox.map((tool) => {
+                const isSelected = selectedTools.includes(tool.name)
+                const isActive = activeTool.name === tool.name
 
                 return (
                   <button
-                    key={item}
+                    key={tool.name}
                     type='button'
-                    onClick={() => toggleTool(item)}
+                    onClick={() => toggleTool(tool.name)}
                     className={cn(
                       'flex items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm font-medium transition',
                       isSelected
                         ? 'border-sky-400/40 bg-sky-500/10 text-sky-700 dark:bg-sky-400/12 dark:text-sky-200'
                         : 'border-slate-900/10 bg-slate-50/80 text-slate-700 hover:border-sky-400/35 dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300',
+                      isActive && 'ring-2 ring-sky-400/25',
                     )}
                   >
-                    <span>{item}</span>
+                    <span>{tool.name}</span>
                     <span
                       className={cn(
                         'h-2 w-2 rounded-full transition',
@@ -346,6 +307,25 @@ export function SkillsPage() {
                   </button>
                 )
               })}
+            </div>
+
+            <div className='mt-5 rounded-2xl border border-slate-900/10 bg-slate-50/80 p-4 dark:border-white/10 dark:bg-zinc-950/45'>
+              <div className='flex items-start justify-between gap-3'>
+                <div>
+                  <p className='text-sm font-semibold text-slate-950 dark:text-white'>
+                    {activeTool.name}
+                  </p>
+                  <p className='mt-2 text-sm leading-6 text-slate-500 dark:text-zinc-400'>
+                    {activeTool.use}
+                  </p>
+                </div>
+                <span className='font-mono text-sm font-semibold text-sky-600 dark:text-sky-300'>
+                  {activeTool.level}
+                </span>
+              </div>
+              <p className='mt-4 text-xs text-slate-500 dark:text-zinc-500'>
+                Related: {activeTool.projects.join(', ')}
+              </p>
             </div>
           </section>
         </div>
