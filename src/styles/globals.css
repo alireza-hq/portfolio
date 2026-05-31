@@ -675,14 +675,17 @@ html.dark {
 }
 
 .custom-cursor {
-  --cursor-x: 50vw;
-  --cursor-y: 50vh;
   position: fixed;
-  inset: 0;
+  top: 0;
+  left: 0;
   z-index: 2147483647;
+  width: 0;
+  height: 0;
   pointer-events: none;
   opacity: 1;
+  transform: translate3d(50vw, 50vh, 0);
   transition: opacity 160ms ease;
+  will-change: transform;
 }
 
 .custom-cursor--visible {
@@ -692,9 +695,9 @@ html.dark {
 .custom-cursor__ring,
 .custom-cursor__dot,
 .custom-cursor__glow {
-  position: fixed;
-  left: var(--cursor-x);
-  top: var(--cursor-y);
+  position: absolute;
+  left: 0;
+  top: 0;
   border-radius: 9999px;
   pointer-events: none;
 }

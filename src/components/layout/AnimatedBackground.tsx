@@ -218,12 +218,18 @@ export function AnimatedBackground() {
   const animatedRefs = useAnimatedItems()
 
   useEffect(() => {
+    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     let frameId = 0
     let lastFrame = 0
     const items = [...particles, ...nodes, ...pixels]
 
     function animate(now: number) {
-      if (now - lastFrame < 33) {
+      if (document.hidden || motionQuery.matches) {
+        frameId = requestAnimationFrame(animate)
+        return
+      }
+
+      if (now - lastFrame < 50) {
         frameId = requestAnimationFrame(animate)
         return
       }

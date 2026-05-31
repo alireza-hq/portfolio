@@ -14,6 +14,8 @@ function isInteractive(target: EventTarget | null) {
 
 export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null)
+  const frameRef = useRef(0)
+  const pointerRef = useRef({ x: 0, y: 0, target: null as EventTarget | null })
 
   useEffect(() => {
     const cursor = cursorRef.current
@@ -22,29 +24,32 @@ export function CustomCursor() {
     const cursorElement = cursor
 
     function moveCursor(x: number, y: number) {
-      cursorElement.style.setProperty('--cursor-x', `${x}px`)
-      cursorElement.style.setProperty('--cursor-y', `${y}px`)
+      cursorElement.style.transform = `translate3d(${x}px, ${y}px, 0)`
+    }
+
+    function flushCursor() {
+      frameRef.current = 0
+      moveCursor(pointerRef.current.x, pointerRef.current.y)
+      cursorElement.classList.add('custom-cursor--visible')
+      cursorElement.classList.toggle(
+        'custom-cursor--interactive',
+        isInteractive(pointerRef.current.target),
+      )
     }
 
     moveCursor(window.innerWidth / 2, window.innerHeight / 2)
     cursorElement.classList.add('custom-cursor--visible')
 
     function handlePointerMove(event: PointerEvent) {
-      moveCursor(event.clientX, event.clientY)
-      cursorElement.classList.add('custom-cursor--visible')
-      cursorElement.classList.toggle(
-        'custom-cursor--interactive',
-        isInteractive(event.target),
-      )
-    }
+      pointerRef.current = {
+        x: event.clientX,
+        y: event.clientY,
+        target: event.target,
+      }
 
-    function handleMouseMove(event: MouseEvent) {
-      moveCursor(event.clientX, event.clientY)
-      cursorElement.classList.add('custom-cursor--visible')
-      cursorElement.classList.toggle(
-        'custom-cursor--interactive',
-        isInteractive(event.target),
-      )
+      if (!frameRef.current) {
+        frameRef.current = requestAnimationFrame(flushCursor)
+      }
     }
 
     function handlePointerDown() {
@@ -63,16 +68,15 @@ export function CustomCursor() {
       cursorElement.classList.add('custom-cursor--visible')
     }
 
-    window.addEventListener('pointermove', handlePointerMove)
-    window.addEventListener('mousemove', handleMouseMove)
+    window.addEventListener('pointermove', handlePointerMove, { passive: true })
     window.addEventListener('pointerdown', handlePointerDown)
     window.addEventListener('pointerup', handlePointerUp)
     document.documentElement.addEventListener('mouseleave', handlePointerLeave)
     document.documentElement.addEventListener('mouseenter', handlePointerEnter)
 
     return () => {
+      if (frameRef.current) cancelAnimationFrame(frameRef.current)
       window.removeEventListener('pointermove', handlePointerMove)
-      window.removeEventListener('mousemove', handleMouseMove)
       window.removeEventListener('pointerdown', handlePointerDown)
       window.removeEventListener('pointerup', handlePointerUp)
       document.documentElement.removeEventListener(
