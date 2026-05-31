@@ -306,15 +306,6 @@ const stackTabs: StackTab[] = [
 
 const missions = [
   {
-    id: 'product',
-    label: 'Product UI',
-    tabId: 'interface',
-    stackName: 'Tailwind CSS',
-    softId: 'taste',
-    command: 'compose --surface product',
-    result: 'Usable screens, crisp states, responsive layout discipline.',
-  },
-  {
     id: 'systems',
     label: 'Systems',
     tabId: 'data',
@@ -322,6 +313,15 @@ const missions = [
     softId: 'clarity',
     command: 'trace --flow data',
     result: 'Typed boundaries, clear validation, reliable handoffs.',
+  },
+  {
+    id: 'prototype',
+    label: 'Prototype',
+    tabId: 'frontend',
+    stackName: 'Vite',
+    softId: 'curiosity',
+    command: 'boot --mode prototype',
+    result: 'Fast experiments, quick UI decisions, low ceremony.',
   },
   {
     id: 'ship',
@@ -333,13 +333,13 @@ const missions = [
     result: 'Clean commits, verified checks, deployable increments.',
   },
   {
-    id: 'prototype',
-    label: 'Prototype',
-    tabId: 'frontend',
-    stackName: 'Vite',
-    softId: 'curiosity',
-    command: 'boot --mode prototype',
-    result: 'Fast experiments, quick UI decisions, low ceremony.',
+    id: 'product',
+    label: 'Product UI',
+    tabId: 'interface',
+    stackName: 'Tailwind CSS',
+    softId: 'taste',
+    command: 'compose --surface product',
+    result: 'Usable screens, crisp states, responsive layout discipline.',
   },
 ]
 
@@ -390,8 +390,8 @@ const softSkills = [
 
 const quickActions = [
   {
-    label: 'Inspect stack by category',
-    href: '#stack-map',
+    label: 'Review build recipe',
+    href: '#build-recipe',
   },
   {
     label: 'Open icon inspector',
@@ -782,7 +782,7 @@ export function SkillsPage() {
         </section>
 
         <div
-          id='stack-map'
+          id='build-recipe'
           className='mt-4 grid scroll-mt-28 gap-4 lg:grid-cols-[1fr_1fr]'
         >
           <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/20'>
@@ -792,28 +792,56 @@ export function SkillsPage() {
               </div>
               <div>
                 <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
-                  stack map
+                  build recipe
                 </p>
                 <h2 className='mt-1 text-2xl font-semibold text-slate-950 dark:text-white'>
-                  How the pieces connect.
+                  What this mode produces.
                 </h2>
               </div>
             </div>
-            <div className='mt-6 grid gap-3 sm:grid-cols-2'>
-              {stackTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  type='button'
-                  onClick={() => selectTab(tab)}
-                  className='rounded-2xl border border-slate-900/10 bg-slate-50/80 p-4 text-left transition hover:-translate-y-0.5 hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/9'
+
+            <div className='mt-6 grid gap-3'>
+              {[
+                {
+                  label: 'Input',
+                  value: activeMission.label,
+                  detail: activeMission.command,
+                },
+                {
+                  label: 'Engine',
+                  value: activeStack.name,
+                  detail: activeStack.use,
+                },
+                {
+                  label: 'Signal',
+                  value: activeSoft.label,
+                  detail: activeSoft.signal,
+                },
+                {
+                  label: 'Output',
+                  value: `${profileScore}% fit`,
+                  detail: activeMission.result,
+                },
+              ].map((step, index) => (
+                <div
+                  key={step.label}
+                  className='grid gap-3 rounded-2xl border border-slate-900/10 bg-slate-50/80 p-4 sm:grid-cols-[auto_1fr] dark:border-white/10 dark:bg-white/6'
                 >
-                  <span className='font-semibold text-slate-950 dark:text-white'>
-                    {tab.label}
+                  <span className='grid h-9 w-9 place-items-center rounded-xl bg-sky-500/10 font-mono text-sm font-semibold text-sky-700 dark:bg-sky-400/10 dark:text-sky-200'>
+                    0{index + 1}
                   </span>
-                  <span className='mt-2 block text-sm leading-6 text-slate-500 dark:text-zinc-400'>
-                    {tab.items.map((item) => item.name).join(' / ')}
+                  <span>
+                    <span className='block text-sm font-semibold text-sky-600 dark:text-sky-300'>
+                      {step.label}
+                    </span>
+                    <span className='mt-1 block font-semibold text-slate-950 dark:text-white'>
+                      {step.value}
+                    </span>
+                    <span className='mt-2 block text-sm leading-6 text-slate-500 dark:text-zinc-400'>
+                      {step.detail}
+                    </span>
                   </span>
-                </button>
+                </div>
               ))}
             </div>
           </section>
