@@ -464,25 +464,57 @@ export function SkillsPage() {
             </p>
           </div>
 
-          <div className='grid grid-cols-3 gap-3'>
-            {[
-              ['Layers', stackTabs.length.toString()],
-              ['Tools', stackCount.toString()],
-              ['Accent', 'cyan'],
-            ].map(([label, value]) => (
-              <div
-                key={label}
-                className='rounded-3xl border border-slate-900/10 bg-white/65 p-4 shadow-xl shadow-slate-900/5 backdrop-blur-xl sm:p-5 dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'
-              >
-                <p className='font-mono text-2xl font-semibold text-slate-950 sm:text-3xl dark:text-white'>
-                  {value}
+          <section className='rounded-[2rem] border border-slate-900/10 bg-slate-950 p-5 text-white shadow-2xl shadow-slate-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
+            <div className='flex items-start justify-between gap-4'>
+              <div>
+                <p className='font-mono text-xs font-semibold tracking-widest text-sky-200 uppercase'>
+                  mission control
                 </p>
-                <p className='mt-3 text-sm font-medium text-slate-500 dark:text-zinc-400'>
-                  {label}
+                <h2 className='mt-3 text-2xl font-semibold'>
+                  {activeMission.label}
+                </h2>
+                <p className='mt-2 text-sm leading-6 text-zinc-400'>
+                  Global presets tune the stack inspector, soft-skill module,
+                  and live readout together.
                 </p>
               </div>
-            ))}
-          </div>
+              <span className='rounded-2xl border border-sky-300/20 bg-sky-300/10 px-3 py-2 font-mono text-2xl font-semibold text-sky-200'>
+                {profileScore}
+              </span>
+            </div>
+
+            <div className='mt-5 flex gap-2 overflow-x-auto pb-1'>
+              {missions.map((mission) => {
+                const isActive = activeMission.id === mission.id
+
+                return (
+                  <button
+                    key={mission.id}
+                    type='button'
+                    onClick={() => runMission(mission)}
+                    className={cn(
+                      'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition active:scale-95 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none',
+                      isActive
+                        ? 'border-cyan-300/45 bg-cyan-300/12 text-cyan-100'
+                        : 'border-white/10 bg-white/5 text-zinc-300 hover:border-cyan-300/30 hover:text-white',
+                    )}
+                  >
+                    {mission.label}
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className='mt-5 grid gap-2 rounded-2xl border border-white/10 bg-black/20 p-4 font-mono text-sm'>
+              <p className='text-zinc-400'>
+                <span className='text-sky-300'>$</span> {activeMission.command}
+              </p>
+              <p className='text-zinc-300'>{activeMission.result}</p>
+              <p className='text-zinc-500'>
+                {activeStack.name} / {activeSoft.label} / {stackCount} tools
+              </p>
+            </div>
+          </section>
         </div>
 
         <section
@@ -530,40 +562,6 @@ export function SkillsPage() {
                   </button>
                 )
               })}
-            </div>
-          </div>
-
-          <div className='border-b border-white/10 px-5 py-4 sm:px-6'>
-            <div className='flex flex-col gap-3 lg:flex-row lg:items-center lg:justify-between'>
-              <div>
-                <p className='font-mono text-xs text-sky-200'>
-                  mission presets
-                </p>
-                <p className='mt-1 text-sm text-zinc-500'>
-                  Run a mode to reconfigure the stack and soft-skill signal.
-                </p>
-              </div>
-              <div className='flex gap-2 overflow-x-auto pb-1 lg:pb-0'>
-                {missions.map((mission) => {
-                  const isActive = activeMission.id === mission.id
-
-                  return (
-                    <button
-                      key={mission.id}
-                      type='button'
-                      onClick={() => runMission(mission)}
-                      className={cn(
-                        'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition active:scale-95 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none',
-                        isActive
-                          ? 'border-cyan-300/45 bg-cyan-300/12 text-cyan-100'
-                          : 'border-white/10 bg-white/5 text-zinc-300 hover:border-cyan-300/30 hover:text-white',
-                      )}
-                    >
-                      {mission.label}
-                    </button>
-                  )
-                })}
-              </div>
             </div>
           </div>
 
@@ -689,65 +687,6 @@ export function SkillsPage() {
           </div>
         </section>
 
-        <div
-          id='stack-map'
-          className='mt-4 grid scroll-mt-28 gap-4 lg:grid-cols-[1fr_1fr]'
-        >
-          <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/20'>
-            <div className='flex items-center gap-3'>
-              <div className='grid h-11 w-11 place-items-center rounded-2xl bg-sky-500/10 text-sky-700 ring-1 ring-sky-500/15 dark:bg-sky-400/10 dark:text-sky-200'>
-                <Layers3 className='h-5 w-5' />
-              </div>
-              <div>
-                <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
-                  stack map
-                </p>
-                <h2 className='mt-1 text-2xl font-semibold text-slate-950 dark:text-white'>
-                  How the pieces connect.
-                </h2>
-              </div>
-            </div>
-            <div className='mt-6 grid gap-3 sm:grid-cols-2'>
-              {stackTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  type='button'
-                  onClick={() => selectTab(tab)}
-                  className='rounded-2xl border border-slate-900/10 bg-slate-50/80 p-4 text-left transition hover:-translate-y-0.5 hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/9'
-                >
-                  <span className='font-semibold text-slate-950 dark:text-white'>
-                    {tab.label}
-                  </span>
-                  <span className='mt-2 block text-sm leading-6 text-slate-500 dark:text-zinc-400'>
-                    {tab.items.map((item) => item.name).join(' / ')}
-                  </span>
-                </button>
-              ))}
-            </div>
-          </section>
-
-          <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
-            <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
-              quick actions
-            </p>
-            <h2 className='mt-3 text-2xl font-semibold text-slate-950 dark:text-white'>
-              Recruiter-friendly without being boring.
-            </h2>
-            <div className='mt-6 grid gap-3'>
-              {quickActions.map((item) => (
-                <a
-                  key={item.label}
-                  href={item.href}
-                  className='flex items-center justify-between rounded-2xl border border-slate-900/10 bg-slate-50/80 px-4 py-3 text-sm font-medium text-slate-700 transition hover:-translate-y-0.5 hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300 dark:hover:bg-white/8'
-                >
-                  <span>{item.label}</span>
-                  <ArrowUpRight className='h-4 w-4 text-sky-600 dark:text-sky-300' />
-                </a>
-              ))}
-            </div>
-          </section>
-        </div>
-
         <section
           id='soft-skills'
           className='mt-4 grid scroll-mt-28 gap-4 lg:grid-cols-[0.95fr_1.05fr]'
@@ -843,6 +782,66 @@ export function SkillsPage() {
             </div>
           </div>
         </section>
+
+        <div
+          id='stack-map'
+          className='mt-4 grid scroll-mt-28 gap-4 lg:grid-cols-[1fr_1fr]'
+        >
+          <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/20'>
+            <div className='flex items-center gap-3'>
+              <div className='grid h-11 w-11 place-items-center rounded-2xl bg-sky-500/10 text-sky-700 ring-1 ring-sky-500/15 dark:bg-sky-400/10 dark:text-sky-200'>
+                <Layers3 className='h-5 w-5' />
+              </div>
+              <div>
+                <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
+                  stack map
+                </p>
+                <h2 className='mt-1 text-2xl font-semibold text-slate-950 dark:text-white'>
+                  How the pieces connect.
+                </h2>
+              </div>
+            </div>
+            <div className='mt-6 grid gap-3 sm:grid-cols-2'>
+              {stackTabs.map((tab) => (
+                <button
+                  key={tab.id}
+                  type='button'
+                  onClick={() => selectTab(tab)}
+                  className='rounded-2xl border border-slate-900/10 bg-slate-50/80 p-4 text-left transition hover:-translate-y-0.5 hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/9'
+                >
+                  <span className='font-semibold text-slate-950 dark:text-white'>
+                    {tab.label}
+                  </span>
+                  <span className='mt-2 block text-sm leading-6 text-slate-500 dark:text-zinc-400'>
+                    {tab.items.map((item) => item.name).join(' / ')}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </section>
+
+          <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
+            <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
+              quick actions
+            </p>
+            <h2 className='mt-3 text-2xl font-semibold text-slate-950 dark:text-white'>
+              Recruiter-friendly without being boring.
+            </h2>
+            <div className='mt-6 grid gap-3'>
+              {quickActions.map((item) => (
+                <a
+                  key={item.label}
+                  href={item.href}
+                  className='flex items-center justify-between rounded-2xl border border-slate-900/10 bg-slate-50/80 px-4 py-3 text-sm font-medium text-slate-700 transition hover:-translate-y-0.5 hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300 dark:hover:bg-white/8'
+                >
+                  <span>{item.label}</span>
+                  <ArrowUpRight className='h-4 w-4 text-sky-600 dark:text-sky-300' />
+                </a>
+              ))}
+            </div>
+          </section>
+        </div>
+
       </section>
     </main>
   )
