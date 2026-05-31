@@ -24,16 +24,16 @@ export const ContactForm = () => {
           <input
             {...register('name')}
             className={cn(
-              'h-12 rounded-2xl border border-slate-900/10 bg-slate-50 px-4 text-slate-950 transition outline-none placeholder:text-slate-400 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:placeholder:text-zinc-600',
+              'h-12 rounded-2xl border border-slate-900/10 bg-slate-50 px-4 text-slate-950 transition outline-none placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:placeholder:text-zinc-600',
               errors.name &&
-                'border-red-400 bg-red-50/60 focus:border-red-400 focus:ring-red-400/15 dark:border-red-400 dark:bg-red-950/20',
+                'border-red-400 focus:border-red-400 focus:ring-red-400/15',
             )}
             placeholder='Your name'
             type='text'
           />
 
           {errors.name && (
-            <p className='min-h-5 text-sm text-red-500'>
+            <p className='min-h-5 text-sm text-red-400/80'>
               {errors.name?.message}
             </p>
           )}
@@ -47,16 +47,16 @@ export const ContactForm = () => {
           <input
             {...register('email')}
             className={cn(
-              'h-12 rounded-2xl border border-slate-900/10 bg-slate-50 px-4 text-slate-950 transition outline-none placeholder:text-slate-400 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:placeholder:text-zinc-600',
+              'h-12 rounded-2xl border border-slate-900/10 bg-slate-50 px-4 text-slate-950 transition outline-none placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:placeholder:text-zinc-600',
               errors.email &&
-                'border-red-400 bg-red-50/60 focus:border-red-400 focus:ring-red-400/15 dark:border-red-400 dark:bg-red-950/20',
+                'border-red-400 focus:border-red-400 focus:ring-red-400/15',
             )}
             placeholder='you@example.com'
             type='email'
           />
 
           {errors.email && (
-            <p className='min-h-5 text-sm text-red-500'>
+            <p className='min-h-5 text-sm text-red-400/80'>
               {errors.email.message}
             </p>
           )}
@@ -71,16 +71,16 @@ export const ContactForm = () => {
         <input
           {...register('project')}
           className={cn(
-            'h-12 rounded-2xl border border-slate-900/10 bg-slate-50 px-4 text-slate-950 transition outline-none placeholder:text-slate-400 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:placeholder:text-zinc-600',
+            'h-12 rounded-2xl border border-slate-900/10 bg-slate-50 px-4 text-slate-950 transition outline-none placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:placeholder:text-zinc-600',
             errors.project &&
-              'border-red-400 bg-red-50/60 focus:border-red-400 focus:ring-red-400/15 dark:border-red-400 dark:bg-red-950/20',
+              'border-red-400 focus:border-red-400 focus:ring-red-400/15',
           )}
           placeholder='Portfolio, dashboard, SaaS UI...'
           type='text'
         />
 
         {errors.project && (
-          <p className='min-h-5 text-sm text-red-500'>
+          <p className='min-h-5 text-sm text-red-400/80'>
             {errors.project.message}
           </p>
         )}
@@ -94,15 +94,15 @@ export const ContactForm = () => {
         <textarea
           {...register('message')}
           className={cn(
-            'min-h-44 resize-none rounded-2xl border border-slate-900/10 bg-slate-50 px-4 py-3 text-slate-950 transition outline-none placeholder:text-slate-400 focus:border-purple-400 focus:ring-4 focus:ring-purple-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:placeholder:text-zinc-600',
+            'min-h-44 resize-none rounded-2xl border border-slate-900/10 bg-slate-50 px-4 py-3 text-slate-950 transition outline-none placeholder:text-slate-400 focus:border-sky-400 focus:ring-4 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:placeholder:text-zinc-600',
             errors.message &&
-              'border-red-400 bg-red-50/60 focus:border-red-400 focus:ring-red-400/15 dark:border-red-400 dark:bg-red-950/20',
+              'border-red-400 focus:border-red-400 focus:ring-red-400/15',
           )}
           placeholder='Tell me what you want to build...'
         />
 
         {errors.message && (
-          <p className='min-h-5 text-sm text-red-500'>
+          <p className='min-h-5 text-sm text-red-400/80'>
             {errors.message.message}
           </p>
         )}
@@ -117,7 +117,7 @@ export const ContactForm = () => {
         <button
           type='submit'
           disabled={isSubmitting}
-          className='inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-purple-700 focus-visible:ring-2 focus-visible:ring-purple-400/70 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-zinc-950 dark:hover:bg-purple-200'
+          className='inline-flex items-center justify-center gap-2 rounded-full bg-slate-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
         >
           <Send className='h-4 w-4' />
           {isSubmitting ? 'Sending...' : 'Send message'}

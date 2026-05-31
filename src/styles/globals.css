@@ -297,14 +297,14 @@ html.dark {
   0%,
   100% {
     box-shadow:
-      0 0 0 1px rgb(168 85 247 / 0.58),
-      0 0 32px rgb(168 85 247 / 0.2);
+      0 0 0 1px rgb(14 165 233 / 0.58),
+      0 0 32px rgb(14 165 233 / 0.2);
   }
 
   50% {
     box-shadow:
-      0 0 0 1px rgb(217 70 239 / 0.72),
-      0 0 46px rgb(217 70 239 / 0.26);
+      0 0 0 1px rgb(59 130 246 / 0.72),
+      0 0 46px rgb(59 130 246 / 0.26);
   }
 }
 
@@ -326,13 +326,13 @@ html.dark {
   100% {
     opacity: 0.58;
     transform: scale(1);
-    box-shadow: 0 0 18px rgb(168 85 247 / 0.45);
+    box-shadow: 0 0 18px rgb(14 165 233 / 0.45);
   }
 
   50% {
     opacity: 1;
     transform: scale(1.35);
-    box-shadow: 0 0 30px rgb(168 85 247 / 0.8);
+    box-shadow: 0 0 30px rgb(14 165 233 / 0.8);
   }
 }
 
@@ -370,10 +370,10 @@ html.dark {
   animation: background-aura 26s ease-in-out infinite reverse;
 }
 
-.portfolio-background__aura--violet {
+.portfolio-background__aura--blue {
   top: -18rem;
   left: -14rem;
-  background: radial-gradient(circle, #a78bfa 0%, transparent 62%);
+  background: radial-gradient(circle, #38bdf8 0%, transparent 62%);
   animation: background-aura 16s ease-in-out infinite;
 }
 
@@ -400,8 +400,8 @@ html.dark {
   mix-blend-mode: screen;
 }
 
-.dark .portfolio-background__aura--violet {
-  background: radial-gradient(circle, #8b5cf6 0%, transparent 62%);
+.dark .portfolio-background__aura--blue {
+  background: radial-gradient(circle, #0ea5e9 0%, transparent 62%);
 }
 
 .dark .portfolio-background__aura--cyan {
@@ -438,7 +438,7 @@ html.dark {
   background: linear-gradient(
     180deg,
     transparent,
-    rgb(124 58 237 / 0.055),
+    rgb(14 165 233 / 0.055),
     transparent
   );
   animation: background-scanline 7s linear infinite;
@@ -462,7 +462,7 @@ html.dark {
   background: linear-gradient(
     90deg,
     transparent,
-    rgb(124 58 237 / 0.22),
+    rgb(14 165 233 / 0.22),
     transparent
   );
   opacity: 0.35;
@@ -562,10 +562,10 @@ html.dark {
   border-radius: 9999px;
   background:
     radial-gradient(circle at 35% 35%, rgb(255 255 255 / 0.9), transparent 22%),
-    radial-gradient(circle, rgb(14 165 233 / 0.42), rgb(124 58 237 / 0.16));
+    radial-gradient(circle, rgb(14 165 233 / 0.42), rgb(14 165 233 / 0.16));
   box-shadow:
     0 0 26px rgb(14 165 233 / 0.28),
-    0 0 64px rgb(124 58 237 / 0.12);
+    0 0 64px rgb(14 165 233 / 0.12);
   animation: background-node-pulse 2.8s ease-in-out infinite;
   will-change: transform;
 }
@@ -579,10 +579,10 @@ html.dark {
   border-color: rgb(125 211 252 / 0.38);
   background:
     radial-gradient(circle at 35% 35%, rgb(255 255 255 / 0.8), transparent 20%),
-    radial-gradient(circle, rgb(34 211 238 / 0.46), rgb(139 92 246 / 0.18));
+    radial-gradient(circle, rgb(34 211 238 / 0.46), rgb(56 189 248 / 0.18));
   box-shadow:
     0 0 30px rgb(34 211 238 / 0.32),
-    0 0 72px rgb(139 92 246 / 0.18);
+    0 0 72px rgb(56 189 248 / 0.18);
 }
 
 .motion-node-a {
@@ -608,8 +608,8 @@ html.dark {
   width: 0.35rem;
   height: 0.35rem;
   border-radius: 9999px;
-  background: rgb(124 58 237 / 0.35);
-  box-shadow: 0 0 22px rgb(124 58 237 / 0.25);
+  background: rgb(14 165 233 / 0.35);
+  box-shadow: 0 0 22px rgb(14 165 233 / 0.25);
   will-change: transform;
 }
 
@@ -702,8 +702,8 @@ html.dark {
 .custom-cursor__ring {
   width: 1.7rem;
   height: 1.7rem;
-  border: 1.5px solid rgb(168 85 247 / 0.86);
-  background: rgb(168 85 247 / 0.045);
+  border: 1.5px solid rgb(14 165 233 / 0.86);
+  background: rgb(14 165 233 / 0.045);
   transform: translate(-50%, -50%);
   transition:
     width 180ms ease,
@@ -717,10 +717,10 @@ html.dark {
 .custom-cursor__dot {
   width: 0.36rem;
   height: 0.36rem;
-  background: rgb(168 85 247);
+  background: rgb(14 165 233);
   box-shadow:
     0 0 0 1px rgb(255 255 255 / 0.5),
-    0 0 22px rgb(168 85 247 / 0.86);
+    0 0 22px rgb(14 165 233 / 0.86);
   transform: translate(-50%, -50%);
   transition:
     width 160ms ease,
@@ -731,7 +731,7 @@ html.dark {
 .custom-cursor__glow {
   width: 3.4rem;
   height: 3.4rem;
-  background: radial-gradient(circle, rgb(168 85 247 / 0.16), transparent 66%);
+  background: radial-gradient(circle, rgb(14 165 233 / 0.16), transparent 66%);
   transform: translate(-50%, -50%);
   animation: cursor-glow 2.4s ease-in-out infinite;
   transition:
@@ -743,8 +743,8 @@ html.dark {
 .custom-cursor--interactive .custom-cursor__ring {
   width: 2.35rem;
   height: 2.35rem;
-  border-color: rgb(192 132 252 / 0.9);
-  background: rgb(168 85 247 / 0.08);
+  border-color: rgb(56 189 248 / 0.9);
+  background: rgb(14 165 233 / 0.08);
 }
 
 .custom-cursor--interactive .custom-cursor__dot {

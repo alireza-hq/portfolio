@@ -74,7 +74,7 @@ export default function Terminal() {
               className={cn(
                 'font-mono text-xs',
                 index === 0
-                  ? 'font-semibold text-violet-600 dark:text-violet-400'
+                  ? 'font-semibold text-sky-600 dark:text-sky-400'
                   : 'text-slate-500 dark:text-zinc-500',
               )}
             >

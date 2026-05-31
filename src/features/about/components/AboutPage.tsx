@@ -44,7 +44,7 @@ export function AboutPage() {
         <div className='rounded-4 grid min-h-112 overflow-hidden border border-slate-900/10 bg-slate-950 text-white shadow-2xl shadow-slate-950/15 lg:grid-cols-[1.05fr_0.95fr] dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/30'>
           <div className='relative flex flex-col justify-between p-6 sm:p-8 lg:p-10'>
             <div>
-              <p className='font-mono text-sm font-semibold text-purple-300'>
+              <p className='font-mono text-sm font-semibold text-sky-300'>
                 about / profile
               </p>
               <h1 className='mt-5 max-w-3xl text-5xl leading-tight font-semibold tracking-normal sm:text-6xl'>
@@ -70,13 +70,13 @@ export function AboutPage() {
           </div>
 
           <div className='relative min-h-72 border-t border-white/10 bg-white/3 p-6 sm:p-8 lg:border-t-0 lg:border-l lg:p-10'>
-            <div className='absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgb(168_85_247/0.16)_48%,transparent_100%)]' />
+            <div className='absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgb(14_165_233/0.16)_48%,transparent_100%)]' />
             <div className='relative flex h-full flex-col justify-end'>
               <div className='font-mono text-[clamp(4rem,11vw,9rem)] leading-none font-semibold tracking-normal text-white/8 select-none'>
                 UI
               </div>
               <div className='mt-6 max-w-sm'>
-                <p className='text-sm font-semibold text-purple-200'>
+                <p className='text-sm font-semibold text-sky-200'>
                   Current direction
                 </p>
                 <p className='mt-3 leading-7 text-zinc-300'>
@@ -92,20 +92,20 @@ export function AboutPage() {
           <section className='rounded-4xl border border-slate-900/10 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
             <div className='flex items-center justify-between gap-4 border-b border-slate-900/10 pb-5 dark:border-white/10'>
               <div>
-                <p className='font-mono text-xs font-semibold tracking-widest text-purple-600 uppercase dark:text-purple-300'>
+                <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
                   education
                 </p>
                 <h2 className='mt-2 text-2xl font-semibold text-slate-950 dark:text-white'>
                   Learning path
                 </h2>
               </div>
-              <span className='education-orb h-3 w-3 rounded-full border border-purple-500/45 bg-purple-500/30 shadow-[0_0_24px_rgb(168_85_247/0.75)]' />
+              <span className='education-orb h-3 w-3 rounded-full border border-sky-500/45 bg-sky-500/30 shadow-[0_0_24px_rgb(14_165_233/0.75)]' />
             </div>
 
             <div className='relative mt-6 grid gap-6 pl-6 before:absolute before:top-2 before:bottom-2 before:left-1 before:w-px before:bg-slate-900/10 dark:before:bg-white/12'>
               {education.map((item) => (
                 <article key={item.title} className='relative'>
-                  <span className='education-orb absolute top-1 left-[-25.35px] h-3 w-3 rounded-full border-2 border-white bg-purple-500 dark:border-zinc-950' />
+                  <span className='education-orb absolute top-1 left-[-25.35px] h-3 w-3 rounded-full border-2 border-white bg-sky-500 dark:border-zinc-950' />
                   <p className='font-mono text-xs text-slate-500 dark:text-zinc-500'>
                     {item.period}
                   </p>
@@ -122,7 +122,7 @@ export function AboutPage() {
 
           <section className='grid gap-8'>
             <div className='rounded-4xl border border-slate-900/10 bg-white/80 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
-              <p className='font-mono text-xs font-semibold tracking-widest text-purple-600 uppercase dark:text-purple-300'>
+              <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
                 certifications
               </p>
               <div className='mt-5 grid gap-3 sm:grid-cols-2'>
@@ -130,12 +130,12 @@ export function AboutPage() {
                   <a
                     key={item.title}
                     href='#'
-                    className='group rounded-2xl border border-slate-900/10 bg-slate-50/90 p-4 shadow-sm shadow-slate-900/5 transition hover:-translate-y-0.5 hover:border-purple-400/40 hover:bg-white dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10'
+                    className='group rounded-2xl border border-slate-900/10 bg-slate-50/90 p-4 shadow-sm shadow-slate-900/5 transition hover:-translate-y-0.5 hover:border-sky-400/40 hover:bg-white dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10'
                   >
-                    <span className='font-mono text-[0.65rem] font-semibold tracking-widest text-purple-600 uppercase dark:text-purple-300'>
+                    <span className='font-mono text-[0.65rem] font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
                       {item.issuer}
                     </span>
-                    <span className='mt-2 block text-sm font-semibold text-slate-800 group-hover:text-purple-700 dark:text-zinc-200 dark:group-hover:text-purple-200'>
+                    <span className='mt-2 block text-sm font-semibold text-slate-800 group-hover:text-sky-700 dark:text-zinc-200 dark:group-hover:text-sky-200'>
                       {item.title}
                     </span>
                   </a>
@@ -145,8 +145,8 @@ export function AboutPage() {
 
             <div className='grid overflow-hidden rounded-4xl border border-slate-900/10 bg-white/80 shadow-xl shadow-slate-900/5 backdrop-blur-md sm:grid-cols-[0.9fr_1.1fr] dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
               <div className='relative flex min-h-64 flex-col justify-between overflow-hidden bg-slate-100/80 p-6 dark:bg-white/5'>
-                <div className='absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-purple-500/12 blur-2xl' />
-                <p className='font-mono text-xs font-semibold tracking-widest text-purple-600 uppercase dark:text-purple-300'>
+                <div className='absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-sky-500/12 blur-2xl' />
+                <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
                   principles
                 </p>
                 <div className='relative'>

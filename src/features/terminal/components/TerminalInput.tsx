@@ -52,7 +52,7 @@ export const TerminalInput = memo(function TerminalInput({
 
   return (
     <div className='flex items-center gap-3 text-left'>
-      <div className='flex items-center gap-2 text-violet-600 dark:text-violet-400'>
+      <div className='flex items-center gap-2 text-sky-600 dark:text-sky-400'>
         <ChevronRight className='h-4.5 w-4.5' />
         <span className='hidden sm:inline'>portfolio</span>
         <span>$</span>

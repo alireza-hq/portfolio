@@ -23,7 +23,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
           <div className='grid gap-1'>
             {Object.values(commandRegistry).map((command) => (
               <div key={command.name} className='flex gap-3'>
-                <span className='min-w-20 font-semibold text-violet-600 dark:text-violet-400'>
+                <span className='min-w-20 font-semibold text-sky-600 dark:text-sky-400'>
                   {command.name}
                 </span>
                 <span className='text-slate-500 dark:text-zinc-400'>
@@ -45,7 +45,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       content: (
         <p>
           I&apos;m{' '}
-          <span className='text-violet-600 dark:text-violet-400'>
+          <span className='text-sky-600 dark:text-sky-400'>
             {developer.name}
           </span>
           , a frontend developer focused on building fast, clean, modern web
@@ -184,7 +184,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
   },
 
   cls: {
-    name: 'clear',
+    name: 'cls',
     description: 'Clear terminal output',
     execute: () => ({ type: 'clear' }),
   },
