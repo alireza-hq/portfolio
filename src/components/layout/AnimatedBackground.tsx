@@ -24,9 +24,9 @@ const particles: FloatingText[] = [
     className: 'portfolio-background__particle',
     x: 7,
     y: 12,
-    ampX: 46,
-    ampY: 28,
-    speed: 0.18,
+    ampX: 62,
+    ampY: 38,
+    speed: 0.34,
     phase: 0,
   },
   {
@@ -35,9 +35,9 @@ const particles: FloatingText[] = [
     className: 'portfolio-background__particle',
     x: 78,
     y: 22,
-    ampX: 42,
-    ampY: 36,
-    speed: 0.16,
+    ampX: 58,
+    ampY: 44,
+    speed: 0.3,
     phase: 1.8,
   },
   {
@@ -46,9 +46,9 @@ const particles: FloatingText[] = [
     className: 'portfolio-background__particle',
     x: 12,
     y: 68,
-    ampX: 48,
-    ampY: 32,
-    speed: 0.14,
+    ampX: 64,
+    ampY: 42,
+    speed: 0.28,
     phase: 3.1,
   },
   {
@@ -57,9 +57,9 @@ const particles: FloatingText[] = [
     className: 'portfolio-background__particle',
     x: 68,
     y: 76,
-    ampX: 50,
-    ampY: 34,
-    speed: 0.17,
+    ampX: 66,
+    ampY: 42,
+    speed: 0.32,
     phase: 4.4,
   },
 ]
@@ -218,18 +218,17 @@ export function AnimatedBackground() {
   const animatedRefs = useAnimatedItems()
 
   useEffect(() => {
-    const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)')
     let frameId = 0
     let lastFrame = 0
     const items = [...particles, ...nodes, ...pixels]
 
     function animate(now: number) {
-      if (document.hidden || motionQuery.matches) {
+      if (document.hidden) {
         frameId = requestAnimationFrame(animate)
         return
       }
 
-      if (now - lastFrame < 50) {
+      if (now - lastFrame < 33) {
         frameId = requestAnimationFrame(animate)
         return
       }
@@ -244,11 +243,11 @@ export function AnimatedBackground() {
 
         const x =
           Math.sin(time * item.speed + item.phase) * item.ampX +
-          Math.sin(time * item.speed * 0.31 + item.phase) * item.ampX * 0.45
+          Math.sin(time * item.speed * 0.41 + item.phase) * item.ampX * 0.5
         const y =
-          Math.cos(time * item.speed * 0.82 + item.phase) * item.ampY +
-          Math.sin(time * item.speed * 0.47 + item.phase) * item.ampY * 0.35
-        const rotate = Math.sin(time * item.speed + item.phase) * 2.5
+          Math.cos(time * item.speed * 0.9 + item.phase) * item.ampY +
+          Math.sin(time * item.speed * 0.57 + item.phase) * item.ampY * 0.42
+        const rotate = Math.sin(time * item.speed + item.phase) * 4
 
         element.style.transform = `translate3d(${x}px, ${y}px, 0) rotate(${rotate}deg)`
       }
