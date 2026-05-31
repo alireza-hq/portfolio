@@ -65,7 +65,7 @@ export default function Terminal() {
 
       <div
         ref={bodyRef}
-        className='flex max-h-[70vh] min-h-105 flex-col gap-4 overflow-y-auto px-5 py-4 text-left text-zinc-800 dark:text-zinc-200 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-300 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent'
+        className='flex max-h-[70vh] min-h-80 flex-col gap-4 overflow-y-auto px-4 py-4 text-left text-zinc-800 sm:min-h-105 sm:px-5 dark:text-zinc-200 [&::-webkit-scrollbar]:w-1.5 [&::-webkit-scrollbar-thumb]:bg-zinc-300 dark:[&::-webkit-scrollbar-thumb]:bg-zinc-700 [&::-webkit-scrollbar-track]:bg-transparent'
       >
         <div className='space-y-0.5' aria-label='Terminal welcome message'>
           {BOOT_LINES.map((line, index) => (

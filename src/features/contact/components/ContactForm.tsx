@@ -12,8 +12,13 @@ function fieldClass(hasError: boolean) {
   )
 }
 
-const floatingLabelClass =
-  'pointer-events-none absolute left-4 top-4 text-sm font-medium text-zinc-500 transition-all peer-focus:top-2 peer-focus:text-xs peer-focus:text-sky-600 peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs dark:text-zinc-500 dark:peer-focus:text-sky-300'
+function floatingLabelClass(hasError: boolean) {
+  return cn(
+    'pointer-events-none absolute left-4 top-4 text-sm font-medium text-zinc-500 transition-all peer-focus:top-2 peer-focus:text-xs peer-focus:text-sky-600 peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs dark:text-zinc-500 dark:peer-focus:text-sky-300',
+    hasError &&
+      'text-red-400 peer-focus:text-red-400 peer-[:not(:placeholder-shown)]:text-red-400 dark:text-red-400',
+  )
+}
 
 export const ContactForm = () => {
   const { register, handleSubmit, onSubmit, errors, isSubmitting } =
@@ -46,7 +51,9 @@ export const ContactForm = () => {
               placeholder=' '
               type='text'
             />
-            <span className={floatingLabelClass}>Name</span>
+            <span className={floatingLabelClass(Boolean(errors.name))}>
+              Name
+            </span>
           </span>
 
           {errors.name && (
@@ -64,7 +71,9 @@ export const ContactForm = () => {
               placeholder=' '
               type='email'
             />
-            <span className={floatingLabelClass}>Email</span>
+            <span className={floatingLabelClass(Boolean(errors.email))}>
+              Email
+            </span>
           </span>
 
           {errors.email && (
@@ -83,7 +92,9 @@ export const ContactForm = () => {
             placeholder=' '
             type='text'
           />
-          <span className={floatingLabelClass}>Project type</span>
+          <span className={floatingLabelClass(Boolean(errors.project))}>
+            Project type
+          </span>
         </span>
 
         {errors.project && (
@@ -104,7 +115,9 @@ export const ContactForm = () => {
             )}
             placeholder=' '
           />
-          <span className={floatingLabelClass}>Message</span>
+          <span className={floatingLabelClass(Boolean(errors.message))}>
+            Message
+          </span>
         </span>
 
         {errors.message && (

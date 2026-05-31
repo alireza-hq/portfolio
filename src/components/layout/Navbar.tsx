@@ -37,7 +37,7 @@ export function Navbar() {
   return (
     <header className='pointer-events-none fixed inset-x-0 top-4 z-50 flex justify-center px-3 sm:top-6 sm:px-6'>
       <nav
-        className='pointer-events-auto grid w-full max-w-5xl grid-cols-[auto_1fr_auto] items-center gap-2 rounded-full border border-zinc-900/10 bg-white/55 px-2 py-2 shadow-2xl ring-1 shadow-zinc-900/10 ring-white/70 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/45 dark:shadow-black/30 dark:ring-white/5'
+        className='pointer-events-auto grid w-full max-w-5xl grid-cols-[1fr_auto] items-center gap-2 rounded-3xl border border-zinc-900/10 bg-white/55 px-2 py-2 shadow-2xl ring-1 shadow-zinc-900/10 ring-white/70 backdrop-blur-md sm:grid-cols-[auto_1fr_auto] sm:rounded-full dark:border-white/10 dark:bg-zinc-950/45 dark:shadow-black/30 dark:ring-white/5'
         aria-label='Primary navigation'
       >
         <Link
@@ -49,7 +49,7 @@ export function Navbar() {
           <span className='sr-only'>Alireza</span>
         </Link>
 
-        <div className='flex min-w-0 scrollbar-none items-center justify-center gap-1 overflow-x-auto [&::-webkit-scrollbar]:hidden'>
+        <div className='order-3 col-span-2 flex min-w-0 scrollbar-none items-center justify-start gap-1 overflow-x-auto border-t border-zinc-900/8 pt-2 sm:order-none sm:col-span-1 sm:justify-center sm:border-t-0 sm:pt-0 dark:border-white/10 [&::-webkit-scrollbar]:hidden'>
           {navLinks.map((link) => {
             const isActive = pathname === link.href
 
@@ -86,7 +86,7 @@ export function Navbar() {
             className='hidden items-center gap-2 rounded-full border border-zinc-900/10 bg-zinc-950 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-zinc-900/10 transition duration-200 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:outline-none md:inline-flex dark:border-white/10 dark:bg-white/8 dark:text-zinc-100 dark:shadow-inner dark:shadow-white/5 dark:hover:border-sky-300/30 dark:hover:bg-sky-400/10 dark:hover:text-white'
           >
             <Download className='h-4 w-4' />
-            Resumé
+            Resume
           </Link>
           <ThemeToggle />
         </div>

@@ -47,7 +47,7 @@ export function AboutPage() {
               <p className='font-mono text-sm font-semibold text-sky-300'>
                 about / profile
               </p>
-              <h1 className='mt-5 max-w-3xl text-5xl leading-tight font-semibold tracking-normal sm:text-6xl'>
+              <h1 className='mt-5 max-w-3xl text-4xl leading-tight font-semibold tracking-normal sm:text-6xl'>
                 Frontend developer with a taste for sharp, practical UI.
               </h1>
               <p className='mt-6 max-w-2xl text-lg leading-8 text-zinc-300'>
