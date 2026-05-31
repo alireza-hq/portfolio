@@ -1,5 +1,9 @@
+'use client'
+
+import { useMemo, useState } from 'react'
 import {
   Braces,
+  Check,
   Database,
   Gauge,
   GitBranch,
@@ -10,22 +14,51 @@ import {
   SquareTerminal,
 } from 'lucide-react'
 
+import { cn } from '@/lib/utils'
+
+const modes = [
+  {
+    id: 'launch',
+    label: 'Launch UI',
+    tagline: 'Portfolio, dashboard, landing, product shell.',
+    score: 94,
+    output: ['next build', 'typecheck passed', 'interaction polish applied'],
+    stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
+  },
+  {
+    id: 'system',
+    label: 'Design System',
+    tagline: 'Reusable primitives, states, tokens, and layout rules.',
+    score: 89,
+    output: ['component map generated', 'states normalized', 'visual QA ready'],
+    stack: ['Accessibility', 'Tailwind CSS', 'State modeling', 'Git'],
+  },
+  {
+    id: 'fullstack',
+    label: 'Full Flow',
+    tagline: 'Forms, validation, API contracts, and data-backed screens.',
+    score: 86,
+    output: ['schema connected', 'form validation active', 'API path traced'],
+    stack: ['React Hook Form', 'Zod', 'Prisma', 'PostgreSQL'],
+  },
+]
+
 const skillGroups = [
   {
     title: 'Interface Engineering',
-    description: 'Polished, responsive product UI with strong state boundaries.',
+    description: 'Responsive product UI with strong state boundaries.',
     icon: Layers3,
     items: ['React', 'Next.js', 'TypeScript', 'Tailwind CSS', 'Accessibility'],
   },
   {
     title: 'Application Logic',
-    description: 'Data flows, forms, commands, and client-side architecture.',
+    description: 'Forms, commands, data flow, and client-side architecture.',
     icon: Braces,
     items: ['State modeling', 'React Hook Form', 'Zod', 'REST APIs', 'Prisma'],
   },
   {
     title: 'Backend Adjacent',
-    description: 'Enough backend fluency to ship complete web experiences.',
+    description: 'Backend fluency for complete web experiences.',
     icon: Database,
     items: ['Node.js', 'Express', 'PostgreSQL', 'Auth flows', 'API contracts'],
   },
@@ -34,23 +67,27 @@ const skillGroups = [
 const strengths = [
   {
     title: 'Performance minded',
-    copy: 'Interfaces stay light, fast, and readable under real content.',
+    copy: 'Interfaces stay light and readable under real content.',
     icon: Gauge,
+    value: 92,
   },
   {
     title: 'Design systems',
-    copy: 'Components are built to scale without turning into visual noise.',
+    copy: 'Components scale without turning into visual noise.',
     icon: Palette,
+    value: 88,
   },
   {
     title: 'Developer experience',
-    copy: 'Folder structure, naming, and utilities stay easy to reason about.',
+    copy: 'Structure, naming, and utilities stay easy to reason about.',
     icon: SquareTerminal,
+    value: 90,
   },
   {
     title: 'Reliable delivery',
-    copy: 'Git habits, checks, and small commits keep the work controlled.',
+    copy: 'Small commits and checks keep the work controlled.',
     icon: GitBranch,
+    value: 86,
   },
 ]
 
@@ -58,51 +95,127 @@ const toolbox = [
   'Next.js App Router',
   'React Server Components',
   'Tailwind CSS v4',
-  'Framer-style motion systems',
   'TypeScript',
+  'React Hook Form',
+  'Zod',
   'pnpm',
   'Git',
-  'Vercel-ready builds',
 ]
 
 export function SkillsPage() {
+  const [activeMode, setActiveMode] = useState(modes[0])
+  const [selectedTools, setSelectedTools] = useState<string[]>(modes[0].stack)
+
+  const selectedStrength = useMemo(() => {
+    return Math.min(99, activeMode.score + selectedTools.length)
+  }, [activeMode.score, selectedTools.length])
+
+  function selectMode(mode: (typeof modes)[number]) {
+    setActiveMode(mode)
+    setSelectedTools(mode.stack)
+  }
+
+  function toggleTool(tool: string) {
+    setSelectedTools((current) =>
+      current.includes(tool)
+        ? current.filter((item) => item !== tool)
+        : [...current, tool],
+    )
+  }
+
   return (
     <main className='relative z-10 min-h-screen px-4 pt-32 pb-20 sm:px-6 lg:px-8'>
       <section className='mx-auto w-full max-w-7xl'>
-        <div className='grid gap-8 lg:grid-cols-[0.95fr_1.05fr] lg:items-end'>
+        <div className='grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end'>
           <div>
             <p className='font-mono text-sm font-semibold text-sky-600 dark:text-sky-300'>
               skills
             </p>
             <h1 className='mt-4 max-w-4xl text-5xl leading-tight font-semibold tracking-normal text-slate-950 sm:text-6xl dark:text-white'>
-              A focused stack for fast, clean product interfaces.
+              Build with the stack, not just a list of logos.
             </h1>
             <p className='mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-zinc-400'>
-              I care about the full path from idea to interaction: structure,
-              performance, visual polish, and code that stays pleasant after the
-              first version ships.
+              Pick a mode, shape the stack, and watch the working profile adapt.
+              This is closer to how I actually think through a project.
             </p>
           </div>
 
-          <div className='grid gap-3 sm:grid-cols-3'>
-            {[
-              ['01', 'Frontend first'],
-              ['02', 'Typed logic'],
-              ['03', 'Production polish'],
-            ].map(([number, label]) => (
-              <div
-                key={label}
-                className='rounded-3xl border border-slate-900/10 bg-white/65 p-5 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'
-              >
-                <p className='font-mono text-3xl font-semibold text-slate-950 dark:text-white'>
-                  {number}
-                </p>
-                <p className='mt-3 text-sm font-medium text-slate-500 dark:text-zinc-400'>
-                  {label}
-                </p>
+          <section className='overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 text-white shadow-2xl shadow-slate-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
+            <div className='flex items-center justify-between border-b border-white/10 px-5 py-4'>
+              <div className='flex items-center gap-2'>
+                <span className='h-3 w-3 rounded-full bg-red-400' />
+                <span className='h-3 w-3 rounded-full bg-amber-300' />
+                <span className='h-3 w-3 rounded-full bg-emerald-400' />
               </div>
-            ))}
-          </div>
+              <p className='font-mono text-xs text-zinc-500'>skills.session</p>
+            </div>
+
+            <div className='grid gap-6 p-5 sm:p-6 lg:grid-cols-[0.9fr_1.1fr]'>
+              <div className='grid gap-3'>
+                {modes.map((mode) => {
+                  const isActive = activeMode.id === mode.id
+
+                  return (
+                    <button
+                      key={mode.id}
+                      type='button'
+                      onClick={() => selectMode(mode)}
+                      className={cn(
+                        'rounded-2xl border px-4 py-3 text-left transition',
+                        isActive
+                          ? 'border-sky-300/40 bg-sky-300/12 shadow-[0_0_34px_rgb(14_165_233/0.12)]'
+                          : 'border-white/10 bg-white/5 hover:border-sky-300/25 hover:bg-white/8',
+                      )}
+                    >
+                      <span className='flex items-center justify-between gap-3'>
+                        <span className='font-semibold'>{mode.label}</span>
+                        {isActive ? (
+                          <Check className='h-4 w-4 text-sky-200' />
+                        ) : null}
+                      </span>
+                      <span className='mt-2 block text-sm leading-6 text-zinc-400'>
+                        {mode.tagline}
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className='rounded-2xl border border-white/10 bg-black/25 p-4'>
+                <div className='flex items-end justify-between gap-4'>
+                  <div>
+                    <p className='font-mono text-xs text-sky-200'>
+                      active profile
+                    </p>
+                    <h2 className='mt-2 text-2xl font-semibold'>
+                      {activeMode.label}
+                    </h2>
+                  </div>
+                  <p className='font-mono text-4xl font-semibold text-sky-200'>
+                    {selectedStrength}
+                  </p>
+                </div>
+
+                <div className='mt-5 h-2 overflow-hidden rounded-full bg-white/10'>
+                  <div
+                    className='h-full rounded-full bg-linear-to-r from-sky-400 to-cyan-200 transition-all duration-500'
+                    style={{ width: `${selectedStrength}%` }}
+                  />
+                </div>
+
+                <div className='mt-6 space-y-2 font-mono text-sm'>
+                  {activeMode.output.map((line) => (
+                    <p key={line} className='text-zinc-400'>
+                      <span className='text-sky-300'>$</span> {line}
+                    </p>
+                  ))}
+                  <p className='text-zinc-500'>
+                    selected: {selectedTools.join(', ') || 'minimal mode'}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </section>
         </div>
 
         <div className='mt-12 grid gap-4 lg:grid-cols-3'>
@@ -129,14 +242,25 @@ export function SkillsPage() {
                 </p>
 
                 <div className='mt-6 flex flex-wrap gap-2'>
-                  {group.items.map((item) => (
-                    <span
-                      key={item}
-                      className='rounded-full border border-slate-900/10 bg-slate-50/90 px-3 py-1.5 text-sm font-medium text-slate-700 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300'
-                    >
-                      {item}
-                    </span>
-                  ))}
+                  {group.items.map((item) => {
+                    const isSelected = selectedTools.includes(item)
+
+                    return (
+                      <button
+                        key={item}
+                        type='button'
+                        onClick={() => toggleTool(item)}
+                        className={cn(
+                          'rounded-full border px-3 py-1.5 text-sm font-medium transition',
+                          isSelected
+                            ? 'border-sky-400/40 bg-sky-500/10 text-sky-700 dark:bg-sky-400/12 dark:text-sky-200'
+                            : 'border-slate-900/10 bg-slate-50/90 text-slate-700 hover:border-sky-400/35 hover:text-sky-700 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300 dark:hover:text-sky-200',
+                        )}
+                      >
+                        {item}
+                      </button>
+                    )
+                  })}
                 </div>
               </section>
             )
@@ -162,6 +286,7 @@ export function SkillsPage() {
             <div className='mt-8 grid gap-3 sm:grid-cols-2'>
               {strengths.map((strength) => {
                 const Icon = strength.icon
+                const width = Math.min(99, strength.value + selectedTools.length)
 
                 return (
                   <article
@@ -173,6 +298,12 @@ export function SkillsPage() {
                     <p className='mt-2 text-sm leading-6 text-zinc-400'>
                       {strength.copy}
                     </p>
+                    <div className='mt-4 h-1.5 overflow-hidden rounded-full bg-white/10'>
+                      <div
+                        className='h-full rounded-full bg-sky-300 transition-all duration-500'
+                        style={{ width: `${width}%` }}
+                      />
+                    </div>
                   </article>
                 )
               })}
@@ -184,19 +315,37 @@ export function SkillsPage() {
               toolbox
             </p>
             <h2 className='mt-3 text-2xl font-semibold text-slate-950 dark:text-white'>
-              Tools I reach for.
+              Tune the kit.
             </h2>
 
             <div className='mt-6 grid gap-2'>
-              {toolbox.map((item) => (
-                <div
-                  key={item}
-                  className='flex items-center justify-between rounded-2xl border border-slate-900/10 bg-slate-50/80 px-4 py-3 text-sm font-medium text-slate-700 dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300'
-                >
-                  <span>{item}</span>
-                  <span className='h-2 w-2 rounded-full bg-sky-500 shadow-[0_0_18px_rgb(14_165_233/0.6)]' />
-                </div>
-              ))}
+              {toolbox.map((item) => {
+                const isSelected = selectedTools.includes(item)
+
+                return (
+                  <button
+                    key={item}
+                    type='button'
+                    onClick={() => toggleTool(item)}
+                    className={cn(
+                      'flex items-center justify-between rounded-2xl border px-4 py-3 text-left text-sm font-medium transition',
+                      isSelected
+                        ? 'border-sky-400/40 bg-sky-500/10 text-sky-700 dark:bg-sky-400/12 dark:text-sky-200'
+                        : 'border-slate-900/10 bg-slate-50/80 text-slate-700 hover:border-sky-400/35 dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300',
+                    )}
+                  >
+                    <span>{item}</span>
+                    <span
+                      className={cn(
+                        'h-2 w-2 rounded-full transition',
+                        isSelected
+                          ? 'bg-sky-500 shadow-[0_0_18px_rgb(14_165_233/0.6)]'
+                          : 'bg-slate-300 dark:bg-zinc-700',
+                      )}
+                    />
+                  </button>
+                )
+              })}
             </div>
           </section>
         </div>
