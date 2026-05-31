@@ -306,15 +306,6 @@ const stackTabs: StackTab[] = [
 
 const missions = [
   {
-    id: 'prototype',
-    label: 'Prototype',
-    tabId: 'frontend',
-    stackName: 'Vite',
-    softId: 'curiosity',
-    command: 'boot --mode prototype',
-    result: 'Fast experiments, quick UI decisions, low ceremony.',
-  },
-  {
     id: 'product',
     label: 'Product UI',
     tabId: 'interface',
@@ -340,6 +331,15 @@ const missions = [
     softId: 'ownership',
     command: 'release --confidence high',
     result: 'Clean commits, verified checks, deployable increments.',
+  },
+  {
+    id: 'prototype',
+    label: 'Prototype',
+    tabId: 'frontend',
+    stackName: 'Vite',
+    softId: 'curiosity',
+    command: 'boot --mode prototype',
+    result: 'Fast experiments, quick UI decisions, low ceremony.',
   },
 ]
 
@@ -408,13 +408,11 @@ const quickActions = [
 ]
 
 export function SkillsPage() {
-  const [activeTabId, setActiveTabId] = useState(stackTabs[0].id)
+  const [activeTabId, setActiveTabId] = useState(missions[0].tabId)
   const activeTab =
     stackTabs.find((tab) => tab.id === activeTabId) ?? stackTabs[0]
-  const [activeStackName, setActiveStackName] = useState(
-    activeTab.items[0].name,
-  )
-  const [activeSoftId, setActiveSoftId] = useState(softSkills[0].id)
+  const [activeStackName, setActiveStackName] = useState(missions[0].stackName)
+  const [activeSoftId, setActiveSoftId] = useState(missions[0].softId)
   const [activeMissionId, setActiveMissionId] = useState(missions[0].id)
   const activeStack =
     activeTab.items.find((item) => item.name === activeStackName) ??
