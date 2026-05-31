@@ -39,7 +39,7 @@ export function ContactSignalPanel() {
   const ActiveIcon = activeChannel.icon
 
   return (
-    <section className='relative isolate overflow-hidden rounded-4xl border border-zinc-950/10 bg-zinc-950/92 p-6 text-white shadow-2xl shadow-zinc-950/15 backdrop-blur-xs sm:p-8 dark:border-white/10 dark:bg-zinc-950/82 dark:shadow-black/30'>
+    <section className='relative isolate overflow-hidden rounded-4xl border border-zinc-950/10 bg-zinc-950/92 p-6 text-white shadow-2xl shadow-zinc-950/15 backdrop-blur-xs sm:p-7 dark:border-white/10 dark:bg-zinc-950/82 dark:shadow-black/30'>
       <div className='absolute inset-0 -z-10 opacity-80'>
         <div className='absolute top-10 right-8 h-44 w-44 animate-pulse rounded-full border border-sky-300/15' />
         <div className='absolute top-20 right-16 h-28 w-28 animate-[spin_18s_linear_infinite] rounded-full border border-dashed border-sky-300/20' />
@@ -61,82 +61,83 @@ export function ContactSignalPanel() {
           </span>
         </div>
 
-        <h1 className='mt-5 text-4xl leading-tight font-semibold tracking-normal sm:text-5xl'>
-          Pick a channel. Start the build.
+        <h1 className='mt-4 text-3xl leading-tight font-semibold tracking-normal sm:text-4xl xl:text-[2.6rem]'>
+          Pick a channel.
         </h1>
-        <p className='mt-5 max-w-xl text-base leading-7 text-zinc-300'>
-          Send the idea, the rough scope, or the messy version. I can help turn
-          it into something fast, usable, and polished.
+        <p className='mt-3 max-w-xl text-sm leading-6 text-zinc-300'>
+          Send the idea, rough scope, or messy version. I’ll help shape it into
+          something fast, usable, and polished.
         </p>
       </div>
 
-      <div className='mt-6 rounded-4xl border border-white/10 bg-white/6 p-4'>
-        <div className='relative grid min-h-44 place-items-center overflow-hidden rounded-3xl border border-white/10 bg-black/25'>
-          <div className='absolute h-44 w-44 rounded-full border border-sky-200/12' />
-          <div className='absolute h-32 w-32 animate-[spin_14s_linear_infinite_reverse] rounded-full border border-dashed border-sky-200/20' />
-          <div className='absolute h-24 w-24 rounded-full bg-sky-300/10 blur-xl' />
-          <div className='grid h-20 w-20 place-items-center rounded-[1.5rem] border border-sky-200/25 bg-zinc-950/90 text-white shadow-2xl shadow-sky-950/40'>
-            <ActiveIcon className='h-8 w-8' />
+      <div className='mt-5 rounded-4xl border border-white/10 bg-white/6 p-4'>
+        <div className='grid gap-3 lg:grid-cols-[0.75fr_1fr]'>
+          <div className='relative grid min-h-36 place-items-center overflow-hidden rounded-3xl border border-white/10 bg-black/25'>
+            <div className='absolute h-36 w-36 rounded-full border border-sky-200/12' />
+            <div className='absolute h-24 w-24 animate-[spin_14s_linear_infinite_reverse] rounded-full border border-dashed border-sky-200/20' />
+            <div className='absolute h-20 w-20 rounded-full bg-sky-300/10 blur-xl' />
+            <div className='grid h-16 w-16 place-items-center rounded-[1.25rem] border border-sky-200/25 bg-zinc-950/90 text-white shadow-2xl shadow-sky-950/40'>
+              <ActiveIcon className='h-7 w-7' />
+            </div>
+            <div className='absolute top-3 left-3 flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-2.5 py-1 font-mono text-[0.65rem] text-zinc-300'>
+              <Radio className='h-3 w-3 text-sky-200' />
+              signal
+            </div>
           </div>
-          <div className='absolute top-4 left-4 flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3 py-1.5 font-mono text-xs text-zinc-300'>
-            <Radio className='h-3.5 w-3.5 text-sky-200' />
-            signal locked
-          </div>
-          <div className='absolute right-4 bottom-4 rounded-2xl border border-white/10 bg-zinc-950/75 px-3 py-2 font-mono text-xs text-zinc-300'>
-            {activeChannel.command}
+
+          <div className='grid gap-2'>
+            {channels.map((channel) => {
+              const Icon = channel.icon
+              const isActive = activeChannel.label === channel.label
+
+              return (
+                <button
+                  key={channel.label}
+                  type='button'
+                  onClick={() => setActiveChannel(channel)}
+                  className={cn(
+                    'group flex items-center justify-between gap-3 rounded-2xl border px-3 py-2.5 text-left transition focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none',
+                    isActive
+                      ? 'border-white/20 bg-white/10'
+                      : 'border-white/10 bg-white/6 hover:border-white/20 hover:bg-white/9',
+                  )}
+                >
+                  <span className='flex min-w-0 items-center gap-3'>
+                    <span
+                      className={cn(
+                        'grid h-9 w-9 shrink-0 place-items-center rounded-xl transition',
+                        isActive
+                          ? 'bg-white/14 text-white'
+                          : 'bg-white/10 text-white',
+                      )}
+                    >
+                      <Icon className='h-4 w-4' />
+                    </span>
+                    <span className='min-w-0'>
+                      <span className='block text-sm font-semibold text-white'>
+                        {channel.label}
+                      </span>
+                      <span className='block truncate text-xs text-zinc-400'>
+                        {channel.value}
+                      </span>
+                    </span>
+                  </span>
+                  <ArrowUpRight className='h-4 w-4 shrink-0 text-zinc-500 transition group-hover:text-white' />
+                </button>
+              )
+            })}
           </div>
         </div>
 
-        <div className='mt-4 grid gap-2'>
-          {channels.map((channel) => {
-            const Icon = channel.icon
-            const isActive = activeChannel.label === channel.label
-
-            return (
-              <button
-                key={channel.label}
-                type='button'
-                onClick={() => setActiveChannel(channel)}
-                className={cn(
-                  'group flex items-center justify-between gap-4 rounded-2xl border px-4 py-3 text-left transition focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none',
-                  isActive
-                    ? 'border-white/20 bg-white/10'
-                    : 'border-white/10 bg-white/6 hover:border-white/20 hover:bg-white/9',
-                )}
-              >
-                <span className='flex min-w-0 items-center gap-3'>
-                  <span
-                    className={cn(
-                      'grid h-10 w-10 shrink-0 place-items-center rounded-xl transition',
-                      isActive
-                        ? 'bg-white/14 text-white'
-                        : 'bg-white/10 text-white',
-                    )}
-                  >
-                    <Icon className='h-4.5 w-4.5' />
-                  </span>
-                  <span className='min-w-0'>
-                    <span className='block text-sm font-semibold text-white'>
-                      {channel.label}
-                    </span>
-                    <span className='block truncate text-sm text-zinc-400'>
-                      {channel.value}
-                    </span>
-                  </span>
-                </span>
-                <ArrowUpRight className='h-4 w-4 shrink-0 text-zinc-500 transition group-hover:text-white' />
-              </button>
-            )
-          })}
-        </div>
-
-        <div className='mt-4 grid gap-3 rounded-3xl border border-white/10 bg-zinc-950/55 p-4 font-mono text-sm'>
-          <div className='flex items-center gap-2 text-white'>
-            <Terminal className='h-4 w-4' />
-            <span>{activeChannel.label.toLowerCase()} status</span>
-          </div>
+        <div className='mt-3 rounded-3xl border border-white/10 bg-zinc-950/55 p-3 font-mono text-sm'>
           <div className='flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between'>
-            <p className='leading-7 text-zinc-300'>{activeChannel.status}</p>
+            <div className='min-w-0'>
+              <div className='mb-1 flex items-center gap-2 text-white'>
+                <Terminal className='h-4 w-4' />
+                <span>{activeChannel.command}</span>
+              </div>
+              <p className='leading-7 text-zinc-300'>{activeChannel.status}</p>
+            </div>
             <Link
               href={activeChannel.href}
               target={
