@@ -3,6 +3,7 @@
 import { memo, useEffect, useRef, useState } from 'react'
 import { useCommandHistory } from '../hooks/useCommandHistory'
 import { ChevronRight } from 'lucide-react'
+import { terminalCompletions } from './commandRegistry'
 
 type TerminalInputProps = {
   onExecute: (command: string) => void
@@ -27,6 +28,45 @@ export const TerminalInput = memo(function TerminalInput({
   }, [focusRequest])
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
+    if (event.key === 'Tab') {
+      event.preventDefault()
+
+      const query = value.trimStart().toLowerCase()
+
+      if (!query) return
+
+      const matches = terminalCompletions.filter((command) =>
+        command.startsWith(query),
+      )
+
+      if (matches.length === 1) {
+        setValue(matches[0])
+        return
+      }
+
+      if (matches.length > 1) {
+        const sharedPrefix = matches.reduce((prefix, match) => {
+          let index = 0
+
+          while (
+            index < prefix.length &&
+            index < match.length &&
+            prefix[index] === match[index]
+          ) {
+            index += 1
+          }
+
+          return prefix.slice(0, index)
+        })
+
+        if (sharedPrefix.length > query.length) {
+          setValue(sharedPrefix)
+        }
+      }
+
+      return
+    }
+
     if (event.key === 'Enter') {
       const command = value.trim()
 

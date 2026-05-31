@@ -57,6 +57,33 @@ const terminalProjects = [
   },
 ]
 
+export const terminalCompletions = [
+  'about',
+  'clear',
+  'cls',
+  'contact',
+  'date',
+  'help',
+  'journey',
+  'open contact',
+  'open home',
+  'open portfolio',
+  'open projects',
+  'open skills',
+  'project commerce-dashboard',
+  'project ops-interface',
+  'project portfolio-terminal',
+  'projects',
+  'resume',
+  'secret',
+  'setup',
+  'skills',
+  'sudo hire-me',
+  'theme',
+  'uses',
+  'whoami',
+]
+
 const cardClass =
   'rounded-2xl border border-slate-900/10 bg-white/70 p-4 shadow-sm shadow-slate-900/5 dark:border-white/10 dark:bg-white/6'
 const chipClass =
@@ -115,25 +142,26 @@ const helpSections = [
 export const commandRegistry: Record<string, TerminalCommand> = {
   help: {
     name: 'help',
-    description: 'Display categorized commands',
+    description: 'Display all available commands',
     execute: () => ({
       type: 'output',
       content: (
-        <div className='grid gap-3 sm:grid-cols-2'>
-          {helpSections.map((section) => (
-            <div key={section.title} className={cardClass}>
-              <p className='font-semibold text-slate-950 dark:text-white'>
+        <div className='space-y-2'>
+          <p className='text-slate-500 dark:text-zinc-400'>
+            Available commands:
+          </p>
+          <div className='grid gap-1'>
+            {helpSections.map((section) => (
+              <div key={section.title} className='grid gap-1 sm:grid-cols-[7rem_1fr]'>
+                <span className='font-semibold text-sky-600 dark:text-sky-400'>
                 {section.title}
-              </p>
-              <div className='mt-3 flex flex-wrap gap-2'>
-                {section.commands.map((command) => (
-                  <span key={command} className={chipClass}>
-                    {command}
-                  </span>
-                ))}
+                </span>
+                <span className='text-slate-500 dark:text-zinc-400'>
+                  {section.commands.join(', ')}
+                </span>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       ),
     }),
@@ -199,7 +227,9 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       type: 'output',
       content: (
         <div className='space-y-3'>
-          {terminalProjects.map((project) => projectCard(project))}
+          {terminalProjects.map((project) => (
+            <div key={project.slug}>{projectCard(project)}</div>
+          ))}
         </div>
       ),
     }),
