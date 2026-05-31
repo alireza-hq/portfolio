@@ -7,13 +7,13 @@ import { useContact } from '../hooks/useContact'
 
 function fieldClass(hasError: boolean) {
   return cn(
-    'peer h-14 w-full rounded-2xl border border-zinc-900/10 bg-zinc-50/90 px-4 pt-5 pb-2 text-zinc-950 transition outline-none placeholder:text-transparent focus:border-sky-400 focus:bg-white focus:ring-4 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:focus:bg-white/8',
+    'peer h-14 w-full rounded-2xl border border-zinc-900/10 bg-zinc-50/90 px-4 text-zinc-950 transition outline-none placeholder:text-transparent focus:border-sky-400 focus:bg-white focus:ring-4 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:focus:bg-zinc-950',
     hasError && 'border-red-400 focus:border-red-400 focus:ring-red-400/15',
   )
 }
 
 const floatingLabelClass =
-  'pointer-events-none absolute left-4 top-4 text-sm font-medium text-zinc-500 transition-all peer-focus:top-2 peer-focus:text-xs peer-focus:text-sky-600 peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs dark:text-zinc-500 dark:peer-focus:text-sky-300'
+  'pointer-events-none absolute left-3 top-4 bg-zinc-50/90 px-1.5 text-sm font-medium text-zinc-500 transition-all peer-focus:-top-2 peer-focus:text-xs peer-focus:text-sky-600 peer-focus:bg-white peer-[:not(:placeholder-shown)]:-top-2 peer-[:not(:placeholder-shown)]:text-xs dark:bg-zinc-950 dark:text-zinc-500 dark:peer-focus:text-sky-300'
 
 export const ContactForm = () => {
   const { register, handleSubmit, onSubmit, errors, isSubmitting } =
@@ -98,7 +98,7 @@ export const ContactForm = () => {
           <textarea
             {...register('message')}
             className={cn(
-              'peer min-h-40 w-full resize-none rounded-2xl border border-zinc-900/10 bg-zinc-50/90 px-4 pt-7 pb-4 text-zinc-950 transition outline-none placeholder:text-transparent focus:border-sky-400 focus:bg-white focus:ring-4 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:focus:bg-white/8',
+              'peer min-h-40 w-full resize-none rounded-2xl border border-zinc-900/10 bg-zinc-50/90 px-4 py-4 text-zinc-950 transition outline-none placeholder:text-transparent focus:border-sky-400 focus:bg-white focus:ring-4 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:focus:bg-zinc-950',
               errors.message &&
                 'border-red-400 focus:border-red-400 focus:ring-red-400/15',
             )}
@@ -118,7 +118,7 @@ export const ContactForm = () => {
         <button
           type='submit'
           disabled={isSubmitting}
-          className='inline-flex items-center justify-center gap-2 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
+          className='inline-flex items-center justify-center gap-2 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white transition hover:bg-zinc-800 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 dark:bg-white dark:text-zinc-950 dark:hover:bg-zinc-200'
         >
           <Send className='h-4 w-4' />
           {isSubmitting ? 'Sending...' : 'Send message'}
