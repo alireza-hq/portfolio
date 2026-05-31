@@ -17,6 +17,7 @@ import { FaGithub } from 'react-icons/fa6'
 import { cn } from '@/lib/utils'
 
 const filters = ['All', 'Interactive', 'Dashboard', 'Tooling'] as const
+const inspectionModes = ['Console', 'Stack', 'Flow', 'Links'] as const
 
 type ProjectAccent = 'blue' | 'cyan' | 'emerald'
 type Project = {
@@ -178,6 +179,8 @@ function ProjectSnapshot({
 export function ProjectsPage() {
   const [activeFilter, setActiveFilter] =
     useState<(typeof filters)[number]>('All')
+  const [inspectionMode, setInspectionMode] =
+    useState<(typeof inspectionModes)[number]>('Console')
   const visibleProjects = useMemo(
     () =>
       activeFilter === 'All'
@@ -215,7 +218,12 @@ export function ProjectsPage() {
   const ActiveIcon = activeProject.icon
 
   return (
-    <main className='relative z-10 min-h-screen px-4 pt-32 pb-20 sm:px-6 lg:px-8'>
+    <main
+      className={cn(
+        'relative min-h-screen px-4 pt-32 pb-20 sm:px-6 lg:px-8',
+        isModalOpen ? 'z-[90]' : 'z-10',
+      )}
+    >
       <section className='mx-auto w-full max-w-7xl'>
         <div className='grid gap-8 lg:grid-cols-[0.9fr_1.1fr] lg:items-end'>
           <div>
@@ -325,27 +333,108 @@ export function ProjectsPage() {
                 {activeProject.description}
               </p>
 
-              <div className='mt-6 flex flex-wrap gap-2'>
-                {activeProject.stack.map((item) => (
-                  <span
-                    key={item}
-                    className='rounded-full border border-white/10 bg-white/6 px-3 py-1.5 text-sm font-medium text-zinc-200'
-                  >
-                    {item}
-                  </span>
-                ))}
+              <div className='mt-6 rounded-[1.25rem] border border-white/10 bg-zinc-950/70 p-2'>
+                <div className='grid grid-cols-2 gap-2 sm:grid-cols-4'>
+                  {inspectionModes.map((mode) => (
+                    <button
+                      key={mode}
+                      type='button'
+                      onClick={() => setInspectionMode(mode)}
+                      className={cn(
+                        'rounded-2xl px-3 py-2 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none',
+                        inspectionMode === mode
+                          ? 'bg-sky-300 text-zinc-950'
+                          : 'text-zinc-400 hover:bg-white/8 hover:text-white',
+                      )}
+                    >
+                      {mode}
+                    </button>
+                  ))}
+                </div>
               </div>
 
-              <div className='mt-6 grid gap-2 font-mono text-sm'>
-                {activeProject.metrics.map((metric) => (
-                  <div
-                    key={metric}
-                    className='flex items-center justify-between rounded-2xl border border-white/10 bg-white/6 px-4 py-3 text-zinc-300'
-                  >
-                    <span>{metric}</span>
-                    <Code2 className='h-4 w-4 text-sky-200' />
+              <div className='mt-4 min-h-56 rounded-[1.25rem] border border-white/10 bg-white/6 p-4'>
+                {inspectionMode === 'Console' ? (
+                  <div className='grid gap-3 font-mono text-sm'>
+                    {activeProject.metrics.map((metric, index) => (
+                      <div
+                        key={metric}
+                        className='grid gap-3 rounded-2xl border border-white/10 bg-black/20 p-3 sm:grid-cols-[auto_1fr_auto]'
+                      >
+                        <span className='text-sky-200'>run:{index + 1}</span>
+                        <span className='text-zinc-300'>{metric}</span>
+                        <Code2 className='h-4 w-4 text-sky-200' />
+                      </div>
+                    ))}
                   </div>
-                ))}
+                ) : null}
+
+                {inspectionMode === 'Stack' ? (
+                  <div>
+                    <p className='font-mono text-xs text-sky-200'>
+                      dependency surface
+                    </p>
+                    <div className='mt-4 flex flex-wrap gap-2'>
+                      {activeProject.stack.map((item) => (
+                        <span
+                          key={item}
+                          className='rounded-full border border-sky-200/15 bg-sky-300/10 px-3 py-1.5 text-sm font-medium text-sky-100'
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                    <p className='mt-4 text-sm leading-7 text-zinc-400'>
+                      The stack is presented as a build surface: the tools are
+                      selected for state, speed, validation, and clear handoff
+                      between UI and behavior.
+                    </p>
+                  </div>
+                ) : null}
+
+                {inspectionMode === 'Flow' ? (
+                  <div className='grid gap-3'>
+                    {activeProject.process.map((step, index) => (
+                      <div
+                        key={step}
+                        className='grid gap-3 rounded-2xl border border-white/10 bg-black/20 p-3 sm:grid-cols-[auto_1fr]'
+                      >
+                        <span className='font-mono text-sm text-sky-200'>
+                          0{index + 1}
+                        </span>
+                        <span className='text-sm leading-6 text-zinc-300'>
+                          {step}
+                        </span>
+                      </div>
+                    ))}
+                  </div>
+                ) : null}
+
+                {inspectionMode === 'Links' ? (
+                  <div className='grid gap-3'>
+                    {[
+                      ['Live surface', activeProject.liveUrl],
+                      ['Source control', activeProject.githubUrl],
+                    ].map(([label, href]) => (
+                      <a
+                        key={label}
+                        href={href}
+                        target={href.startsWith('http') ? '_blank' : undefined}
+                        className='group flex items-center justify-between gap-4 rounded-2xl border border-white/10 bg-black/20 px-4 py-3 transition hover:border-sky-300/35 hover:bg-sky-300/10'
+                      >
+                        <span>
+                          <span className='block font-semibold text-white'>
+                            {label}
+                          </span>
+                          <span className='mt-1 block text-sm text-zinc-500'>
+                            {href}
+                          </span>
+                        </span>
+                        <ExternalLink className='h-4 w-4 text-zinc-500 transition group-hover:text-sky-200' />
+                      </a>
+                    ))}
+                  </div>
+                ) : null}
               </div>
             </aside>
           </div>
@@ -385,44 +474,39 @@ export function ProjectsPage() {
           })}
         </div>
 
-        <section className='mt-4 rounded-[2rem] border border-slate-900/10 bg-white/70 p-5 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
+        <section className='mt-4 overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white/70 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
           <div className='flex flex-col gap-4 md:flex-row md:items-center md:justify-between'>
-            <div>
+            <div className='p-5'>
               <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
-                atlas signals
+                active build console
               </p>
               <h2 className='mt-2 text-2xl font-semibold text-slate-950 dark:text-white'>
-                What changes when you select a project.
+                Every selection rewires the inspection surface.
               </h2>
             </div>
             <button
               type='button'
               onClick={() => setIsModalOpen(true)}
-              className='inline-flex w-fit items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
+              className='mx-5 mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none md:my-5 dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
             >
               Inspect active build
               <Lightbulb className='h-4 w-4' />
             </button>
           </div>
 
-          <div className='mt-5 grid gap-3 lg:grid-cols-3'>
-            {[
-              ['Artifact', activeProject.name],
-              ['Surface', activeProject.type],
-              ['Build notes', `${activeProject.process.length} steps`],
-            ].map(([label, value]) => (
-              <div
-                key={label}
-                className='rounded-2xl border border-slate-900/10 bg-slate-50/80 px-4 py-3 dark:border-white/10 dark:bg-zinc-950/45'
-              >
-                <p className='font-mono text-xs text-slate-500 dark:text-zinc-500'>
-                  {label}
+          <div className='border-t border-slate-900/10 bg-slate-950 p-5 font-mono text-sm text-zinc-300 dark:border-white/10'>
+            <div className='grid gap-2'>
+              {[
+                ['artifact', activeProject.name],
+                ['surface', activeProject.type],
+                ['notes', `${activeProject.process.length} build checkpoints`],
+              ].map(([label, value]) => (
+                <p key={label} className='grid gap-2 sm:grid-cols-[8rem_1fr]'>
+                  <span className='text-sky-300'>{label}</span>
+                  <span>{value}</span>
                 </p>
-                <p className='mt-1 font-semibold text-slate-950 dark:text-white'>
-                  {value}
-                </p>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
         </section>
       </section>

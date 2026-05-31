@@ -25,6 +25,12 @@ const socials = [
   },
 ]
 
+const contactProtocol = [
+  ['status', 'Available for focused frontend work'],
+  ['response', 'Clear scope, fast iteration, honest tradeoffs'],
+  ['handoff', 'GitHub, LinkedIn, email - in that order'],
+]
+
 export function ContactPage() {
   return (
     <main className='relative z-10 min-h-screen px-4 pt-32 pb-20 sm:px-6 lg:px-8'>
@@ -71,6 +77,26 @@ export function ContactPage() {
                 </Link>
               )
             })}
+          </div>
+
+          <div className='mt-6 rounded-3xl border border-sky-200/15 bg-sky-300/10 p-4'>
+            <div className='flex items-center gap-3'>
+              <span className='relative flex h-3 w-3'>
+                <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-300 opacity-60' />
+                <span className='relative inline-flex h-3 w-3 rounded-full bg-sky-200' />
+              </span>
+              <p className='font-mono text-xs font-semibold tracking-widest text-sky-100 uppercase'>
+                contact protocol
+              </p>
+            </div>
+            <div className='mt-4 grid gap-2 font-mono text-sm'>
+              {contactProtocol.map(([label, value]) => (
+                <p key={label} className='grid gap-1 sm:grid-cols-[5.5rem_1fr]'>
+                  <span className='text-sky-200'>{label}</span>
+                  <span className='text-zinc-300'>{value}</span>
+                </p>
+              ))}
+            </div>
           </div>
         </div>
 

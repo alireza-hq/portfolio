@@ -58,6 +58,7 @@ const terminalProjects = [
 ]
 
 export const terminalCompletions = [
+  '?',
   'about',
   'clear',
   'cls',
@@ -132,12 +133,98 @@ function projectCard(project: (typeof terminalProjects)[number]) {
   )
 }
 
-const helpSections = [
-  { title: 'Explore', commands: ['about', 'whoami', 'skills', 'projects', 'journey'] },
-  { title: 'Projects', commands: ['project [name]', 'open [project]'] },
-  { title: 'System', commands: ['setup', 'uses', 'date', 'theme', 'secret'] },
-  { title: 'Contact', commands: ['contact', 'resume', 'sudo hire-me'] },
+const helpSections: {
+  title: string
+  commands: { command: string; description: string }[]
+}[] = [
+  {
+    title: 'Explore',
+    commands: [
+      { command: 'about', description: 'Show the short developer profile.' },
+      { command: 'whoami', description: 'Print a one-line identity.' },
+      { command: 'skills', description: 'Open the interactive stack summary.' },
+      { command: 'projects', description: 'List featured project artifacts.' },
+      { command: 'journey', description: 'Show the learning and build path.' },
+    ],
+  },
+  {
+    title: 'Projects',
+    commands: [
+      {
+        command: 'project [name]',
+        description: 'Inspect one project with build notes.',
+      },
+      {
+        command: 'open [project]',
+        description: 'Navigate to a project or page in this tab.',
+      },
+    ],
+  },
+  {
+    title: 'System',
+    commands: [
+      { command: 'setup', description: 'Show workspace and workflow tools.' },
+      { command: 'uses', description: 'Show the stack and working style.' },
+      { command: 'date', description: 'Print the current date and time.' },
+      { command: 'theme', description: 'Toggle light and dark mode.' },
+      { command: 'secret', description: 'Reveal a tiny hidden note.' },
+      { command: 'clear', description: 'Clear the terminal output.' },
+    ],
+  },
+  {
+    title: 'Contact',
+    commands: [
+      { command: 'contact', description: 'Show GitHub, LinkedIn, and email.' },
+      { command: 'resume', description: 'Open the resume file.' },
+      {
+        command: 'sudo hire-me',
+        description: 'Run the highly scientific hiring protocol.',
+      },
+    ],
+  },
 ] as const
+
+function renderHelp() {
+  return (
+    <div className='space-y-3'>
+      <p className='text-slate-500 dark:text-zinc-400'>
+        Available commands. Press Tab to autocomplete.
+      </p>
+      <div className='grid gap-3'>
+        {helpSections.map((section) => (
+          <section key={section.title} className='grid gap-2'>
+            <p className='font-semibold text-sky-600 dark:text-sky-400'>
+              {section.title}
+            </p>
+            <div className='grid gap-1'>
+              {section.commands.map((item) => (
+                <div
+                  key={item.command}
+                  className='grid gap-1 sm:grid-cols-[9.5rem_1fr]'
+                >
+                  <code className='font-mono text-sm text-slate-800 dark:text-zinc-200'>
+                    {item.command}
+                  </code>
+                  <span className='text-slate-500 dark:text-zinc-400'>
+                    {item.description}
+                  </span>
+                </div>
+              ))}
+            </div>
+          </section>
+        ))}
+        <div className='grid gap-1 sm:grid-cols-[9.5rem_1fr]'>
+          <code className='font-mono text-sm text-slate-800 dark:text-zinc-200'>
+            ?
+          </code>
+          <span className='text-slate-500 dark:text-zinc-400'>
+            Alias for help.
+          </span>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export const commandRegistry: Record<string, TerminalCommand> = {
   help: {
@@ -145,25 +232,16 @@ export const commandRegistry: Record<string, TerminalCommand> = {
     description: 'Display all available commands',
     execute: () => ({
       type: 'output',
-      content: (
-        <div className='space-y-2'>
-          <p className='text-slate-500 dark:text-zinc-400'>
-            Available commands:
-          </p>
-          <div className='grid gap-1'>
-            {helpSections.map((section) => (
-              <div key={section.title} className='grid gap-1 sm:grid-cols-[7rem_1fr]'>
-                <span className='font-semibold text-sky-600 dark:text-sky-400'>
-                {section.title}
-                </span>
-                <span className='text-slate-500 dark:text-zinc-400'>
-                  {section.commands.join(', ')}
-                </span>
-              </div>
-            ))}
-          </div>
-        </div>
-      ),
+      content: renderHelp(),
+    }),
+  },
+
+  '?': {
+    name: '?',
+    description: 'Alias for help',
+    execute: () => ({
+      type: 'output',
+      content: renderHelp(),
     }),
   },
 

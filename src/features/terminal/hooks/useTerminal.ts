@@ -70,11 +70,17 @@ export function useTerminal({ onToggleTheme }: UseTerminalOptions = {}) {
       }
 
       if (result.type === 'external') {
-        window.open(result.url, '_blank', 'noopener,noreferrer')
         setLines((prev) => [
           ...prev,
           createLine('output', `Opening ${result.url}...`),
         ])
+
+        if (result.url.startsWith('/') || result.url.startsWith('#')) {
+          window.location.assign(result.url)
+          return
+        }
+
+        window.open(result.url, '_blank', 'noopener,noreferrer')
         return
       }
 
