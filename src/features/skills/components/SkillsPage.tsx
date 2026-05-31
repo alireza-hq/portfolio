@@ -469,21 +469,21 @@ export function SkillsPage() {
             </p>
           </div>
 
-          <section className='rounded-[2rem] border border-zinc-900/10 bg-zinc-950 p-5 text-white shadow-2xl shadow-zinc-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
+          <section className='rounded-[2rem] border border-zinc-900/10 bg-white/75 p-5 text-zinc-950 shadow-2xl shadow-zinc-900/8 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/25'>
             <div className='flex items-start justify-between gap-4'>
               <div>
-                <p className='font-mono text-xs font-semibold tracking-widest text-sky-200 uppercase'>
+                <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
                   mission control
                 </p>
                 <h2 className='mt-3 text-2xl font-semibold'>
                   {activeMission.label}
                 </h2>
-                <p className='mt-2 text-sm leading-6 text-zinc-400'>
+                <p className='mt-2 text-sm leading-6 text-zinc-600 dark:text-zinc-400'>
                   Global presets tune the stack inspector, soft-skill module,
                   and live readout together.
                 </p>
               </div>
-              <span className='rounded-2xl border border-sky-300/20 bg-sky-300/10 px-3 py-2 font-mono text-2xl font-semibold text-sky-200'>
+              <span className='rounded-2xl border border-sky-500/20 bg-sky-500/10 px-3 py-2 font-mono text-2xl font-semibold text-sky-700 dark:border-sky-300/20 dark:bg-sky-300/10 dark:text-sky-200'>
                 {profileScore}
               </span>
             </div>
@@ -500,8 +500,8 @@ export function SkillsPage() {
                     className={cn(
                       'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none active:scale-95',
                       isActive
-                        ? 'border-cyan-300/45 bg-cyan-300/12 text-cyan-100'
-                        : 'border-white/10 bg-white/5 text-zinc-300 hover:border-cyan-300/30 hover:text-white',
+                        ? 'border-sky-500/35 bg-sky-500/10 text-sky-700 dark:border-cyan-300/45 dark:bg-cyan-300/12 dark:text-cyan-100'
+                        : 'border-zinc-900/10 bg-zinc-50/80 text-zinc-600 hover:border-sky-400/35 hover:text-zinc-950 dark:border-white/10 dark:bg-white/5 dark:text-zinc-300 dark:hover:border-cyan-300/30 dark:hover:text-white',
                     )}
                   >
                     {mission.label}
@@ -510,12 +510,15 @@ export function SkillsPage() {
               })}
             </div>
 
-            <div className='mt-5 grid gap-2 rounded-2xl border border-white/10 bg-black/20 p-4 font-mono text-sm'>
-              <p className='text-zinc-400'>
-                <span className='text-sky-300'>$</span> {activeMission.command}
+            <div className='mt-5 grid gap-2 rounded-2xl border border-zinc-900/10 bg-zinc-50/85 p-4 font-mono text-sm dark:border-white/10 dark:bg-black/20'>
+              <p className='text-zinc-600 dark:text-zinc-400'>
+                <span className='text-sky-600 dark:text-sky-300'>$</span>{' '}
+                {activeMission.command}
               </p>
-              <p className='text-zinc-300'>{activeMission.result}</p>
-              <p className='text-zinc-500'>
+              <p className='text-zinc-700 dark:text-zinc-300'>
+                {activeMission.result}
+              </p>
+              <p className='text-zinc-500 dark:text-zinc-500'>
                 {activeStack.name} / {activeSoft.label} / {stackCount} tools
               </p>
             </div>
@@ -524,18 +527,18 @@ export function SkillsPage() {
 
         <section
           id='stack-inspector'
-          className='mt-12 scroll-mt-28 overflow-hidden rounded-[2rem] border border-zinc-900/10 bg-zinc-950 text-white shadow-2xl shadow-zinc-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'
+          className='mt-12 scroll-mt-28 overflow-hidden rounded-[2rem] border border-zinc-900/10 bg-white/75 text-zinc-950 shadow-2xl shadow-zinc-900/8 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/25'
         >
-          <div className='flex flex-col gap-4 border-b border-white/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between'>
+          <div className='flex flex-col gap-4 border-b border-zinc-900/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between dark:border-white/10'>
             <div className='flex items-center gap-3'>
-              <div className='grid h-10 w-10 place-items-center rounded-2xl bg-sky-300/12 text-sky-200 ring-1 ring-sky-200/15'>
+              <div className='grid h-10 w-10 place-items-center rounded-2xl bg-sky-500/10 text-sky-700 ring-1 ring-sky-500/15 dark:bg-sky-300/12 dark:text-sky-200 dark:ring-sky-200/15'>
                 <Radar className='h-5 w-5' />
               </div>
               <div>
-                <p className='font-mono text-xs text-sky-200'>
+                <p className='font-mono text-xs text-sky-600 dark:text-sky-300'>
                   stack.inspector
                 </p>
-                <p className='text-sm text-zinc-400'>
+                <p className='text-sm text-zinc-500 dark:text-zinc-400'>
                   Tab, hover, click, inspect.
                 </p>
               </div>
@@ -559,8 +562,8 @@ export function SkillsPage() {
                     className={cn(
                       'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none active:scale-95',
                       isActive
-                        ? 'border-sky-300/45 bg-sky-300/12 text-sky-100'
-                        : 'border-white/10 bg-white/5 text-zinc-300 hover:border-sky-300/30 hover:text-white',
+                        ? 'border-sky-500/35 bg-sky-500/10 text-sky-700 dark:border-sky-300/45 dark:bg-sky-300/12 dark:text-sky-100'
+                        : 'border-zinc-900/10 bg-zinc-50/80 text-zinc-600 hover:border-sky-400/35 hover:text-zinc-950 dark:border-white/10 dark:bg-white/5 dark:text-zinc-300 dark:hover:border-sky-300/30 dark:hover:text-white',
                     )}
                   >
                     {tab.label}
@@ -574,15 +577,17 @@ export function SkillsPage() {
             <div>
               <div className='flex items-start justify-between gap-4'>
                 <div>
-                  <p className='font-mono text-xs text-sky-200'>active layer</p>
+                  <p className='font-mono text-xs text-sky-600 dark:text-sky-300'>
+                    active layer
+                  </p>
                   <h2 className='mt-2 text-3xl font-semibold'>
                     {activeTab.label}
                   </h2>
-                  <p className='mt-3 max-w-xl leading-7 text-zinc-400'>
+                  <p className='mt-3 max-w-xl leading-7 text-zinc-600 dark:text-zinc-400'>
                     {activeTab.summary}
                   </p>
                 </div>
-                <Sparkles className='h-5 w-5 text-sky-200' />
+                <Sparkles className='h-5 w-5 text-sky-600 dark:text-sky-200' />
               </div>
 
               <div className='mt-8 grid grid-cols-3 gap-3 sm:grid-cols-4 xl:grid-cols-5'>
@@ -599,13 +604,13 @@ export function SkillsPage() {
                       onFocus={() => setActiveStackName(item.name)}
                       onClick={() => setActiveStackName(item.name)}
                       className={cn(
-                        'group relative aspect-square rounded-3xl border bg-white/6 p-3 transition duration-200 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none active:scale-95',
+                        'group relative aspect-square rounded-3xl border bg-zinc-50/80 p-3 transition duration-200 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none active:scale-95 dark:bg-white/6',
                         isActive
                           ? 'border-sky-300/45 shadow-[0_0_40px_rgb(14_165_233/0.16)]'
-                          : 'hover:-tranzinc-y-1 border-white/10 hover:border-sky-300/30 hover:bg-white/9',
+                          : 'border-zinc-900/10 hover:-translate-y-1 hover:border-sky-400/35 hover:bg-white dark:border-white/10 dark:hover:border-sky-300/30 dark:hover:bg-white/9',
                       )}
                     >
-                      <span className='grid h-full place-items-center rounded-2xl bg-black/18'>
+                      <span className='grid h-full place-items-center rounded-2xl bg-white dark:bg-black/18'>
                         <Icon
                           className={cn(
                             'h-9 w-9 transition duration-200 sm:h-11 sm:w-11',
@@ -614,7 +619,7 @@ export function SkillsPage() {
                           )}
                         />
                       </span>
-                      <span className='pointer-events-none absolute inset-x-2 -bottom-2 z-10 rounded-full border border-white/10 bg-zinc-950 px-2 py-1 text-center text-xs font-semibold text-white opacity-0 shadow-xl shadow-black/30 transition group-hover:bottom-2 group-hover:opacity-100 group-focus-visible:bottom-2 group-focus-visible:opacity-100'>
+                      <span className='pointer-events-none absolute inset-x-2 -bottom-2 z-10 rounded-full border border-zinc-900/10 bg-white px-2 py-1 text-center text-xs font-semibold text-zinc-950 opacity-0 shadow-xl shadow-zinc-900/15 transition group-hover:bottom-2 group-hover:opacity-100 group-focus-visible:bottom-2 group-focus-visible:opacity-100 dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/30'>
                         {item.name}
                       </span>
                     </button>
@@ -623,10 +628,10 @@ export function SkillsPage() {
               </div>
             </div>
 
-            <aside className='rounded-[1.5rem] border border-white/10 bg-black/25 p-5'>
+            <aside className='rounded-[1.5rem] border border-zinc-900/10 bg-zinc-50/85 p-5 dark:border-white/10 dark:bg-black/25'>
               <div className='flex items-start justify-between gap-4'>
                 <div>
-                  <p className='font-mono text-xs text-zinc-500'>
+                  <p className='font-mono text-xs text-zinc-500 dark:text-zinc-500'>
                     selected tool
                   </p>
                   <h3 className='mt-2 text-3xl font-semibold'>
@@ -639,34 +644,38 @@ export function SkillsPage() {
                 />
               </div>
 
-              <p className='mt-5 leading-7 text-zinc-300'>{activeStack.use}</p>
+              <p className='mt-5 leading-7 text-zinc-600 dark:text-zinc-300'>
+                {activeStack.use}
+              </p>
 
-              <div className='mt-5 rounded-2xl border border-sky-300/15 bg-sky-300/8 p-4'>
+              <div className='mt-5 rounded-2xl border border-sky-500/15 bg-sky-500/8 p-4 dark:border-sky-300/15 dark:bg-sky-300/8'>
                 <div className='flex items-center justify-between gap-3'>
-                  <p className='font-mono text-xs text-sky-200'>
+                  <p className='font-mono text-xs text-sky-600 dark:text-sky-200'>
                     active mission
                   </p>
-                  <span className='rounded-full bg-sky-300/12 px-2.5 py-1 text-xs font-semibold text-sky-100'>
+                  <span className='rounded-full bg-sky-500/10 px-2.5 py-1 text-xs font-semibold text-sky-700 dark:bg-sky-300/12 dark:text-sky-100'>
                     {activeMission.label}
                   </span>
                 </div>
                 <div className='mt-3 space-y-1 font-mono text-sm'>
-                  <p className='text-zinc-400'>
-                    <span className='text-sky-300'>$</span>{' '}
+                  <p className='text-zinc-600 dark:text-zinc-400'>
+                    <span className='text-sky-600 dark:text-sky-300'>$</span>{' '}
                     {activeMission.command}
                   </p>
-                  <p className='text-zinc-300'>{activeMission.result}</p>
+                  <p className='text-zinc-700 dark:text-zinc-300'>
+                    {activeMission.result}
+                  </p>
                 </div>
               </div>
 
               <div className='mt-6'>
                 <div className='flex items-center justify-between text-sm'>
                   <span className='text-zinc-500'>comfort</span>
-                  <span className='font-mono text-sky-200'>
+                  <span className='font-mono text-sky-600 dark:text-sky-200'>
                     {activeStack.level}
                   </span>
                 </div>
-                <div className='mt-2 h-2 overflow-hidden rounded-full bg-white/10'>
+                <div className='mt-2 h-2 overflow-hidden rounded-full bg-zinc-200 dark:bg-white/10'>
                   <div
                     className='h-full rounded-full bg-linear-to-r from-sky-400 to-cyan-200 transition-all duration-500'
                     style={{ width: `${activeStack.level}%` }}
@@ -674,14 +683,14 @@ export function SkillsPage() {
                 </div>
               </div>
 
-              <div className='mt-6 grid gap-2 font-mono text-sm text-zinc-400'>
+              <div className='mt-6 grid gap-2 font-mono text-sm text-zinc-500 dark:text-zinc-400'>
                 <p>
-                  <span className='text-sky-300'>$</span> inspect{' '}
-                  {activeStack.name.toLowerCase().replaceAll(' ', '-')}
+                  <span className='text-sky-600 dark:text-sky-300'>$</span>{' '}
+                  inspect {activeStack.name.toLowerCase().replaceAll(' ', '-')}
                 </p>
                 <p>
-                  <span className='text-sky-300'>$</span> profile --score{' '}
-                  {profileScore}
+                  <span className='text-sky-600 dark:text-sky-300'>$</span>{' '}
+                  profile --score {profileScore}
                 </p>
               </div>
             </aside>
@@ -724,7 +733,7 @@ export function SkillsPage() {
                       'group rounded-3xl border p-4 text-left transition focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none active:scale-95',
                       isActive
                         ? 'border-sky-400/45 bg-sky-500/10 text-sky-700 dark:bg-sky-400/12 dark:text-sky-200'
-                        : 'hover:-tranzinc-y-0.5 border-zinc-900/10 bg-zinc-50/80 text-zinc-700 hover:border-sky-400/35 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300',
+                        : 'border-zinc-900/10 bg-zinc-50/80 text-zinc-700 hover:-translate-y-0.5 hover:border-sky-400/35 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300',
                     )}
                   >
                     <Icon className='h-5 w-5' />
@@ -743,14 +752,14 @@ export function SkillsPage() {
             </div>
           </div>
 
-          <div className='rounded-[2rem] border border-zinc-900/10 bg-zinc-950 p-6 text-white shadow-2xl shadow-zinc-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
-            <p className='font-mono text-xs font-semibold tracking-widest text-sky-200 uppercase'>
+          <div className='rounded-[2rem] border border-zinc-900/10 bg-white/75 p-6 text-zinc-950 shadow-2xl shadow-zinc-900/8 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/25'>
+            <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
               live readout
             </p>
             <div className='mt-5 grid gap-4 sm:grid-cols-[auto_1fr] sm:items-start'>
-              <div className='grid h-20 w-20 place-items-center rounded-[1.5rem] border border-sky-300/20 bg-sky-300/10'>
+              <div className='grid h-20 w-20 place-items-center rounded-[1.5rem] border border-sky-500/20 bg-sky-500/10 dark:border-sky-300/20 dark:bg-sky-300/10'>
                 <activeSoft.icon
-                  className='h-9 w-9 text-sky-200'
+                  className='h-9 w-9 text-sky-600 dark:text-sky-200'
                   aria-hidden='true'
                 />
               </div>
@@ -760,23 +769,24 @@ export function SkillsPage() {
                     <h2 className='text-3xl font-semibold'>
                       {activeSoft.label}
                     </h2>
-                    <p className='mt-3 leading-7 text-zinc-400'>
+                    <p className='mt-3 leading-7 text-zinc-600 dark:text-zinc-400'>
                       {activeSoft.signal}
                     </p>
                   </div>
-                  <span className='font-mono text-3xl font-semibold text-sky-200'>
+                  <span className='font-mono text-3xl font-semibold text-sky-600 dark:text-sky-200'>
                     {profileScore}
                   </span>
                 </div>
-                <div className='mt-5 grid gap-2 font-mono text-sm text-zinc-400'>
+                <div className='mt-5 grid gap-2 font-mono text-sm text-zinc-500 dark:text-zinc-400'>
                   <p>
-                    <span className='text-sky-300'>$</span> combine{' '}
+                    <span className='text-sky-600 dark:text-sky-300'>$</span>{' '}
+                    combine{' '}
                     {activeStack.name.toLowerCase().replaceAll(' ', '-')} +{' '}
                     {activeSoft.id}
                   </p>
                   <p>
-                    <span className='text-sky-300'>$</span> output controlled,
-                    useful, interactive UI
+                    <span className='text-sky-600 dark:text-sky-300'>$</span>{' '}
+                    output controlled, useful, interactive UI
                   </p>
                 </div>
               </div>
@@ -861,7 +871,7 @@ export function SkillsPage() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className='hover:-tranzinc-y-0.5 flex items-center justify-between rounded-2xl border border-zinc-900/10 bg-zinc-50/80 px-4 py-3 text-sm font-medium text-zinc-700 transition hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300 dark:hover:bg-white/8'
+                  className='flex items-center justify-between rounded-2xl border border-zinc-900/10 bg-zinc-50/80 px-4 py-3 text-sm font-medium text-zinc-700 transition hover:-translate-y-0.5 hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300 dark:hover:bg-white/8'
                 >
                   <span>{item.label}</span>
                   <ArrowUpRight className='h-4 w-4 text-sky-600 dark:text-sky-300' />

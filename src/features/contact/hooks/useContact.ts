@@ -8,6 +8,8 @@ export const useContact = () => {
   const {
     register,
     handleSubmit,
+    setValue,
+    watch,
     formState: { errors, isSubmitting },
     reset,
   } = useForm<ContactFormValues>({ resolver: zodResolver(contactFormSchema) })
@@ -18,5 +20,14 @@ export const useContact = () => {
     reset()
   }
 
-  return { register, handleSubmit, onSubmit, errors, isSubmitting, reset }
+  return {
+    register,
+    handleSubmit,
+    onSubmit,
+    errors,
+    isSubmitting,
+    reset,
+    setValue,
+    watch,
+  }
 }

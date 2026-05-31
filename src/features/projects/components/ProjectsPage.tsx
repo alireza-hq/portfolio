@@ -301,14 +301,14 @@ export function ProjectsPage() {
                 <button
                   type='button'
                   onClick={() => setIsModalOpen(true)}
-                  className='hover:-tranzinc-y-0.5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition hover:bg-sky-100 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
+                  className='inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition hover:-translate-y-0.5 hover:bg-sky-100 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
                 >
                   Details
                   <Sparkles className='h-4 w-4' />
                 </button>
                 <a
                   href={activeProject.liveUrl}
-                  className='hover:-tranzinc-y-0.5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-semibold text-white transition hover:border-sky-300/35 hover:bg-sky-300/10 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
+                  className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-sky-300/35 hover:bg-sky-300/10 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
                 >
                   Live
                   <ExternalLink className='h-4 w-4' />
@@ -316,7 +316,7 @@ export function ProjectsPage() {
                 <a
                   href={activeProject.githubUrl}
                   target='_blank'
-                  className='hover:-tranzinc-y-0.5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-semibold text-white transition hover:border-sky-300/35 hover:bg-sky-300/10 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
+                  className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-sky-300/35 hover:bg-sky-300/10 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
                 >
                   GitHub
                   <FaGithub className='h-4 w-4' />
@@ -464,7 +464,7 @@ export function ProjectsPage() {
                   'group rounded-[2rem] border bg-white/70 p-3 text-left shadow-xl shadow-zinc-900/5 backdrop-blur-xl transition focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none active:scale-[0.99] dark:border-white/10 dark:bg-white/6 dark:shadow-black/20',
                   isActive
                     ? 'border-sky-400/45'
-                    : 'hover:-tranzinc-y-0.5 border-zinc-900/10 hover:border-sky-400/35',
+                    : 'border-zinc-900/10 hover:-translate-y-0.5 hover:border-sky-400/35',
                 )}
               >
                 <ProjectSnapshot project={project} compact />
@@ -497,7 +497,7 @@ export function ProjectsPage() {
             <button
               type='button'
               onClick={() => setIsModalOpen(true)}
-              className='hover:-tranzinc-y-0.5 mx-5 mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none md:my-5 dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
+              className='mx-5 mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none md:my-5 dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
             >
               Inspect active build
               <Lightbulb className='h-4 w-4' />

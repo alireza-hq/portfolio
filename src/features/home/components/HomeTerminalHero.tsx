@@ -28,14 +28,14 @@ export function HomeTerminalHero() {
       <div className='flex flex-wrap justify-center gap-3'>
         <Link
           href='/about'
-          className='hover:-tranzinc-y-0.5 inline-flex items-center gap-2 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-zinc-950/10 transition hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
+          className='inline-flex items-center gap-2 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-zinc-950/10 transition hover:-translate-y-0.5 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
         >
           About me
           <ArrowUpRight className='h-4 w-4' />
         </Link>
         <Link
           href='/projects'
-          className='hover:-tranzinc-y-0.5 inline-flex items-center gap-2 rounded-full border border-zinc-900/10 bg-white/55 px-5 py-3 text-sm font-semibold text-zinc-800 shadow-sm shadow-zinc-900/5 backdrop-blur-xl transition hover:border-sky-400/40 hover:text-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:hover:text-sky-200'
+          className='inline-flex items-center gap-2 rounded-full border border-zinc-900/10 bg-white/55 px-5 py-3 text-sm font-semibold text-zinc-800 shadow-sm shadow-zinc-900/5 backdrop-blur-xl transition hover:-translate-y-0.5 hover:border-sky-400/40 hover:text-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-zinc-100 dark:hover:text-sky-200'
         >
           Projects
         </Link>
