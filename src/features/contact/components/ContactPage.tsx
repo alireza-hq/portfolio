@@ -2,6 +2,7 @@ import Link from 'next/link'
 import { ArrowUpRight } from 'lucide-react'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { MdOutlineMail } from 'react-icons/md'
+import { ContactBriefBuilder } from './ContactBriefBuilder'
 import { ContactForm } from './ContactForm'
 
 const socials = [
@@ -25,17 +26,11 @@ const socials = [
   },
 ]
 
-const contactProtocol = [
-  ['status', 'Available for focused frontend work'],
-  ['response', 'Clear scope, fast iteration, honest tradeoffs'],
-  ['handoff', 'GitHub, LinkedIn, email - in that order'],
-]
-
 export function ContactPage() {
   return (
     <main className='relative z-10 min-h-screen px-4 pt-32 pb-20 sm:px-6 lg:px-8'>
       <section className='mx-auto grid w-full max-w-7xl gap-8 lg:grid-cols-[0.82fr_1.18fr]'>
-        <div className='flex flex-col justify-between rounded-4xl border border-slate-900/10 bg-zinc-950/90 p-6 text-white shadow-2xl shadow-slate-950/15 backdrop-blur-xs sm:p-8 lg:p-10 dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/30'>
+        <div className='flex flex-col justify-between rounded-4xl border border-zinc-950/10 bg-zinc-950/90 p-6 text-white shadow-2xl shadow-zinc-950/15 backdrop-blur-xs sm:p-8 lg:p-10 dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/30'>
           <div>
             <p className='font-mono text-sm font-semibold text-sky-300'>
               contact
@@ -78,29 +73,12 @@ export function ContactPage() {
               )
             })}
           </div>
-
-          <div className='mt-6 rounded-3xl border border-sky-200/15 bg-sky-300/10 p-4'>
-            <div className='flex items-center gap-3'>
-              <span className='relative flex h-3 w-3'>
-                <span className='absolute inline-flex h-full w-full animate-ping rounded-full bg-sky-300 opacity-60' />
-                <span className='relative inline-flex h-3 w-3 rounded-full bg-sky-200' />
-              </span>
-              <p className='font-mono text-xs font-semibold tracking-widest text-sky-100 uppercase'>
-                contact protocol
-              </p>
-            </div>
-            <div className='mt-4 grid gap-2 font-mono text-sm'>
-              {contactProtocol.map(([label, value]) => (
-                <p key={label} className='grid gap-1 sm:grid-cols-[5.5rem_1fr]'>
-                  <span className='text-sky-200'>{label}</span>
-                  <span className='text-zinc-300'>{value}</span>
-                </p>
-              ))}
-            </div>
-          </div>
         </div>
 
-        <ContactForm />
+        <div className='grid gap-5'>
+          <ContactBriefBuilder />
+          <ContactForm />
+        </div>
       </section>
     </main>
   )

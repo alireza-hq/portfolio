@@ -31,7 +31,7 @@ const contactLinks = [
 
 export function Footer() {
   return (
-    <footer className='relative z-10 mt-16 bg-slate-950 px-4 py-10 text-white shadow-[0_-24px_80px_rgb(15_23_42/0.16)] sm:px-6 lg:px-8 dark:bg-zinc-950 dark:shadow-[0_-24px_80px_rgb(0_0_0/0.42)]'>
+    <footer className='relative z-10 mt-16 bg-zinc-950 px-4 py-10 text-white shadow-[0_-24px_80px_rgb(15_23_42/0.16)] sm:px-6 lg:px-8 dark:bg-zinc-950 dark:shadow-[0_-24px_80px_rgb(0_0_0/0.42)]'>
       <div className='mx-auto w-full max-w-7xl'>
         <div className='grid gap-10 border-b border-white/10 pb-10 lg:grid-cols-[1.25fr_0.75fr_0.9fr]'>
           <div>

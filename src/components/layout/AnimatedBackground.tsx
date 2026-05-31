@@ -262,7 +262,7 @@ export function AnimatedBackground() {
 
   return (
     <div
-      className='portfolio-background pointer-events-none fixed inset-0 z-0 overflow-hidden bg-slate-50 dark:bg-zinc-950'
+      className='portfolio-background pointer-events-none fixed inset-0 z-0 overflow-hidden bg-zinc-50 dark:bg-zinc-950'
       aria-hidden='true'
     >
       <div className='portfolio-background__aura portfolio-background__aura--blue' />

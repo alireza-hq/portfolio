@@ -67,7 +67,8 @@ const stackTabs: StackTab[] = [
   {
     id: 'frontend',
     label: 'Frontend',
-    summary: 'The main layer: app structure, typed UI, and interaction systems.',
+    summary:
+      'The main layer: app structure, typed UI, and interaction systems.',
     items: [
       {
         name: 'React',
@@ -116,7 +117,8 @@ const stackTabs: StackTab[] = [
   {
     id: 'interface',
     label: 'Interface',
-    summary: 'The visual layer: responsive layouts, styling systems, and UI polish.',
+    summary:
+      'The visual layer: responsive layouts, styling systems, and UI polish.',
     items: [
       {
         name: 'Tailwind CSS',
@@ -172,7 +174,8 @@ const stackTabs: StackTab[] = [
   {
     id: 'data',
     label: 'Data / Forms',
-    summary: 'The workflow layer: forms, validation, APIs, and backend-adjacent work.',
+    summary:
+      'The workflow layer: forms, validation, APIs, and backend-adjacent work.',
     items: [
       {
         name: 'React Hook Form',
@@ -228,7 +231,8 @@ const stackTabs: StackTab[] = [
   {
     id: 'workflow',
     label: 'Workflow',
-    summary: 'The shipping layer: package flow, version control, and deployment habits.',
+    summary:
+      'The shipping layer: package flow, version control, and deployment habits.',
     items: [
       {
         name: 'Git',
@@ -370,21 +374,24 @@ const softSkills = [
     label: 'Curiosity',
     icon: BrainCircuit,
     value: 90,
-    signal: 'I inspect problems, learn fast, and connect details across the app.',
+    signal:
+      'I inspect problems, learn fast, and connect details across the app.',
   },
   {
     id: 'momentum',
     label: 'Momentum',
     icon: Zap,
     value: 84,
-    signal: 'I bias toward small working steps, useful commits, and visible progress.',
+    signal:
+      'I bias toward small working steps, useful commits, and visible progress.',
   },
   {
     id: 'systems',
     label: 'Systems thinking',
     icon: Workflow,
     value: 82,
-    signal: 'I think in contracts, reusable patterns, and durable interaction models.',
+    signal:
+      'I think in contracts, reusable patterns, and durable interaction models.',
   },
 ]
 
@@ -453,16 +460,16 @@ export function SkillsPage() {
             <p className='font-mono text-sm font-semibold text-sky-600 dark:text-sky-300'>
               skills
             </p>
-            <h1 className='mt-4 max-w-4xl text-5xl leading-tight font-semibold tracking-normal text-slate-950 sm:text-6xl dark:text-white'>
+            <h1 className='mt-4 max-w-4xl text-5xl leading-tight font-semibold tracking-normal text-zinc-950 sm:text-6xl dark:text-white'>
               My stack, built like an inspectable workspace.
             </h1>
-            <p className='mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-zinc-400'>
+            <p className='mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-400'>
               Switch stack layers, hover or tap the icons, and inspect how each
               tool fits into the way I build interfaces.
             </p>
           </div>
 
-          <section className='rounded-[2rem] border border-slate-900/10 bg-slate-950 p-5 text-white shadow-2xl shadow-slate-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
+          <section className='rounded-[2rem] border border-zinc-900/10 bg-zinc-950 p-5 text-white shadow-2xl shadow-zinc-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
             <div className='flex items-start justify-between gap-4'>
               <div>
                 <p className='font-mono text-xs font-semibold tracking-widest text-sky-200 uppercase'>
@@ -491,7 +498,7 @@ export function SkillsPage() {
                     type='button'
                     onClick={() => runMission(mission)}
                     className={cn(
-                      'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition active:scale-95 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none',
+                      'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none active:scale-95',
                       isActive
                         ? 'border-cyan-300/45 bg-cyan-300/12 text-cyan-100'
                         : 'border-white/10 bg-white/5 text-zinc-300 hover:border-cyan-300/30 hover:text-white',
@@ -517,7 +524,7 @@ export function SkillsPage() {
 
         <section
           id='stack-inspector'
-          className='mt-12 scroll-mt-28 overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 text-white shadow-2xl shadow-slate-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'
+          className='mt-12 scroll-mt-28 overflow-hidden rounded-[2rem] border border-zinc-900/10 bg-zinc-950 text-white shadow-2xl shadow-zinc-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'
         >
           <div className='flex flex-col gap-4 border-b border-white/10 px-5 py-4 sm:flex-row sm:items-center sm:justify-between'>
             <div className='flex items-center gap-3'>
@@ -550,7 +557,7 @@ export function SkillsPage() {
                     aria-selected={isActive}
                     onClick={() => selectTab(tab)}
                     className={cn(
-                      'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition active:scale-95 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none',
+                      'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none active:scale-95',
                       isActive
                         ? 'border-sky-300/45 bg-sky-300/12 text-sky-100'
                         : 'border-white/10 bg-white/5 text-zinc-300 hover:border-sky-300/30 hover:text-white',
@@ -567,9 +574,7 @@ export function SkillsPage() {
             <div>
               <div className='flex items-start justify-between gap-4'>
                 <div>
-                  <p className='font-mono text-xs text-sky-200'>
-                    active layer
-                  </p>
+                  <p className='font-mono text-xs text-sky-200'>active layer</p>
                   <h2 className='mt-2 text-3xl font-semibold'>
                     {activeTab.label}
                   </h2>
@@ -594,10 +599,10 @@ export function SkillsPage() {
                       onFocus={() => setActiveStackName(item.name)}
                       onClick={() => setActiveStackName(item.name)}
                       className={cn(
-                        'group relative aspect-square rounded-3xl border bg-white/6 p-3 transition duration-200 active:scale-95 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none',
+                        'group relative aspect-square rounded-3xl border bg-white/6 p-3 transition duration-200 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none active:scale-95',
                         isActive
                           ? 'border-sky-300/45 shadow-[0_0_40px_rgb(14_165_233/0.16)]'
-                          : 'border-white/10 hover:-translate-y-1 hover:border-sky-300/30 hover:bg-white/9',
+                          : 'hover:-tranzinc-y-1 border-white/10 hover:border-sky-300/30 hover:bg-white/9',
                       )}
                     >
                       <span className='grid h-full place-items-center rounded-2xl bg-black/18'>
@@ -605,9 +610,7 @@ export function SkillsPage() {
                           className={cn(
                             'h-9 w-9 transition duration-200 sm:h-11 sm:w-11',
                             item.tone,
-                            isActive
-                              ? 'scale-110'
-                              : 'group-hover:scale-110',
+                            isActive ? 'scale-110' : 'group-hover:scale-110',
                           )}
                         />
                       </span>
@@ -689,13 +692,13 @@ export function SkillsPage() {
           id='soft-skills'
           className='mt-4 grid scroll-mt-28 gap-4 lg:grid-cols-[0.95fr_1.05fr]'
         >
-          <div className='rounded-[2rem] border border-slate-900/10 bg-white/75 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/75 dark:shadow-black/20'>
+          <div className='rounded-[2rem] border border-zinc-900/10 bg-white/75 p-6 shadow-xl shadow-zinc-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/75 dark:shadow-black/20'>
             <div className='flex items-center justify-between gap-4'>
               <div>
                 <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
                   soft-skill modules
                 </p>
-                <h2 className='mt-3 text-2xl font-semibold text-slate-950 dark:text-white'>
+                <h2 className='mt-3 text-2xl font-semibold text-zinc-950 dark:text-white'>
                   Human layer, not resume filler.
                 </h2>
               </div>
@@ -718,17 +721,17 @@ export function SkillsPage() {
                     onFocus={() => setActiveSoftId(skill.id)}
                     onClick={() => setActiveSoftId(skill.id)}
                     className={cn(
-                      'group rounded-3xl border p-4 text-left transition active:scale-95 focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none',
+                      'group rounded-3xl border p-4 text-left transition focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none active:scale-95',
                       isActive
                         ? 'border-sky-400/45 bg-sky-500/10 text-sky-700 dark:bg-sky-400/12 dark:text-sky-200'
-                        : 'border-slate-900/10 bg-slate-50/80 text-slate-700 hover:-translate-y-0.5 hover:border-sky-400/35 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300',
+                        : 'hover:-tranzinc-y-0.5 border-zinc-900/10 bg-zinc-50/80 text-zinc-700 hover:border-sky-400/35 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300',
                     )}
                   >
                     <Icon className='h-5 w-5' />
                     <span className='mt-4 block text-sm font-semibold'>
                       {skill.label}
                     </span>
-                    <span className='mt-2 block h-1 overflow-hidden rounded-full bg-slate-200 dark:bg-white/10'>
+                    <span className='mt-2 block h-1 overflow-hidden rounded-full bg-zinc-200 dark:bg-white/10'>
                       <span
                         className='block h-full rounded-full bg-sky-500 transition-all duration-500 dark:bg-sky-300'
                         style={{ width: `${skill.value}%` }}
@@ -740,7 +743,7 @@ export function SkillsPage() {
             </div>
           </div>
 
-          <div className='rounded-[2rem] border border-slate-900/10 bg-slate-950 p-6 text-white shadow-2xl shadow-slate-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
+          <div className='rounded-[2rem] border border-zinc-900/10 bg-zinc-950 p-6 text-white shadow-2xl shadow-zinc-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
             <p className='font-mono text-xs font-semibold tracking-widest text-sky-200 uppercase'>
               live readout
             </p>
@@ -785,7 +788,7 @@ export function SkillsPage() {
           id='build-recipe'
           className='mt-4 grid scroll-mt-28 gap-4 lg:grid-cols-[1fr_1fr]'
         >
-          <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/20'>
+          <section className='rounded-[2rem] border border-zinc-900/10 bg-white/70 p-6 shadow-xl shadow-zinc-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/20'>
             <div className='flex items-center gap-3'>
               <div className='grid h-11 w-11 place-items-center rounded-2xl bg-sky-500/10 text-sky-700 ring-1 ring-sky-500/15 dark:bg-sky-400/10 dark:text-sky-200'>
                 <Layers3 className='h-5 w-5' />
@@ -794,7 +797,7 @@ export function SkillsPage() {
                 <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
                   build recipe
                 </p>
-                <h2 className='mt-1 text-2xl font-semibold text-slate-950 dark:text-white'>
+                <h2 className='mt-1 text-2xl font-semibold text-zinc-950 dark:text-white'>
                   What this mode produces.
                 </h2>
               </div>
@@ -825,7 +828,7 @@ export function SkillsPage() {
               ].map((step, index) => (
                 <div
                   key={step.label}
-                  className='grid gap-3 rounded-2xl border border-slate-900/10 bg-slate-50/80 p-4 sm:grid-cols-[auto_1fr] dark:border-white/10 dark:bg-white/6'
+                  className='grid gap-3 rounded-2xl border border-zinc-900/10 bg-zinc-50/80 p-4 sm:grid-cols-[auto_1fr] dark:border-white/10 dark:bg-white/6'
                 >
                   <span className='grid h-9 w-9 place-items-center rounded-xl bg-sky-500/10 font-mono text-sm font-semibold text-sky-700 dark:bg-sky-400/10 dark:text-sky-200'>
                     0{index + 1}
@@ -834,10 +837,10 @@ export function SkillsPage() {
                     <span className='block text-sm font-semibold text-sky-600 dark:text-sky-300'>
                       {step.label}
                     </span>
-                    <span className='mt-1 block font-semibold text-slate-950 dark:text-white'>
+                    <span className='mt-1 block font-semibold text-zinc-950 dark:text-white'>
                       {step.value}
                     </span>
-                    <span className='mt-2 block text-sm leading-6 text-slate-500 dark:text-zinc-400'>
+                    <span className='mt-2 block text-sm leading-6 text-zinc-500 dark:text-zinc-400'>
                       {step.detail}
                     </span>
                   </span>
@@ -846,11 +849,11 @@ export function SkillsPage() {
             </div>
           </section>
 
-          <section className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-6 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
+          <section className='rounded-[2rem] border border-zinc-900/10 bg-white/70 p-6 shadow-xl shadow-zinc-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
             <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
               quick actions
             </p>
-            <h2 className='mt-3 text-2xl font-semibold text-slate-950 dark:text-white'>
+            <h2 className='mt-3 text-2xl font-semibold text-zinc-950 dark:text-white'>
               Recruiter-friendly without being boring.
             </h2>
             <div className='mt-6 grid gap-3'>
@@ -858,7 +861,7 @@ export function SkillsPage() {
                 <a
                   key={item.label}
                   href={item.href}
-                  className='flex items-center justify-between rounded-2xl border border-slate-900/10 bg-slate-50/80 px-4 py-3 text-sm font-medium text-slate-700 transition hover:-translate-y-0.5 hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300 dark:hover:bg-white/8'
+                  className='hover:-tranzinc-y-0.5 flex items-center justify-between rounded-2xl border border-zinc-900/10 bg-zinc-50/80 px-4 py-3 text-sm font-medium text-zinc-700 transition hover:border-sky-400/35 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300 dark:hover:bg-white/8'
                 >
                   <span>{item.label}</span>
                   <ArrowUpRight className='h-4 w-4 text-sky-600 dark:text-sky-300' />
@@ -867,7 +870,6 @@ export function SkillsPage() {
             </div>
           </section>
         </div>
-
       </section>
     </main>
   )

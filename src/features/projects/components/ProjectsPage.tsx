@@ -133,7 +133,12 @@ function ProjectSnapshot({
       )}
       aria-label={`${project.name} preview image`}
     >
-      <div className={cn('absolute inset-0 bg-linear-to-br', accentClasses[project.accent])} />
+      <div
+        className={cn(
+          'absolute inset-0 bg-linear-to-br',
+          accentClasses[project.accent],
+        )}
+      />
       <div className='absolute inset-0 bg-[radial-gradient(circle_at_24%_20%,rgb(255_255_255/0.32),transparent_24%),linear-gradient(135deg,rgb(255_255_255/0.16),transparent_42%)]' />
       <div className='absolute inset-4 rounded-2xl border border-white/14 bg-black/30 p-3 backdrop-blur-sm'>
         <div className='flex items-center justify-between border-b border-white/10 pb-3'>
@@ -150,7 +155,12 @@ function ProjectSnapshot({
           </span>
         </div>
 
-        <div className={cn('mt-4 grid gap-3', compact ? '' : 'sm:grid-cols-[1fr_0.72fr]')}>
+        <div
+          className={cn(
+            'mt-4 grid gap-3',
+            compact ? '' : 'sm:grid-cols-[1fr_0.72fr]',
+          )}
+        >
           <div>
             <div className='h-4 w-28 rounded-full bg-white/24' />
             <div className='mt-3 h-16 rounded-2xl border border-white/10 bg-white/12' />
@@ -230,19 +240,19 @@ export function ProjectsPage() {
             <p className='font-mono text-sm font-semibold text-sky-600 dark:text-sky-300'>
               projects
             </p>
-            <h1 className='mt-4 max-w-4xl text-5xl leading-tight font-semibold tracking-normal text-slate-950 sm:text-6xl dark:text-white'>
+            <h1 className='mt-4 max-w-4xl text-5xl leading-tight font-semibold tracking-normal text-zinc-950 sm:text-6xl dark:text-white'>
               A project atlas you can inspect.
             </h1>
-            <p className='mt-6 max-w-2xl text-lg leading-8 text-slate-600 dark:text-zinc-400'>
+            <p className='mt-6 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-400'>
               Pick a project artifact, scan the preview, then open the build
               notes when you want the real implementation story.
             </p>
           </div>
 
-          <div className='rounded-[2rem] border border-slate-900/10 bg-white/70 p-4 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/20'>
-            <div className='flex items-center gap-2 border-b border-slate-900/10 pb-4 dark:border-white/10'>
+          <div className='rounded-[2rem] border border-zinc-900/10 bg-white/70 p-4 shadow-xl shadow-zinc-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/20'>
+            <div className='flex items-center gap-2 border-b border-zinc-900/10 pb-4 dark:border-white/10'>
               <SlidersHorizontal className='h-4 w-4 text-sky-600 dark:text-sky-300' />
-              <p className='font-mono text-xs font-semibold tracking-widest text-slate-500 uppercase dark:text-zinc-500'>
+              <p className='font-mono text-xs font-semibold tracking-widest text-zinc-500 uppercase dark:text-zinc-500'>
                 atlas filter
               </p>
             </div>
@@ -253,10 +263,10 @@ export function ProjectsPage() {
                   type='button'
                   onClick={() => selectFilter(filter)}
                   className={cn(
-                    'rounded-full border px-4 py-2 text-sm font-semibold transition active:scale-95 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none',
+                    'rounded-full border px-4 py-2 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none active:scale-95',
                     activeFilter === filter
                       ? 'border-sky-400/40 bg-sky-500/10 text-sky-700 dark:bg-sky-400/12 dark:text-sky-200'
-                      : 'border-slate-900/10 bg-slate-50/75 text-slate-600 hover:border-sky-400/35 hover:text-sky-700 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300 dark:hover:text-sky-200',
+                      : 'border-zinc-900/10 bg-zinc-50/75 text-zinc-600 hover:border-sky-400/35 hover:text-sky-700 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300 dark:hover:text-sky-200',
                   )}
                 >
                   {filter}
@@ -266,7 +276,7 @@ export function ProjectsPage() {
           </div>
         </div>
 
-        <section className='mt-12 overflow-hidden rounded-[2rem] border border-slate-900/10 bg-slate-950 text-white shadow-2xl shadow-slate-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
+        <section className='mt-12 overflow-hidden rounded-[2rem] border border-zinc-900/10 bg-zinc-950 text-white shadow-2xl shadow-zinc-950/15 dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
           <div className='grid gap-6 p-5 sm:p-6 xl:grid-cols-[1.2fr_0.8fr]'>
             <div>
               <div className='flex items-start justify-between gap-4'>
@@ -291,14 +301,14 @@ export function ProjectsPage() {
                 <button
                   type='button'
                   onClick={() => setIsModalOpen(true)}
-                  className='inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition hover:-translate-y-0.5 hover:bg-sky-100 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
+                  className='hover:-tranzinc-y-0.5 inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-semibold text-zinc-950 transition hover:bg-sky-100 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
                 >
                   Details
                   <Sparkles className='h-4 w-4' />
                 </button>
                 <a
                   href={activeProject.liveUrl}
-                  className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-sky-300/35 hover:bg-sky-300/10 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
+                  className='hover:-tranzinc-y-0.5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-semibold text-white transition hover:border-sky-300/35 hover:bg-sky-300/10 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
                 >
                   Live
                   <ExternalLink className='h-4 w-4' />
@@ -306,7 +316,7 @@ export function ProjectsPage() {
                 <a
                   href={activeProject.githubUrl}
                   target='_blank'
-                  className='inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:border-sky-300/35 hover:bg-sky-300/10 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
+                  className='hover:-tranzinc-y-0.5 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/6 px-4 py-2 text-sm font-semibold text-white transition hover:border-sky-300/35 hover:bg-sky-300/10 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
                 >
                   GitHub
                   <FaGithub className='h-4 w-4' />
@@ -451,19 +461,19 @@ export function ProjectsPage() {
                 type='button'
                 onClick={() => setActiveProjectName(project.name)}
                 className={cn(
-                  'group rounded-[2rem] border bg-white/70 p-3 text-left shadow-xl shadow-slate-900/5 backdrop-blur-xl transition active:scale-[0.99] focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:shadow-black/20',
+                  'group rounded-[2rem] border bg-white/70 p-3 text-left shadow-xl shadow-zinc-900/5 backdrop-blur-xl transition focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none active:scale-[0.99] dark:border-white/10 dark:bg-white/6 dark:shadow-black/20',
                   isActive
                     ? 'border-sky-400/45'
-                    : 'border-slate-900/10 hover:-translate-y-0.5 hover:border-sky-400/35',
+                    : 'hover:-tranzinc-y-0.5 border-zinc-900/10 hover:border-sky-400/35',
                 )}
               >
                 <ProjectSnapshot project={project} compact />
                 <div className='mt-4 flex items-start justify-between gap-3 px-1 pb-1'>
                   <div>
-                    <p className='font-semibold text-slate-950 dark:text-white'>
+                    <p className='font-semibold text-zinc-950 dark:text-white'>
                       {project.name}
                     </p>
-                    <p className='mt-1 text-sm text-slate-500 dark:text-zinc-400'>
+                    <p className='mt-1 text-sm text-zinc-500 dark:text-zinc-400'>
                       {project.type}
                     </p>
                   </div>
@@ -474,27 +484,27 @@ export function ProjectsPage() {
           })}
         </div>
 
-        <section className='mt-4 overflow-hidden rounded-[2rem] border border-slate-900/10 bg-white/70 shadow-xl shadow-slate-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
+        <section className='mt-4 overflow-hidden rounded-[2rem] border border-zinc-900/10 bg-white/70 shadow-xl shadow-zinc-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'>
           <div className='flex flex-col gap-4 md:flex-row md:items-center md:justify-between'>
             <div className='p-5'>
               <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
                 active build console
               </p>
-              <h2 className='mt-2 text-2xl font-semibold text-slate-950 dark:text-white'>
+              <h2 className='mt-2 text-2xl font-semibold text-zinc-950 dark:text-white'>
                 Every selection rewires the inspection surface.
               </h2>
             </div>
             <button
               type='button'
               onClick={() => setIsModalOpen(true)}
-              className='mx-5 mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-slate-950 px-4 py-2 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none md:my-5 dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
+              className='hover:-tranzinc-y-0.5 mx-5 mb-5 inline-flex w-fit items-center gap-2 rounded-full bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none md:my-5 dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
             >
               Inspect active build
               <Lightbulb className='h-4 w-4' />
             </button>
           </div>
 
-          <div className='border-t border-slate-900/10 bg-slate-950 p-5 font-mono text-sm text-zinc-300 dark:border-white/10'>
+          <div className='border-t border-zinc-900/10 bg-zinc-950 p-5 font-mono text-sm text-zinc-300 dark:border-white/10'>
             <div className='grid gap-2'>
               {[
                 ['artifact', activeProject.name],
@@ -513,7 +523,7 @@ export function ProjectsPage() {
 
       {isModalOpen ? (
         <div
-          className='fixed inset-0 z-[60] grid place-items-center bg-slate-950/70 px-4 py-8 backdrop-blur-md'
+          className='fixed inset-0 z-[60] grid place-items-center bg-zinc-950/70 px-4 py-8 backdrop-blur-md'
           role='dialog'
           aria-modal='true'
           aria-labelledby='project-modal-title'
@@ -549,7 +559,9 @@ export function ProjectsPage() {
 
                 <div className='mt-6 grid gap-4'>
                   <section>
-                    <h3 className='font-semibold text-white'>How it was made</h3>
+                    <h3 className='font-semibold text-white'>
+                      How it was made
+                    </h3>
                     <div className='mt-3 grid gap-2'>
                       {activeProject.process.map((step, index) => (
                         <div

@@ -22,7 +22,7 @@ function ThemeToggle() {
     <button
       type='button'
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className='grid h-9.5 w-9.5 cursor-pointer place-items-center rounded-full border border-slate-900/10 bg-white/55 text-slate-700 shadow-inner shadow-white/70 transition duration-200 hover:border-sky-500/30 hover:bg-sky-50 hover:text-slate-950 focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:shadow-white/5 dark:hover:bg-sky-400/10 dark:hover:text-white'
+      className='grid h-9.5 w-9.5 cursor-pointer place-items-center rounded-full border border-zinc-900/10 bg-white/55 text-zinc-700 shadow-inner shadow-white/70 transition duration-200 hover:border-sky-500/30 hover:bg-sky-50 hover:text-zinc-950 focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:shadow-white/5 dark:hover:bg-sky-400/10 dark:hover:text-white'
       aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
     >
       <Sun className='hidden h-4 w-4 dark:block' />
@@ -37,12 +37,12 @@ export function Navbar() {
   return (
     <header className='pointer-events-none fixed inset-x-0 top-4 z-50 flex justify-center px-3 sm:top-6 sm:px-6'>
       <nav
-        className='pointer-events-auto grid w-full max-w-5xl grid-cols-[auto_1fr_auto] items-center gap-2 rounded-full border border-slate-900/10 bg-white/55 px-2 py-2 shadow-2xl ring-1 shadow-slate-900/10 ring-white/70 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/45 dark:shadow-black/30 dark:ring-white/5'
+        className='pointer-events-auto grid w-full max-w-5xl grid-cols-[auto_1fr_auto] items-center gap-2 rounded-full border border-zinc-900/10 bg-white/55 px-2 py-2 shadow-2xl ring-1 shadow-zinc-900/10 ring-white/70 backdrop-blur-md dark:border-white/10 dark:bg-zinc-950/45 dark:shadow-black/30 dark:ring-white/5'
         aria-label='Primary navigation'
       >
         <Link
           href='/'
-          className='brand-type-link rounded-full px-3 py-2 font-mono text-xs font-semibold tracking-widest text-slate-800 uppercase transition hover:text-sky-700 focus-visible:ring-1 focus-visible:ring-sky-500/60 focus-visible:outline-none dark:text-zinc-100 dark:hover:text-sky-200'
+          className='brand-type-link rounded-full px-3 py-2 font-mono text-xs font-semibold tracking-widest text-zinc-800 uppercase transition hover:text-sky-700 focus-visible:ring-1 focus-visible:ring-sky-500/60 focus-visible:outline-none dark:text-zinc-100 dark:hover:text-sky-200'
           aria-label='Go home'
         >
           <span className='brand-type' aria-hidden='true' />
@@ -59,10 +59,10 @@ export function Navbar() {
                 href={link.href}
                 className={cn(
                   'group relative shrink-0 rounded-full px-3 py-2 text-sm font-medium transition duration-200 focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:outline-none sm:px-4',
-                  'text-slate-600 hover:bg-slate-950/5 hover:text-slate-950',
+                  'text-zinc-600 hover:bg-zinc-950/5 hover:text-zinc-950',
                   'dark:text-zinc-300 dark:hover:bg-sky-400/10 dark:hover:text-white',
                   isActive &&
-                    'bg-slate-950/7 text-slate-950 dark:bg-white/10 dark:text-white',
+                    'bg-zinc-950/7 text-zinc-950 dark:bg-white/10 dark:text-white',
                 )}
               >
                 <span className='relative z-10'>{link.label}</span>
@@ -83,7 +83,7 @@ export function Navbar() {
           <Link
             href='/resume.pdf'
             download
-            className='hidden items-center gap-2 rounded-full border border-slate-900/10 bg-slate-950 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-slate-900/10 transition duration-200 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:outline-none md:inline-flex dark:border-white/10 dark:bg-white/8 dark:text-zinc-100 dark:shadow-inner dark:shadow-white/5 dark:hover:border-sky-300/30 dark:hover:bg-sky-400/10 dark:hover:text-white'
+            className='hidden items-center gap-2 rounded-full border border-zinc-900/10 bg-zinc-950 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-zinc-900/10 transition duration-200 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:outline-none md:inline-flex dark:border-white/10 dark:bg-white/8 dark:text-zinc-100 dark:shadow-inner dark:shadow-white/5 dark:hover:border-sky-300/30 dark:hover:bg-sky-400/10 dark:hover:text-white'
           >
             <Download className='h-4 w-4' />
             Resumé

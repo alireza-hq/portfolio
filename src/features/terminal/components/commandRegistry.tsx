@@ -86,9 +86,9 @@ export const terminalCompletions = [
 ]
 
 const cardClass =
-  'rounded-2xl border border-slate-900/10 bg-white/70 p-4 shadow-sm shadow-slate-900/5 dark:border-white/10 dark:bg-white/6'
+  'rounded-2xl border border-zinc-900/10 bg-white/70 p-4 shadow-sm shadow-zinc-900/5 dark:border-white/10 dark:bg-white/6'
 const chipClass =
-  'rounded-full border border-slate-900/10 bg-slate-50/90 px-2.5 py-1 text-xs font-medium text-slate-700 dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300'
+  'rounded-full border border-zinc-900/10 bg-zinc-50/90 px-2.5 py-1 text-xs font-medium text-zinc-700 dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300'
 const linkClass =
   'font-semibold text-sky-600 hover:underline focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:text-sky-400'
 
@@ -111,7 +111,7 @@ function projectCard(project: (typeof terminalProjects)[number]) {
           <p className='text-sm font-semibold text-sky-600 dark:text-sky-300'>
             {project.type}
           </p>
-          <h3 className='mt-1 text-lg font-semibold text-slate-950 dark:text-white'>
+          <h3 className='mt-1 text-lg font-semibold text-zinc-950 dark:text-white'>
             {project.name}
           </h3>
         </div>
@@ -119,7 +119,7 @@ function projectCard(project: (typeof terminalProjects)[number]) {
           open
         </a>
       </div>
-      <p className='mt-3 leading-7 text-slate-600 dark:text-zinc-400'>
+      <p className='mt-3 leading-7 text-zinc-600 dark:text-zinc-400'>
         {project.description}
       </p>
       <div className='mt-4 flex flex-wrap gap-2'>
@@ -187,7 +187,7 @@ const helpSections: {
 function renderHelp() {
   return (
     <div className='space-y-3'>
-      <p className='text-slate-500 dark:text-zinc-400'>
+      <p className='text-zinc-500 dark:text-zinc-400'>
         Available commands. Press Tab to autocomplete.
       </p>
       <div className='grid gap-3'>
@@ -202,10 +202,10 @@ function renderHelp() {
                   key={item.command}
                   className='grid gap-1 sm:grid-cols-[9.5rem_1fr]'
                 >
-                  <code className='font-mono text-sm text-slate-800 dark:text-zinc-200'>
+                  <code className='font-mono text-sm text-zinc-800 dark:text-zinc-200'>
                     {item.command}
                   </code>
-                  <span className='text-slate-500 dark:text-zinc-400'>
+                  <span className='text-zinc-500 dark:text-zinc-400'>
                     {item.description}
                   </span>
                 </div>
@@ -214,10 +214,10 @@ function renderHelp() {
           </section>
         ))}
         <div className='grid gap-1 sm:grid-cols-[9.5rem_1fr]'>
-          <code className='font-mono text-sm text-slate-800 dark:text-zinc-200'>
+          <code className='font-mono text-sm text-zinc-800 dark:text-zinc-200'>
             ?
           </code>
-          <span className='text-slate-500 dark:text-zinc-400'>
+          <span className='text-zinc-500 dark:text-zinc-400'>
             Alias for help.
           </span>
         </div>
@@ -255,10 +255,10 @@ export const commandRegistry: Record<string, TerminalCommand> = {
           <p className='text-sm font-semibold text-sky-600 dark:text-sky-300'>
             {developer.role}
           </p>
-          <h3 className='mt-2 text-xl font-semibold text-slate-950 dark:text-white'>
+          <h3 className='mt-2 text-xl font-semibold text-zinc-950 dark:text-white'>
             {developer.name}
           </h3>
-          <p className='mt-3 leading-7 text-slate-600 dark:text-zinc-400'>
+          <p className='mt-3 leading-7 text-zinc-600 dark:text-zinc-400'>
             I build fast, app-like interfaces with React, Next.js, TypeScript,
             and interaction details that make a portfolio feel like software.
           </p>
@@ -283,10 +283,10 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       type: 'output',
       content: (
         <div className={cardClass}>
-          <p className='font-semibold text-slate-950 dark:text-white'>
+          <p className='font-semibold text-zinc-950 dark:text-white'>
             Stack explorer
           </p>
-          <p className='mt-2 text-slate-500 dark:text-zinc-400'>
+          <p className='mt-2 text-zinc-500 dark:text-zinc-400'>
             The skills page is now interactive: tabs, mission presets, icons,
             soft-skill modules, and live readouts.
           </p>
@@ -333,10 +333,10 @@ export const commandRegistry: Record<string, TerminalCommand> = {
             <p className='text-sm font-semibold text-sky-600 dark:text-sky-300'>
               {project.type}
             </p>
-            <h3 className='mt-1 text-lg font-semibold text-slate-950 dark:text-white'>
+            <h3 className='mt-1 text-lg font-semibold text-zinc-950 dark:text-white'>
               {project.name}
             </h3>
-            <p className='mt-3 leading-7 text-slate-600 dark:text-zinc-400'>
+            <p className='mt-3 leading-7 text-zinc-600 dark:text-zinc-400'>
               {project.description}
             </p>
             <div className='mt-4 grid gap-2'>
@@ -345,7 +345,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
                   <span className='font-mono text-sky-600 dark:text-sky-300'>
                     0{index + 1}
                   </span>
-                  <span className='text-slate-600 dark:text-zinc-400'>
+                  <span className='text-zinc-600 dark:text-zinc-400'>
                     {step}
                   </span>
                 </div>
@@ -374,7 +374,8 @@ export const commandRegistry: Record<string, TerminalCommand> = {
 
       return {
         type: 'output',
-        content: "Try 'open projects', 'open skills', or 'open portfolio terminal'.",
+        content:
+          "Try 'open projects', 'open skills', or 'open portfolio terminal'.",
       }
     },
   },
@@ -396,7 +397,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
               <span className='font-mono text-sm text-sky-600 dark:text-sky-300'>
                 0{index + 1}
               </span>
-              <p className='mt-1 text-slate-700 dark:text-zinc-300'>{item}</p>
+              <p className='mt-1 text-zinc-700 dark:text-zinc-300'>{item}</p>
             </div>
           ))}
         </div>
@@ -411,19 +412,24 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       type: 'output',
       content: (
         <div className={cardClass}>
-          <p className='font-semibold text-slate-950 dark:text-white'>
+          <p className='font-semibold text-zinc-950 dark:text-white'>
             Workspace setup
           </p>
           <div className='mt-3 flex flex-wrap gap-2'>
-            {['VS Code', 'pnpm', 'Git', 'Next.js', 'TypeScript', 'Tailwind CSS'].map(
-              (item) => (
-                <span key={item} className={chipClass}>
-                  {item}
-                </span>
-              ),
-            )}
+            {[
+              'VS Code',
+              'pnpm',
+              'Git',
+              'Next.js',
+              'TypeScript',
+              'Tailwind CSS',
+            ].map((item) => (
+              <span key={item} className={chipClass}>
+                {item}
+              </span>
+            ))}
           </div>
-          <p className='mt-3 text-sm text-slate-500 dark:text-zinc-400'>
+          <p className='mt-3 text-sm text-zinc-500 dark:text-zinc-400'>
             Bias: fast feedback loops, small commits, readable structure.
           </p>
         </div>
@@ -445,10 +451,10 @@ export const commandRegistry: Record<string, TerminalCommand> = {
             ['Thinking', 'Break UI into states, flows, and inspectable panels'],
           ].map(([title, value]) => (
             <div key={title} className={cardClass}>
-              <p className='font-semibold text-slate-950 dark:text-white'>
+              <p className='font-semibold text-zinc-950 dark:text-white'>
                 {title}
               </p>
-              <p className='mt-2 text-sm leading-6 text-slate-500 dark:text-zinc-400'>
+              <p className='mt-2 text-sm leading-6 text-zinc-500 dark:text-zinc-400'>
                 {value}
               </p>
             </div>

@@ -106,7 +106,7 @@ export const TerminalInput = memo(function TerminalInput({
           onKeyDown={handleKeyDown}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          className='relative z-10 w-full bg-transparent text-left text-transparent caret-transparent outline-none placeholder:text-slate-400 dark:placeholder:text-zinc-600'
+          className='relative z-10 w-full bg-transparent text-left text-transparent caret-transparent outline-none placeholder:text-zinc-400 dark:placeholder:text-zinc-600'
           placeholder='Type a command...'
           spellCheck={false}
           autoCapitalize='none'
@@ -115,12 +115,12 @@ export const TerminalInput = memo(function TerminalInput({
         />
 
         <span
-          className='pointer-events-none absolute inset-0 z-20 text-left whitespace-pre text-slate-900 dark:text-zinc-100'
+          className='pointer-events-none absolute inset-0 z-20 text-left whitespace-pre text-zinc-900 dark:text-zinc-100'
           aria-hidden='true'
         >
           {value}
           {isFocused ? (
-            <span className='animate-terminal-cursor ml-px inline-block h-5 w-2 align-[-0.2rem] bg-slate-700 dark:bg-zinc-200' />
+            <span className='animate-terminal-cursor ml-px inline-block h-5 w-2 bg-zinc-700 align-[-0.2rem] dark:bg-zinc-200' />
           ) : null}
         </span>
       </div>

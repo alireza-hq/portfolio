@@ -25,8 +25,8 @@ export function TerminalOutput({ lines }: TerminalOutputProps) {
                 line.kind === 'error'
                   ? 'text-red-400'
                   : line.kind === 'system'
-                    ? 'text-slate-500 dark:text-zinc-400'
-                    : 'text-slate-700 dark:text-zinc-300'
+                    ? 'text-zinc-500 dark:text-zinc-400'
+                    : 'text-zinc-700 dark:text-zinc-300'
               }
             >
               {line.content}
