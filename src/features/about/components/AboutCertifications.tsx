@@ -1,7 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import type { MouseEvent } from 'react'
+import type { FocusEvent, MouseEvent } from 'react'
 import Image from 'next/image'
 
 import { certifications } from '../data/certifications'
@@ -67,13 +67,32 @@ export const AboutCertifications = () => {
     event.preventDefault()
   }
 
-  function focusPreview(certification: Certification) {
+  function focusPreview(
+    certification: Certification,
+    event: FocusEvent<HTMLButtonElement>,
+  ) {
+    const rect = event.currentTarget.getBoundingClientRect()
+    const preferredX = rect.right + PREVIEW_OFFSET
+    const preferredY = rect.top
+    const fallbackX = rect.left - PREVIEW_WIDTH - PREVIEW_OFFSET
+
     setPreviewPosition({
       x: Math.max(
-        window.innerWidth - PREVIEW_WIDTH - VIEWPORT_GAP,
         VIEWPORT_GAP,
+        Math.min(
+          preferredX + PREVIEW_WIDTH > window.innerWidth - VIEWPORT_GAP
+            ? fallbackX
+            : preferredX,
+          window.innerWidth - PREVIEW_WIDTH - VIEWPORT_GAP,
+        ),
       ),
-      y: Math.max(window.innerHeight / 2 - PREVIEW_HEIGHT / 2, VIEWPORT_GAP),
+      y: Math.max(
+        VIEWPORT_GAP,
+        Math.min(
+          preferredY,
+          window.innerHeight - PREVIEW_HEIGHT - VIEWPORT_GAP,
+        ),
+      ),
     })
     setActiveCertification(certification)
   }
@@ -91,7 +110,7 @@ export const AboutCertifications = () => {
             onMouseEnter={(event) => showPreview(item, event)}
             onMouseMove={movePreview}
             onMouseLeave={hidePreview}
-            onFocus={() => focusPreview(item)}
+            onFocus={(event) => focusPreview(item, event)}
             onBlur={hidePreview}
             className='group rounded-2xl border border-zinc-900/10 bg-zinc-50/90 p-4 text-left shadow-sm shadow-zinc-900/5 transition hover:-translate-y-0.5 hover:border-sky-400/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10'
           >
