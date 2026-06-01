@@ -10,3 +10,5 @@ export const certifications = [
     image: '/advanced-python.jpg',
   },
 ] as const
+
+export type Certification = (typeof certifications)[number]
