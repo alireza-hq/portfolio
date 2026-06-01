@@ -27,7 +27,7 @@ export const ContactForm = () => {
 
   return (
     <form
-      className='rounded-4xl border border-zinc-900/10 bg-white/76 p-6 shadow-2xl shadow-zinc-900/8 backdrop-blur-md sm:p-8 dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/25'
+      className='h-full rounded-4xl border border-zinc-900/10 bg-white/76 p-6 shadow-2xl shadow-zinc-900/8 backdrop-blur-md sm:p-8 dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/25'
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
