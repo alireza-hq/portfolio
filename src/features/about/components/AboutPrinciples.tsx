@@ -12,7 +12,7 @@ export const AboutPrinciples = ({
 }: AboutPrinciplesProps) => {
   return (
     <div className='grid overflow-hidden rounded-4xl border border-zinc-900/10 bg-white/80 shadow-xl shadow-zinc-900/5 backdrop-blur-md sm:grid-cols-[0.9fr_1.1fr] dark:border-white/10 dark:bg-zinc-950/80 dark:shadow-black/20'>
-      <div className='relative flex min-h-64 flex-col justify-between overflow-hidden bg-zinc-100/80 p-6 dark:bg-white/5'>
+      <div className='relative flex min-h-64 flex-col justify-between overflow-hidden bg-zinc-100/80 p-6 sm:min-h-80 dark:bg-white/5'>
         <div className='absolute -right-10 -bottom-10 h-40 w-40 rounded-full bg-sky-500/12 blur-2xl' />
         <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
           {activeCertification ? 'certificate preview' : 'principles'}
@@ -31,7 +31,7 @@ export const AboutPrinciples = ({
 
       {activeCertification ? (
         <div
-          className='relative min-h-72 bg-zinc-950/95 p-3 select-none'
+          className='relative h-72 bg-zinc-950/95 p-3 select-none sm:h-80'
           onContextMenu={(event) => event.preventDefault()}
         >
           <Image
@@ -44,7 +44,7 @@ export const AboutPrinciples = ({
           />
         </div>
       ) : (
-        <div className='grid min-h-72 divide-y divide-zinc-900/10 pt-3 dark:divide-white/10'>
+        <div className='grid h-72 divide-y divide-zinc-900/10 pt-3 sm:h-80 dark:divide-white/10'>
           {values.map((item) => (
             <p
               key={item}

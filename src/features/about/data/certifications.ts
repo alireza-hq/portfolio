@@ -1,6 +1,6 @@
 export const certifications = [
   {
-    title: 'Professional Project-Oriented Front-End Development with React',
+    title: 'Project-Oriented React Development',
     issuer: 'Quera',
     image: '/professional-react.jpg',
   },
