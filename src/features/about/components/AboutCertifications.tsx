@@ -71,6 +71,8 @@ export const AboutCertifications = () => {
     certification: Certification,
     event: FocusEvent<HTMLButtonElement>,
   ) {
+    if (!event.currentTarget.matches(':focus-visible')) return
+
     const rect = event.currentTarget.getBoundingClientRect()
     const preferredX = rect.right + PREVIEW_OFFSET
     const preferredY = rect.top
