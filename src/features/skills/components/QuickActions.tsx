@@ -10,7 +10,7 @@ export function QuickActions({ actions }: QuickActionsProps) {
   return (
     <section
       id='terminal-shortcut'
-      className='rounded-[2rem] border border-zinc-900/10 bg-white/70 p-6 shadow-xl shadow-zinc-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'
+      className='rounded-4xl border border-zinc-900/10 bg-white/70 p-6 shadow-xl shadow-zinc-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-white/6 dark:shadow-black/20'
     >
       <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
         quick actions

@@ -22,7 +22,7 @@ export function MissionControl({
   workspaceScore,
 }: MissionControlProps) {
   return (
-    <section className='rounded-[2rem] border border-zinc-900/10 bg-white/75 p-5 text-zinc-950 shadow-2xl shadow-zinc-900/8 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/25'>
+    <section className='rounded-4xl border border-zinc-900/10 bg-white/75 p-5 text-zinc-950 shadow-2xl shadow-zinc-900/8 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/25'>
       <div className='flex items-start justify-between gap-4'>
         <div>
           <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>

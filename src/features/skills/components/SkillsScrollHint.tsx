@@ -8,7 +8,7 @@ export function SkillsScrollHint({ isVisible }: SkillsScrollHintProps) {
   return (
     <div
       className={cn(
-        'pointer-events-none fixed bottom-7 left-1/2 z-[100] -translate-x-1/2 text-sky-600 transition duration-500 dark:text-sky-200',
+        'pointer-events-none fixed bottom-7 left-1/2 z-100 -translate-x-1/2 text-sky-600 transition duration-500 dark:text-sky-200',
         isVisible ? 'translate-y-0 opacity-90' : 'translate-y-3 opacity-0',
       )}
       aria-hidden='true'

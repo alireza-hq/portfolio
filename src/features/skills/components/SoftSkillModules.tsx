@@ -18,7 +18,7 @@ export function SoftSkillModules({
   return (
     <section
       id='soft-skills'
-      className='rounded-[2rem] border border-zinc-900/10 bg-white/75 p-6 shadow-xl shadow-zinc-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/75 dark:shadow-black/20'
+      className='rounded-4xl border border-zinc-900/10 bg-white/75 p-6 shadow-xl shadow-zinc-900/5 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950/75 dark:shadow-black/20'
     >
       <div className='flex items-center justify-between gap-4'>
         <div>

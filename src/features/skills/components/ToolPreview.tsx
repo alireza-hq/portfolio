@@ -12,7 +12,7 @@ export function ToolPreview({ activeMission, tool }: ToolPreviewProps) {
   const inspectName = tool.name.toLowerCase().replaceAll(' ', '-')
 
   return (
-    <aside className='rounded-[1.5rem] border border-zinc-900/10 bg-zinc-50/85 p-5 dark:border-white/10 dark:bg-black/25'>
+    <aside className='rounded-3xl border border-zinc-900/10 bg-zinc-50/85 p-5 dark:border-white/10 dark:bg-black/25'>
       <div className='flex items-start justify-between gap-4'>
         <div>
           <p className='font-mono text-xs text-zinc-500 dark:text-zinc-500'>

@@ -15,12 +15,12 @@ export function LiveReadout({
   const commandTool = activeStack.name.toLowerCase().replaceAll(' ', '-')
 
   return (
-    <section className='rounded-[2rem] border border-zinc-900/10 bg-white/75 p-6 text-zinc-950 shadow-2xl shadow-zinc-900/8 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/25'>
+    <section className='rounded-4xl border border-zinc-900/10 bg-white/75 p-6 text-zinc-950 shadow-2xl shadow-zinc-900/8 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/25'>
       <p className='font-mono text-xs font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
         live readout
       </p>
       <div className='mt-5 grid gap-4 sm:grid-cols-[auto_1fr] sm:items-start'>
-        <div className='grid h-20 w-20 place-items-center rounded-[1.5rem] border border-sky-500/20 bg-sky-500/10 dark:border-sky-300/20 dark:bg-sky-300/10'>
+        <div className='grid h-20 w-20 place-items-center rounded-3xl border border-sky-500/20 bg-sky-500/10 dark:border-sky-300/20 dark:bg-sky-300/10'>
           <ActiveIcon
             className='h-9 w-9 text-sky-600 dark:text-sky-200'
             aria-hidden='true'

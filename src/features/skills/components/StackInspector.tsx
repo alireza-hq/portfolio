@@ -29,7 +29,7 @@ export function StackInspector({
   return (
     <section
       id='stack-inspector'
-      className='mt-12 scroll-mt-28 overflow-hidden rounded-[2rem] border border-zinc-900/10 bg-white/75 text-zinc-950 shadow-2xl shadow-zinc-900/8 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/25'
+      className='mt-12 scroll-mt-28 overflow-hidden rounded-4xl border border-zinc-900/10 bg-white/75 text-zinc-950 shadow-2xl shadow-zinc-900/8 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/25'
     >
       <StackInspectorHeader
         activeCategory={activeCategory}
