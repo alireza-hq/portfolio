@@ -1,9 +1,10 @@
 'use client'
 
-import { useMemo, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import {
   ArrowUpRight,
   BrainCircuit,
+  ChevronsDown,
   Compass,
   Layers3,
   MessagesSquare,
@@ -416,6 +417,7 @@ const quickActions = [
 
 export function SkillsPage() {
   const [activeTabId, setActiveTabId] = useState(missions[0].tabId)
+  const [showScrollHint, setShowScrollHint] = useState(false)
   const activeTab =
     stackTabs.find((tab) => tab.id === activeTabId) ?? stackTabs[0]
   const [activeStackName, setActiveStackName] = useState(missions[0].stackName)
@@ -434,6 +436,25 @@ export function SkillsPage() {
     [],
   )
   const profileScore = Math.round((activeStack.level + activeSoft.value) / 2)
+
+  useEffect(() => {
+    function syncScrollHint() {
+      const scrollableHeight =
+        document.documentElement.scrollHeight - window.innerHeight
+      const distanceFromBottom = scrollableHeight - window.scrollY
+
+      setShowScrollHint(scrollableHeight > 120 && distanceFromBottom > 160)
+    }
+
+    syncScrollHint()
+    window.addEventListener('scroll', syncScrollHint, { passive: true })
+    window.addEventListener('resize', syncScrollHint)
+
+    return () => {
+      window.removeEventListener('scroll', syncScrollHint)
+      window.removeEventListener('resize', syncScrollHint)
+    }
+  }, [])
 
   function selectTab(tab: StackTab) {
     setActiveTabId(tab.id)
@@ -454,6 +475,21 @@ export function SkillsPage() {
 
   return (
     <main className='relative z-10 min-h-screen px-4 pt-32 pb-20 sm:px-6 lg:px-8'>
+      <div
+        className={cn(
+          'pointer-events-none fixed right-4 bottom-5 z-40 flex items-center gap-2 rounded-full border border-zinc-900/10 bg-white/78 px-3 py-2 text-xs font-semibold text-zinc-700 shadow-2xl shadow-zinc-900/10 backdrop-blur-xl transition duration-500 sm:right-6 sm:bottom-6 dark:border-white/10 dark:bg-zinc-950/72 dark:text-zinc-200 dark:shadow-black/30',
+          showScrollHint
+            ? 'translate-y-0 opacity-100'
+            : 'translate-y-3 opacity-0',
+        )}
+        aria-hidden='true'
+      >
+        <span className='relative grid h-8 w-8 place-items-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-300/10 dark:text-sky-200'>
+          <span className='absolute inset-0 animate-ping rounded-full bg-sky-500/18 dark:bg-sky-300/16' />
+          <ChevronsDown className='relative h-4 w-4 animate-bounce' />
+        </span>
+        <span className='hidden sm:inline'>Scroll</span>
+      </div>
       <section className='mx-auto w-full max-w-7xl'>
         <div className='grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-end'>
           <div>
