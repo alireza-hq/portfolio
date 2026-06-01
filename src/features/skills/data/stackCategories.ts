@@ -1,4 +1,5 @@
 import {
+  SiAxios,
   SiCss,
   SiDocker,
   SiEslint,
@@ -8,8 +9,10 @@ import {
   SiGithub,
   SiHtml5,
   SiJavascript,
+  SiJsonwebtokens,
   SiNextdotjs,
   SiNodedotjs,
+  SiOpenai,
   SiPnpm,
   SiPostman,
   SiPostgresql,
@@ -23,6 +26,7 @@ import {
   SiVercel,
   SiZod,
 } from 'react-icons/si'
+import { VscCode } from 'react-icons/vsc'
 
 import type { StackCategory } from '../types'
 
@@ -146,12 +150,12 @@ export const stackCategories: StackCategory[] = [
         use: 'Validation schemas for forms, API boundaries, and safer data parsing.',
       },
       {
-        name: 'REST APIs',
-        icon: SiPostman,
+        name: 'Axios',
+        icon: SiAxios,
         comfort: 'Working knowledge',
         fitScore: 78,
-        tone: 'text-orange-400',
-        use: 'Request and response contracts that keep user flows predictable.',
+        tone: 'text-sky-500',
+        use: 'HTTP requests, API integration, response handling, and frontend data flow.',
       },
       {
         name: 'Node.js',
@@ -176,6 +180,14 @@ export const stackCategories: StackCategory[] = [
         fitScore: 70,
         tone: 'text-sky-500',
         use: 'Relational data basics for dashboards, admin tools, and product flows.',
+      },
+      {
+        name: 'JWT Auth',
+        icon: SiJsonwebtokens,
+        comfort: 'Working knowledge',
+        fitScore: 68,
+        tone: 'text-amber-400',
+        use: 'Authentication flow basics, token handling, and protected API behavior.',
       },
       {
         name: 'Postman',
@@ -248,6 +260,30 @@ export const stackCategories: StackCategory[] = [
         fitScore: 64,
         tone: 'text-sky-500',
         use: 'Local service environments and backend-adjacent development setup.',
+      },
+      {
+        name: 'VS Code',
+        icon: VscCode,
+        comfort: 'Primary',
+        fitScore: 92,
+        tone: 'text-sky-500',
+        use: 'Daily editor workflow, navigation, extensions, refactors, and project debugging.',
+      },
+      {
+        name: 'ChatGPT',
+        icon: SiOpenai,
+        comfort: 'Primary',
+        fitScore: 90,
+        tone: 'text-emerald-400',
+        use: 'Planning architecture, debugging, refactoring, explaining tradeoffs, and turning vague ideas into clearer implementation steps.',
+      },
+      {
+        name: 'Codex',
+        icon: SiOpenai,
+        comfort: 'Comfortable',
+        fitScore: 84,
+        tone: 'text-cyan-300',
+        use: 'AI-assisted code generation, component refactors, repetitive implementation work, and exploring alternate solutions faster.',
       },
     ],
   },
