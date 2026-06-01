@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 function isInteractive(target: EventTarget | null) {
   return target instanceof Element
@@ -16,8 +16,26 @@ export function CustomCursor() {
   const cursorRef = useRef<HTMLDivElement>(null)
   const frameRef = useRef(0)
   const pointerRef = useRef({ x: 0, y: 0, target: null as EventTarget | null })
+  const [isEnabled, setIsEnabled] = useState(false)
 
   useEffect(() => {
+    const mediaQuery = window.matchMedia(
+      '(pointer: fine) and (min-width: 768px)',
+    )
+
+    function syncEnabled() {
+      setIsEnabled(mediaQuery.matches)
+    }
+
+    syncEnabled()
+    mediaQuery.addEventListener('change', syncEnabled)
+
+    return () => mediaQuery.removeEventListener('change', syncEnabled)
+  }, [])
+
+  useEffect(() => {
+    if (!isEnabled) return
+
     const cursor = cursorRef.current
 
     if (!cursor) return
@@ -88,7 +106,9 @@ export function CustomCursor() {
         handlePointerEnter,
       )
     }
-  }, [])
+  }, [isEnabled])
+
+  if (!isEnabled) return null
 
   return (
     <div ref={cursorRef} className='custom-cursor' aria-hidden='true'>

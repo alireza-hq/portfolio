@@ -46,13 +46,13 @@ export function ContactSignalPanel() {
         <div className='absolute inset-x-8 top-1/2 h-px bg-linear-to-r from-transparent via-sky-200/20 to-transparent' />
       </div>
 
-      <div className='relative grid min-h-88 place-items-center overflow-hidden rounded-4xl border border-white/10 bg-black/25 sm:min-h-96 xl:min-h-[29rem]'>
-        <div className='absolute h-84 w-84 animate-pulse rounded-full border border-sky-200/12 sm:h-96 sm:w-96' />
-        <div className='absolute h-64 w-64 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-dashed border-sky-200/25 sm:h-72 sm:w-72' />
-        <div className='absolute h-44 w-44 animate-[spin_26s_linear_infinite] rounded-full border border-white/10 sm:h-52 sm:w-52' />
-        <div className='absolute h-36 w-36 rounded-full bg-sky-300/10 blur-2xl sm:h-44 sm:w-44' />
-        <div className='grid h-32 w-32 place-items-center rounded-[2.2rem] border border-sky-200/25 bg-zinc-950/90 text-white shadow-2xl shadow-sky-950/40 sm:h-40 sm:w-40'>
-          <ActiveIcon className='h-12 w-12 sm:h-14 sm:w-14' />
+      <div className='relative grid min-h-72 place-items-center overflow-hidden rounded-4xl border border-white/10 bg-black/25 sm:min-h-80 xl:min-h-[23rem]'>
+        <div className='absolute h-68 w-68 animate-pulse rounded-full border border-sky-200/12 sm:h-80 sm:w-80' />
+        <div className='absolute h-52 w-52 animate-[spin_20s_linear_infinite_reverse] rounded-full border border-dashed border-sky-200/25 sm:h-60 sm:w-60' />
+        <div className='absolute h-36 w-36 animate-[spin_26s_linear_infinite] rounded-full border border-white/10 sm:h-44 sm:w-44' />
+        <div className='absolute h-28 w-28 rounded-full bg-sky-300/10 blur-2xl sm:h-36 sm:w-36' />
+        <div className='grid h-28 w-28 place-items-center rounded-[2rem] border border-sky-200/25 bg-zinc-950/90 text-white shadow-2xl shadow-sky-950/40 sm:h-32 sm:w-32'>
+          <ActiveIcon className='h-10 w-10 sm:h-12 sm:w-12' />
         </div>
 
         <div className='absolute top-4 left-4 flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-3 py-1.5 font-mono text-xs text-zinc-300'>
