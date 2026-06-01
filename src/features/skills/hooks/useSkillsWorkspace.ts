@@ -1,23 +1,36 @@
 'use client'
 
 import { useMemo, useState } from 'react'
+import { FaMugHot } from 'react-icons/fa6'
 
 import { missions, softSkills, stackCategories } from '../data/skills'
 import type { Mission, SoftSkill, StackCategory, StackItem } from '../types'
+
+const COFFEE_CHANCE = 0.05
+
+const coffeeTool: StackItem = {
+  name: 'Coffee',
+  icon: FaMugHot,
+  comfort: 'Essential',
+  fitScore: 100,
+  tone: 'text-amber-500',
+  use: 'Runtime dependency for late-night debugging sessions.',
+}
 
 export function useSkillsWorkspace() {
   const [activeCategoryId, setActiveCategoryId] = useState(missions[0].tabId)
   const [lockedToolName, setLockedToolName] = useState(missions[0].stackName)
   const [previewToolName, setPreviewToolName] = useState<string>()
+  const [glitchTool, setGlitchTool] = useState<StackItem>()
   const [activeSoftId, setActiveSoftId] = useState(missions[0].softId)
   const [activeMissionId, setActiveMissionId] = useState(missions[0].id)
 
   const activeCategory = getCategory(activeCategoryId)
   const activeMission = getMission(activeMissionId)
   const lockedTool = getTool(activeCategory, lockedToolName)
-  const previewTool = previewToolName
-    ? getTool(activeCategory, previewToolName)
-    : lockedTool
+  const previewTool =
+    glitchTool ??
+    (previewToolName ? getTool(activeCategory, previewToolName) : lockedTool)
   const activeSoftSkill = getSoftSkill(activeSoftId)
 
   const stackCount = useMemo(
@@ -37,9 +50,11 @@ export function useSkillsWorkspace() {
     setActiveCategoryId(category.id)
     setLockedToolName(category.items[0].name)
     setPreviewToolName(undefined)
+    setGlitchTool(undefined)
   }
 
   function lockTool(tool: StackItem) {
+    setGlitchTool(Math.random() < COFFEE_CHANCE ? coffeeTool : undefined)
     setLockedToolName(tool.name)
     setPreviewToolName(undefined)
   }
@@ -60,6 +75,7 @@ export function useSkillsWorkspace() {
     setActiveCategoryId(missionCategory.id)
     setLockedToolName(mission.stackName)
     setPreviewToolName(undefined)
+    setGlitchTool(undefined)
   }
 
   return {

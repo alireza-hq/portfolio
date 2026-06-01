@@ -6,6 +6,7 @@ export type ComfortLabel =
   | 'Comfortable'
   | 'Working knowledge'
   | 'Learning'
+  | 'Essential'
 
 export type StackCategoryId = 'frontend' | 'interface' | 'data' | 'workflow'
 
