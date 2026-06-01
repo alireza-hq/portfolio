@@ -2,7 +2,7 @@
 
 import { Send } from 'lucide-react'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 import { useContact } from '../hooks/useContact'
 
 function fieldClass(hasError: boolean) {
@@ -16,7 +16,7 @@ function floatingLabelClass(hasError: boolean) {
   return cn(
     'pointer-events-none absolute left-4 top-4 text-sm font-medium text-zinc-500 transition-all peer-focus:top-2 peer-focus:text-xs peer-focus:text-sky-600 peer-[:not(:placeholder-shown)]:top-2 peer-[:not(:placeholder-shown)]:text-xs dark:text-zinc-500 dark:peer-focus:text-sky-300',
     hasError &&
-      'text-red-400 peer-focus:text-red-400 peer-[:not(:placeholder-shown)]:text-red-400 dark:text-red-400',
+      'peer-focus:text-red-400 peer-[:not(:placeholder-shown)]:text-red-400 dark:peer-focus:text-red-400 dark:peer-[:not(:placeholder-shown)]:text-red-400',
   )
 }
 

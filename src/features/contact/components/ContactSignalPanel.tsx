@@ -5,7 +5,7 @@ import Link from 'next/link'
 import { ArrowUpRight, Mail, Radio, Terminal } from 'lucide-react'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 
-import { cn } from '@/lib/utils'
+import { cn } from '@/lib/utils/cn'
 
 const channels = [
   {
@@ -71,13 +71,13 @@ export function ContactSignalPanel() {
       </div>
 
       <div className='mt-5 rounded-4xl border border-white/10 bg-white/6 p-4'>
-        <div className='grid gap-3 xl:grid-cols-[0.9fr_1fr]'>
-          <div className='relative grid min-h-52 place-items-center overflow-hidden rounded-3xl border border-white/10 bg-black/25 sm:min-h-56 xl:min-h-64'>
-            <div className='absolute h-52 w-52 rounded-full border border-sky-200/12 sm:h-60 sm:w-60' />
-            <div className='absolute h-36 w-36 animate-[spin_14s_linear_infinite_reverse] rounded-full border border-dashed border-sky-200/24 sm:h-44 sm:w-44' />
-            <div className='absolute h-24 w-24 rounded-full bg-sky-300/10 blur-xl sm:h-32 sm:w-32' />
-            <div className='grid h-24 w-24 place-items-center rounded-[1.75rem] border border-sky-200/25 bg-zinc-950/90 text-white shadow-2xl shadow-sky-950/40 sm:h-28 sm:w-28'>
-              <ActiveIcon className='h-9 w-9 sm:h-10 sm:w-10' />
+        <div className='grid gap-3 xl:grid-cols-[1.12fr_0.78fr]'>
+          <div className='relative grid min-h-72 place-items-center overflow-hidden rounded-3xl border border-white/10 bg-black/25 sm:min-h-80 xl:min-h-[22rem]'>
+            <div className='absolute h-64 w-64 rounded-full border border-sky-200/12 sm:h-72 sm:w-72' />
+            <div className='absolute h-44 w-44 animate-[spin_14s_linear_infinite_reverse] rounded-full border border-dashed border-sky-200/24 sm:h-52 sm:w-52' />
+            <div className='absolute h-32 w-32 rounded-full bg-sky-300/10 blur-xl sm:h-40 sm:w-40' />
+            <div className='grid h-28 w-28 place-items-center rounded-[2rem] border border-sky-200/25 bg-zinc-950/90 text-white shadow-2xl shadow-sky-950/40 sm:h-32 sm:w-32'>
+              <ActiveIcon className='h-10 w-10 sm:h-12 sm:w-12' />
             </div>
             <div className='absolute top-3 left-3 flex items-center gap-2 rounded-full border border-white/10 bg-white/8 px-2.5 py-1 font-mono text-[0.65rem] text-zinc-300'>
               <Radio className='h-3 w-3 text-sky-200' />
@@ -116,13 +116,8 @@ export function ContactSignalPanel() {
                     >
                       <Icon className='h-4 w-4' />
                     </span>
-                    <span className='min-w-0'>
-                      <span className='block text-sm font-semibold text-white'>
-                        {channel.label}
-                      </span>
-                      <span className='block truncate text-xs text-zinc-400'>
-                        {channel.value}
-                      </span>
+                    <span className='block min-w-0 text-sm font-semibold text-white'>
+                      {channel.label}
                     </span>
                   </span>
                   <ArrowUpRight className='h-4 w-4 shrink-0 text-zinc-500 transition group-hover:text-white' />
