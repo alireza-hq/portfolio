@@ -12,24 +12,59 @@ type PreviewPosition = {
   y: number
 }
 
+const PREVIEW_WIDTH = 320
+const PREVIEW_HEIGHT = 226
+const PREVIEW_OFFSET = 14
+const VIEWPORT_GAP = 12
+
 export const AboutCertifications = () => {
   const [activeCertification, setActiveCertification] =
     useState<Certification>()
   const [previewPosition, setPreviewPosition] = useState<PreviewPosition>()
 
-  function movePreview(event: MouseEvent<HTMLAnchorElement>) {
-    setPreviewPosition({
-      x: Math.min(event.clientX + 22, window.innerWidth - 390),
-      y: Math.min(event.clientY + 22, window.innerHeight - 285),
-    })
+  function getPreviewPosition(x: number, y: number) {
+    return {
+      x: Math.min(
+        x + PREVIEW_OFFSET,
+        window.innerWidth - PREVIEW_WIDTH - VIEWPORT_GAP,
+      ),
+      y: Math.min(
+        y + PREVIEW_OFFSET,
+        window.innerHeight - PREVIEW_HEIGHT - VIEWPORT_GAP,
+      ),
+    }
+  }
+
+  function movePreview(event: MouseEvent<HTMLButtonElement>) {
+    setPreviewPosition(getPreviewPosition(event.clientX, event.clientY))
+  }
+
+  function showPreview(
+    certification: Certification,
+    event: MouseEvent<HTMLButtonElement>,
+  ) {
+    setActiveCertification(certification)
+    setPreviewPosition(getPreviewPosition(event.clientX, event.clientY))
+  }
+
+  function hidePreview() {
+    setActiveCertification(undefined)
+    setPreviewPosition(undefined)
+  }
+
+  function blockImageAccess(event: MouseEvent) {
+    event.preventDefault()
   }
 
   function focusPreview(certification: Certification) {
-    setActiveCertification(certification)
     setPreviewPosition({
-      x: Math.max(window.innerWidth - 410, 16),
-      y: Math.max(window.innerHeight / 2 - 135, 16),
+      x: Math.max(
+        window.innerWidth - PREVIEW_WIDTH - VIEWPORT_GAP,
+        VIEWPORT_GAP,
+      ),
+      y: Math.max(window.innerHeight / 2 - PREVIEW_HEIGHT / 2, VIEWPORT_GAP),
     })
+    setActiveCertification(certification)
   }
 
   return (
@@ -39,17 +74,15 @@ export const AboutCertifications = () => {
       </p>
       <div className='mt-5 grid gap-3 sm:grid-cols-2'>
         {certifications.map((item) => (
-          <a
+          <button
             key={item.title}
-            href={item.image}
-            target='_blank'
-            rel='noreferrer'
-            onMouseEnter={() => setActiveCertification(item)}
+            type='button'
+            onMouseEnter={(event) => showPreview(item, event)}
             onMouseMove={movePreview}
-            onMouseLeave={() => setActiveCertification(undefined)}
+            onMouseLeave={hidePreview}
             onFocus={() => focusPreview(item)}
-            onBlur={() => setActiveCertification(undefined)}
-            className='group rounded-2xl border border-zinc-900/10 bg-zinc-50/90 p-4 shadow-sm shadow-zinc-900/5 transition hover:-translate-y-0.5 hover:border-sky-400/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10'
+            onBlur={hidePreview}
+            className='group rounded-2xl border border-zinc-900/10 bg-zinc-50/90 p-4 text-left shadow-sm shadow-zinc-900/5 transition hover:-translate-y-0.5 hover:border-sky-400/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10'
           >
             <span className='font-mono text-[0.65rem] font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
               {item.issuer}
@@ -57,17 +90,18 @@ export const AboutCertifications = () => {
             <span className='mt-2 block text-sm font-semibold text-zinc-800 group-hover:text-sky-700 dark:text-zinc-200 dark:group-hover:text-sky-200'>
               {item.title}
             </span>
-          </a>
+          </button>
         ))}
       </div>
 
       {activeCertification && previewPosition && (
         <div
-          className='pointer-events-none fixed z-100 hidden w-96 overflow-hidden rounded-2xl border border-white/18 bg-zinc-950/92 p-2 shadow-2xl shadow-zinc-950/30 backdrop-blur-md md:block'
+          className='pointer-events-none fixed z-100 hidden w-80 overflow-hidden rounded-2xl border border-white/18 bg-zinc-950/92 p-2 shadow-2xl shadow-zinc-950/30 backdrop-blur-md select-none md:block'
           style={{
             left: previewPosition.x,
             top: previewPosition.y,
           }}
+          onContextMenu={blockImageAccess}
           aria-hidden='true'
         >
           <Image
@@ -75,7 +109,8 @@ export const AboutCertifications = () => {
             alt=''
             width={3508}
             height={2480}
-            className='h-auto w-full rounded-xl'
+            draggable={false}
+            className='h-auto w-full rounded-xl select-none'
           />
         </div>
       )}
