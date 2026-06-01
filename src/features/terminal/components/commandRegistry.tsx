@@ -63,6 +63,7 @@ export const terminalCompletions = [
   'clear',
   'cls',
   'contact',
+  'coffee',
   'date',
   'help',
   'journey',
@@ -80,7 +81,9 @@ export const terminalCompletions = [
   'setup',
   'skills',
   'sudo hire-me',
+  'sudo uninstall coffee',
   'theme',
+  'uninstall coffee',
   'uses',
   'whoami',
 ]
@@ -147,16 +150,36 @@ function installCoffee() {
   }
 }
 
+function uninstallCoffee() {
+  if (typeof window !== 'undefined') {
+    window.localStorage.removeItem(coffeeStorageKey)
+  }
+}
+
+function CoffeeProgress() {
+  return (
+    <p className='font-mono text-sm text-zinc-700 dark:text-zinc-300'>
+      <span className='relative inline-block'>
+        <span className='text-zinc-300 dark:text-zinc-700'>
+          ████████████████
+        </span>
+        <span className='coffee-progress absolute inset-0 overflow-hidden text-sky-600 dark:text-sky-300'>
+          ████████████████
+        </span>
+      </span>{' '}
+      100%
+    </p>
+  )
+}
+
 function renderCoffeeInstall() {
   return (
-    <div className={cardClass}>
+    <div className='grid gap-2'>
       <p className='font-mono text-sm text-sky-600 dark:text-sky-300'>
         Installing coffee...
       </p>
-      <p className='mt-2 font-mono text-sm text-zinc-700 dark:text-zinc-300'>
-        ████████████████ 100%
-      </p>
-      <div className='mt-4 grid gap-2'>
+      <CoffeeProgress />
+      <div className='mt-2 grid gap-2'>
         <p>
           <span className='font-semibold text-zinc-950 dark:text-white'>
             Status:
@@ -192,11 +215,11 @@ function renderCoffeeInstall() {
 
 function renderCoffeeActive() {
   return (
-    <div className={cardClass}>
+    <div className='grid gap-2'>
       <p className='font-semibold text-zinc-950 dark:text-white'>
         Coffee is already installed.
       </p>
-      <div className='mt-4 grid gap-2'>
+      <div className='grid gap-2'>
         <p>
           <span className='font-semibold text-zinc-950 dark:text-white'>
             Version:
@@ -224,11 +247,11 @@ function renderCoffeeActive() {
 
 function renderCoffeeUninstallError() {
   return (
-    <div className={cardClass}>
+    <div className='grid gap-2'>
       <p className='font-mono text-sm text-sky-600 dark:text-sky-300'>
         Uninstalling coffee...
       </p>
-      <p className='mt-4'>
+      <p>
         <span className='font-semibold text-red-500 dark:text-red-400'>
           Error:
         </span>{' '}
@@ -236,6 +259,25 @@ function renderCoffeeUninstallError() {
           Package &quot;coffee&quot; is marked as a critical dependency and
           cannot be removed.
         </span>
+      </p>
+    </div>
+  )
+}
+
+function renderCoffeeSudoUninstall() {
+  return (
+    <div className='grid gap-2'>
+      <p className='font-mono text-sm text-sky-600 dark:text-sky-300'>
+        sudo uninstall coffee
+      </p>
+      <p className='font-mono text-sm text-zinc-700 dark:text-zinc-300'>
+        Uninstalling coffee...
+      </p>
+      <p>
+        <span className='font-semibold text-zinc-950 dark:text-white'>
+          Status:
+        </span>{' '}
+        <span className='text-zinc-600 dark:text-zinc-400'>Removed</span>
       </p>
     </div>
   )
@@ -682,12 +724,21 @@ export const commandRegistry: Record<string, TerminalCommand> = {
   sudo: {
     name: 'sudo',
     description: 'Try sudo hire-me',
-    execute: (args) => ({
-      type: 'output',
-      content:
-        args.join(' ').toLowerCase() === 'hire-me'
-          ? 'Access granted. Recommendation: interview this frontend developer.'
-          : 'Permission denied. Try: sudo hire-me',
-    }),
+    execute: (args) => {
+      const command = args.join(' ').toLowerCase()
+
+      if (command === 'uninstall coffee') {
+        uninstallCoffee()
+        return { type: 'output', content: renderCoffeeSudoUninstall() }
+      }
+
+      return {
+        type: 'output',
+        content:
+          command === 'hire-me'
+            ? 'Access granted. Recommendation: interview this frontend developer.'
+            : 'Permission denied. Try: sudo hire-me',
+      }
+    },
   },
 }

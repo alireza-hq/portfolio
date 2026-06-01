@@ -1333,10 +1333,24 @@ html.dark {
   }
 }
 
+@keyframes coffee-progress {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
 .animate-terminal-fade-in {
   animation: terminal-fade-in 180ms ease-out both;
 }
 
 .animate-terminal-cursor {
   animation: terminal-cursor 1s step-end infinite;
+}
+
+.coffee-progress {
+  animation: coffee-progress 5s steps(16, end) both;
 }
