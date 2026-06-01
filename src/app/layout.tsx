@@ -6,6 +6,7 @@ import { AnimatedBackground } from '@/components/layout/AnimatedBackground'
 import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { Footer } from '@/components/layout/Footer'
 import { CustomCursor } from '@/components/layout/CustomCursor'
+import { AppIntro } from '@/components/layout/AppIntro'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -36,6 +37,7 @@ export default function RootLayout({
     >
       <body className='relative isolate flex min-h-full flex-col overflow-x-hidden bg-zinc-50 text-zinc-950 transition-colors duration-300 dark:bg-zinc-950 dark:text-zinc-100'>
         <ThemeProvider>
+          <AppIntro />
           <AnimatedBackground />
           <CustomCursor />
           <Navbar />
