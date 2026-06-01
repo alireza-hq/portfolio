@@ -91,6 +91,7 @@ const chipClass =
   'rounded-full border border-zinc-900/10 bg-zinc-50/90 px-2.5 py-1 text-xs font-medium text-zinc-700 dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300'
 const linkClass =
   'font-semibold text-sky-600 hover:underline focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:text-sky-400'
+const coffeeStorageKey = 'portfolio:coffee-installed'
 
 function findProject(args: string[]) {
   const query = args.join(' ').toLowerCase().trim()
@@ -129,6 +130,113 @@ function projectCard(project: (typeof terminalProjects)[number]) {
           </span>
         ))}
       </div>
+    </div>
+  )
+}
+
+function isCoffeeInstalled() {
+  return (
+    typeof window !== 'undefined' &&
+    window.localStorage.getItem(coffeeStorageKey) === 'true'
+  )
+}
+
+function installCoffee() {
+  if (typeof window !== 'undefined') {
+    window.localStorage.setItem(coffeeStorageKey, 'true')
+  }
+}
+
+function renderCoffeeInstall() {
+  return (
+    <div className={cardClass}>
+      <p className='font-mono text-sm text-sky-600 dark:text-sky-300'>
+        Installing coffee...
+      </p>
+      <p className='mt-2 font-mono text-sm text-zinc-700 dark:text-zinc-300'>
+        ████████████████ 100%
+      </p>
+      <div className='mt-4 grid gap-2'>
+        <p>
+          <span className='font-semibold text-zinc-950 dark:text-white'>
+            Status:
+          </span>{' '}
+          <span className='text-zinc-600 dark:text-zinc-400'>Installed</span>
+        </p>
+        <p>
+          <span className='font-semibold text-zinc-950 dark:text-white'>
+            Version:
+          </span>{' '}
+          <span className='text-zinc-600 dark:text-zinc-400'>Fresh</span>
+        </p>
+        <p>
+          <span className='font-semibold text-zinc-950 dark:text-white'>
+            Role:
+          </span>{' '}
+          <span className='text-zinc-600 dark:text-zinc-400'>
+            Runtime dependency for late-night debugging sessions.
+          </span>
+        </p>
+        <p>
+          <span className='font-semibold text-zinc-950 dark:text-white'>
+            Warning:
+          </span>{' '}
+          <span className='text-zinc-600 dark:text-zinc-400'>
+            Removing this package may reduce developer performance.
+          </span>
+        </p>
+      </div>
+    </div>
+  )
+}
+
+function renderCoffeeActive() {
+  return (
+    <div className={cardClass}>
+      <p className='font-semibold text-zinc-950 dark:text-white'>
+        Coffee is already installed.
+      </p>
+      <div className='mt-4 grid gap-2'>
+        <p>
+          <span className='font-semibold text-zinc-950 dark:text-white'>
+            Version:
+          </span>{' '}
+          <span className='text-zinc-600 dark:text-zinc-400'>Fresh</span>
+        </p>
+        <p>
+          <span className='font-semibold text-zinc-950 dark:text-white'>
+            Status:
+          </span>{' '}
+          <span className='text-zinc-600 dark:text-zinc-400'>Active</span>
+        </p>
+        <p>
+          <span className='font-semibold text-zinc-950 dark:text-white'>
+            Tip:
+          </span>{' '}
+          <span className='text-zinc-600 dark:text-zinc-400'>
+            Stay hydrated too.
+          </span>
+        </p>
+      </div>
+    </div>
+  )
+}
+
+function renderCoffeeUninstallError() {
+  return (
+    <div className={cardClass}>
+      <p className='font-mono text-sm text-sky-600 dark:text-sky-300'>
+        Uninstalling coffee...
+      </p>
+      <p className='mt-4'>
+        <span className='font-semibold text-red-500 dark:text-red-400'>
+          Error:
+        </span>{' '}
+        <span className='text-zinc-600 dark:text-zinc-400'>
+          Package &quot;coffee&quot; is marked as a critical dependency and
+          cannot be removed.
+        </span>
+      </p>
     </div>
   )
 }
@@ -536,37 +644,29 @@ export const commandRegistry: Record<string, TerminalCommand> = {
   coffee: {
     name: 'coffee',
     description: 'Hidden runtime dependency',
-    execute: () => ({
-      type: 'output',
-      content: (
-        <div className={cardClass}>
-          <p className='font-mono text-sm text-sky-600 dark:text-sky-300'>
-            Status: Installed
-          </p>
-          <p className='mt-2 font-mono text-sm text-zinc-600 dark:text-zinc-400'>
-            Version: Fresh
-          </p>
-          <div className='mt-4 grid gap-2'>
-            <p>
-              <span className='font-semibold text-zinc-950 dark:text-white'>
-                Role:
-              </span>{' '}
-              <span className='text-zinc-600 dark:text-zinc-400'>
-                Runtime dependency for late-night debugging sessions.
-              </span>
-            </p>
-            <p>
-              <span className='font-semibold text-zinc-950 dark:text-white'>
-                Warning:
-              </span>{' '}
-              <span className='text-zinc-600 dark:text-zinc-400'>
-                Removing this package may reduce developer performance.
-              </span>
-            </p>
-          </div>
-        </div>
-      ),
-    }),
+    execute: () => {
+      if (isCoffeeInstalled()) {
+        return { type: 'output', content: renderCoffeeActive() }
+      }
+
+      installCoffee()
+      return { type: 'output', content: renderCoffeeInstall() }
+    },
+  },
+
+  uninstall: {
+    name: 'uninstall',
+    description: 'Hidden package command',
+    execute: (args) => {
+      if (args.join(' ').toLowerCase() !== 'coffee') {
+        return {
+          type: 'output',
+          content: 'Nothing to uninstall.',
+        }
+      }
+
+      return { type: 'output', content: renderCoffeeUninstallError() }
+    },
   },
 
   secret: {

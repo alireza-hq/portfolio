@@ -18,8 +18,8 @@ export const AboutPrinciples = ({
           {activeCertification ? 'certificate preview' : 'principles'}
         </p>
         <div className='relative'>
-          <p className='font-mono text-7xl leading-none font-semibold text-zinc-950/5 dark:text-white/8'>
-            {activeCertification ? '01' : '04'}
+          <p className='font-mono text-6xl leading-none font-semibold text-zinc-950/5 dark:text-white/8'>
+            {activeCertification ? 'CERT' : 'WORK'}
           </p>
           <h2 className='mt-4 text-2xl font-semibold text-zinc-950 dark:text-white'>
             {activeCertification
@@ -44,11 +44,11 @@ export const AboutPrinciples = ({
           />
         </div>
       ) : (
-        <div className='grid divide-y divide-zinc-900/10 dark:divide-white/10'>
+        <div className='grid min-h-72 divide-y divide-zinc-900/10 pt-3 dark:divide-white/10'>
           {values.map((item) => (
             <p
               key={item}
-              className='px-6 py-4 text-sm font-medium text-zinc-700 dark:text-zinc-300'
+              className='px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300'
             >
               {item}
             </p>
