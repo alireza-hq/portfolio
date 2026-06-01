@@ -1,61 +1,50 @@
 'use client'
 
 import { useState } from 'react'
-import type { FocusEvent, MouseEvent } from 'react'
+import type { MouseEvent, PointerEvent } from 'react'
 import Image from 'next/image'
 
 import { certifications } from '../data/certifications'
 
 type Certification = (typeof certifications)[number]
 type PreviewPosition = {
+  isFlipped: boolean
   x: number
   y: number
 }
 
 const PREVIEW_WIDTH = 288
-const PREVIEW_HEIGHT = 204
-const PREVIEW_OFFSET = 8
-const VIEWPORT_GAP = 12
+const PREVIEW_OFFSET = 10
 
 export const AboutCertifications = () => {
   const [activeCertification, setActiveCertification] =
     useState<Certification>()
   const [previewPosition, setPreviewPosition] = useState<PreviewPosition>()
 
-  function getPreviewPosition(x: number, y: number) {
-    const hasHorizontalRoom =
-      x + PREVIEW_OFFSET + PREVIEW_WIDTH <= window.innerWidth - VIEWPORT_GAP
-    const hasVerticalRoom =
-      y + PREVIEW_OFFSET + PREVIEW_HEIGHT <= window.innerHeight - VIEWPORT_GAP
-    const nextX = hasHorizontalRoom
-      ? x + PREVIEW_OFFSET
-      : x - PREVIEW_WIDTH - PREVIEW_OFFSET
-    const nextY = hasVerticalRoom
-      ? y + PREVIEW_OFFSET
-      : y - PREVIEW_HEIGHT - PREVIEW_OFFSET
-
+  function getPreviewPosition(x: number, y: number): PreviewPosition {
     return {
-      x: Math.max(
-        VIEWPORT_GAP,
-        Math.min(nextX, window.innerWidth - PREVIEW_WIDTH - VIEWPORT_GAP),
-      ),
-      y: Math.max(
-        VIEWPORT_GAP,
-        Math.min(nextY, window.innerHeight - PREVIEW_HEIGHT - VIEWPORT_GAP),
-      ),
+      isFlipped: x + PREVIEW_WIDTH + PREVIEW_OFFSET > window.innerWidth,
+      x,
+      y,
     }
   }
 
-  function movePreview(event: MouseEvent<HTMLButtonElement>) {
+  function showPreview(certification: Certification, x: number, y: number) {
+    setActiveCertification(certification)
+    setPreviewPosition(getPreviewPosition(x, y))
+  }
+
+  function movePreview(event: PointerEvent<HTMLButtonElement>) {
     setPreviewPosition(getPreviewPosition(event.clientX, event.clientY))
   }
 
-  function showPreview(
+  function focusPreview(
     certification: Certification,
-    event: MouseEvent<HTMLButtonElement>,
+    element: HTMLButtonElement,
   ) {
-    setActiveCertification(certification)
-    setPreviewPosition(getPreviewPosition(event.clientX, event.clientY))
+    const rect = element.getBoundingClientRect()
+
+    showPreview(certification, rect.left, rect.bottom)
   }
 
   function hidePreview() {
@@ -65,38 +54,6 @@ export const AboutCertifications = () => {
 
   function blockImageAccess(event: MouseEvent) {
     event.preventDefault()
-  }
-
-  function focusPreview(
-    certification: Certification,
-    event: FocusEvent<HTMLButtonElement>,
-  ) {
-    if (!event.currentTarget.matches(':focus-visible')) return
-
-    const rect = event.currentTarget.getBoundingClientRect()
-    const preferredX = rect.right + PREVIEW_OFFSET
-    const preferredY = rect.top
-    const fallbackX = rect.left - PREVIEW_WIDTH - PREVIEW_OFFSET
-
-    setPreviewPosition({
-      x: Math.max(
-        VIEWPORT_GAP,
-        Math.min(
-          preferredX + PREVIEW_WIDTH > window.innerWidth - VIEWPORT_GAP
-            ? fallbackX
-            : preferredX,
-          window.innerWidth - PREVIEW_WIDTH - VIEWPORT_GAP,
-        ),
-      ),
-      y: Math.max(
-        VIEWPORT_GAP,
-        Math.min(
-          preferredY,
-          window.innerHeight - PREVIEW_HEIGHT - VIEWPORT_GAP,
-        ),
-      ),
-    })
-    setActiveCertification(certification)
   }
 
   return (
@@ -109,10 +66,16 @@ export const AboutCertifications = () => {
           <button
             key={item.title}
             type='button'
-            onMouseEnter={(event) => showPreview(item, event)}
-            onMouseMove={movePreview}
-            onMouseLeave={hidePreview}
-            onFocus={(event) => focusPreview(item, event)}
+            onPointerEnter={(event) =>
+              showPreview(item, event.clientX, event.clientY)
+            }
+            onPointerMove={movePreview}
+            onPointerLeave={hidePreview}
+            onFocus={(event) => {
+              if (event.currentTarget.matches(':focus-visible')) {
+                focusPreview(item, event.currentTarget)
+              }
+            }}
             onBlur={hidePreview}
             className='group rounded-2xl border border-zinc-900/10 bg-zinc-50/90 p-4 text-left shadow-sm shadow-zinc-900/5 transition hover:-translate-y-0.5 hover:border-sky-400/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10'
           >
@@ -132,6 +95,9 @@ export const AboutCertifications = () => {
           style={{
             left: previewPosition.x,
             top: previewPosition.y,
+            transform: previewPosition.isFlipped
+              ? `translate(calc(-100% - ${PREVIEW_OFFSET}px), ${PREVIEW_OFFSET}px)`
+              : `translate(${PREVIEW_OFFSET}px, ${PREVIEW_OFFSET}px)`,
           }}
           onContextMenu={blockImageAccess}
           aria-hidden='true'

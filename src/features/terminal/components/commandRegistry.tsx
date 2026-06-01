@@ -533,6 +533,42 @@ export const commandRegistry: Record<string, TerminalCommand> = {
     }),
   },
 
+  coffee: {
+    name: 'coffee',
+    description: 'Hidden runtime dependency',
+    execute: () => ({
+      type: 'output',
+      content: (
+        <div className={cardClass}>
+          <p className='font-mono text-sm text-sky-600 dark:text-sky-300'>
+            Status: Installed
+          </p>
+          <p className='mt-2 font-mono text-sm text-zinc-600 dark:text-zinc-400'>
+            Version: Fresh
+          </p>
+          <div className='mt-4 grid gap-2'>
+            <p>
+              <span className='font-semibold text-zinc-950 dark:text-white'>
+                Role:
+              </span>{' '}
+              <span className='text-zinc-600 dark:text-zinc-400'>
+                Runtime dependency for late-night debugging sessions.
+              </span>
+            </p>
+            <p>
+              <span className='font-semibold text-zinc-950 dark:text-white'>
+                Warning:
+              </span>{' '}
+              <span className='text-zinc-600 dark:text-zinc-400'>
+                Removing this package may reduce developer performance.
+              </span>
+            </p>
+          </div>
+        </div>
+      ),
+    }),
+  },
+
   secret: {
     name: 'secret',
     description: 'Reveal a small hidden note',
