@@ -12,9 +12,9 @@ type PreviewPosition = {
   y: number
 }
 
-const PREVIEW_WIDTH = 320
-const PREVIEW_HEIGHT = 226
-const PREVIEW_OFFSET = 14
+const PREVIEW_WIDTH = 288
+const PREVIEW_HEIGHT = 204
+const PREVIEW_OFFSET = 8
 const VIEWPORT_GAP = 12
 
 export const AboutCertifications = () => {
@@ -23,14 +23,25 @@ export const AboutCertifications = () => {
   const [previewPosition, setPreviewPosition] = useState<PreviewPosition>()
 
   function getPreviewPosition(x: number, y: number) {
+    const hasHorizontalRoom =
+      x + PREVIEW_OFFSET + PREVIEW_WIDTH <= window.innerWidth - VIEWPORT_GAP
+    const hasVerticalRoom =
+      y + PREVIEW_OFFSET + PREVIEW_HEIGHT <= window.innerHeight - VIEWPORT_GAP
+    const nextX = hasHorizontalRoom
+      ? x + PREVIEW_OFFSET
+      : x - PREVIEW_WIDTH - PREVIEW_OFFSET
+    const nextY = hasVerticalRoom
+      ? y + PREVIEW_OFFSET
+      : y - PREVIEW_HEIGHT - PREVIEW_OFFSET
+
     return {
-      x: Math.min(
-        x + PREVIEW_OFFSET,
-        window.innerWidth - PREVIEW_WIDTH - VIEWPORT_GAP,
+      x: Math.max(
+        VIEWPORT_GAP,
+        Math.min(nextX, window.innerWidth - PREVIEW_WIDTH - VIEWPORT_GAP),
       ),
-      y: Math.min(
-        y + PREVIEW_OFFSET,
-        window.innerHeight - PREVIEW_HEIGHT - VIEWPORT_GAP,
+      y: Math.max(
+        VIEWPORT_GAP,
+        Math.min(nextY, window.innerHeight - PREVIEW_HEIGHT - VIEWPORT_GAP),
       ),
     }
   }
@@ -96,7 +107,7 @@ export const AboutCertifications = () => {
 
       {activeCertification && previewPosition && (
         <div
-          className='pointer-events-none fixed z-100 hidden w-80 overflow-hidden rounded-2xl border border-white/18 bg-zinc-950/92 p-2 shadow-2xl shadow-zinc-950/30 backdrop-blur-md select-none md:block'
+          className='pointer-events-none fixed z-100 hidden w-72 overflow-hidden rounded-2xl border border-white/18 bg-zinc-950/92 p-2 shadow-2xl shadow-zinc-950/30 backdrop-blur-md select-none md:block'
           style={{
             left: previewPosition.x,
             top: previewPosition.y,
