@@ -72,8 +72,8 @@ export function AboutPage() {
           <div className='relative min-h-72 border-t border-white/10 bg-white/3 p-6 sm:p-8 lg:border-t-0 lg:border-l lg:p-10'>
             <div className='absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgb(14_165_233/0.16)_48%,transparent_100%)]' />
             <div className='relative flex h-full flex-col justify-end'>
-              <div className='font-mono text-[clamp(4rem,11vw,9rem)] leading-none font-semibold tracking-normal text-white/8 select-none'>
-                UI
+              <div className='about-type-rotator font-mono text-[clamp(3.4rem,8vw,7rem)] leading-none font-semibold tracking-normal text-white/12 select-none'>
+                <span />
               </div>
               <div className='mt-6 max-w-sm'>
                 <p className='text-sm font-semibold text-sky-200'>

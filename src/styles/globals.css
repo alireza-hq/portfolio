@@ -129,6 +129,130 @@ html.dark {
   animation: brand-caret 720ms step-end infinite;
 }
 
+@keyframes scroll-wheel {
+  0% {
+    opacity: 0;
+    transform: translateY(0);
+  }
+
+  30%,
+  60% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform: translateY(0.75rem);
+  }
+}
+
+.animate-scroll-wheel {
+  animation: scroll-wheel 1.35s ease-in-out infinite;
+}
+
+@keyframes about-type-word {
+  0%,
+  4% {
+    content: '';
+  }
+
+  5%,
+  9% {
+    content: 'S';
+  }
+
+  10%,
+  14% {
+    content: 'Sh';
+  }
+
+  15%,
+  24% {
+    content: 'Sharp';
+  }
+
+  25%,
+  29% {
+    content: 'Shar';
+  }
+
+  30%,
+  34% {
+    content: 'Sh';
+  }
+
+  35%,
+  39% {
+    content: '';
+  }
+
+  40%,
+  44% {
+    content: 'F';
+  }
+
+  45%,
+  49% {
+    content: 'Fa';
+  }
+
+  50%,
+  59% {
+    content: 'Fast';
+  }
+
+  60%,
+  64% {
+    content: 'Fa';
+  }
+
+  65%,
+  69% {
+    content: '';
+  }
+
+  70%,
+  74% {
+    content: 'U';
+  }
+
+  75%,
+  79% {
+    content: 'Us';
+  }
+
+  80%,
+  89% {
+    content: 'Useful';
+  }
+
+  90%,
+  94% {
+    content: 'Use';
+  }
+
+  95%,
+  100% {
+    content: '';
+  }
+}
+
+.about-type-rotator span::before {
+  content: '';
+  animation: about-type-word 8.4s steps(1, end) infinite;
+}
+
+.about-type-rotator span::after {
+  content: '';
+  display: inline-block;
+  width: 0.06em;
+  height: 0.8em;
+  margin-left: 0.08em;
+  background: currentColor;
+  vertical-align: -0.08em;
+  animation: brand-caret 720ms step-end infinite;
+}
+
 @keyframes background-aura {
   0%,
   100% {

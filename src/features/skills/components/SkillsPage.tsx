@@ -4,7 +4,6 @@ import { useEffect, useMemo, useState } from 'react'
 import {
   ArrowUpRight,
   BrainCircuit,
-  ChevronsDown,
   Compass,
   Layers3,
   MessagesSquare,
@@ -484,9 +483,8 @@ export function SkillsPage() {
         )}
         aria-hidden='true'
       >
-        <span className='relative grid h-8 w-8 place-items-center rounded-full bg-sky-500/10 text-sky-600 dark:bg-sky-300/10 dark:text-sky-200'>
-          <span className='absolute inset-0 animate-ping rounded-full bg-sky-500/18 dark:bg-sky-300/16' />
-          <ChevronsDown className='relative h-4 w-4 animate-bounce' />
+        <span className='grid h-8 w-5 justify-center rounded-full border-2 border-current pt-1.5 opacity-80'>
+          <span className='animate-scroll-wheel h-1.5 w-1 rounded-full bg-current' />
         </span>
         <span className='hidden sm:inline'>Scroll</span>
       </div>
