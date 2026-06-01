@@ -7,8 +7,8 @@ export function AppIntro() {
   const [isMounted, setIsMounted] = useState(true)
 
   useEffect(() => {
-    const leaveTimer = window.setTimeout(() => setIsLeaving(true), 1700)
-    const unmountTimer = window.setTimeout(() => setIsMounted(false), 2600)
+    const leaveTimer = window.setTimeout(() => setIsLeaving(true), 3000)
+    const unmountTimer = window.setTimeout(() => setIsMounted(false), 4050)
 
     return () => {
       window.clearTimeout(leaveTimer)

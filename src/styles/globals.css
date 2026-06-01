@@ -541,15 +541,15 @@ html.dark {
   align-items: center;
   gap: 0.5rem;
   opacity: 0;
-  animation: intro-terminal-line 1.4s ease forwards;
+  animation: intro-terminal-line 2.35s ease forwards;
 }
 
 .app-intro__terminal span:nth-child(2) {
-  animation-delay: 180ms;
+  animation-delay: 360ms;
 }
 
 .app-intro__terminal span:nth-child(3) {
-  animation-delay: 360ms;
+  animation-delay: 720ms;
 }
 
 .app-intro__terminal span::before {
@@ -614,7 +614,7 @@ html.dark {
   background: linear-gradient(90deg, #38bdf8, #ffffff);
   transform: scaleX(0);
   transform-origin: left;
-  animation: intro-progress 1.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: intro-progress 2.85s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes background-aura {
