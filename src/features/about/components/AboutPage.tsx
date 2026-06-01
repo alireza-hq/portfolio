@@ -73,7 +73,15 @@ export function AboutPage() {
             <div className='absolute inset-0 bg-[linear-gradient(135deg,transparent_0%,rgb(14_165_233/0.16)_48%,transparent_100%)]' />
             <div className='relative flex h-full flex-col justify-end'>
               <div className='about-type-rotator font-mono text-[clamp(3.4rem,8vw,7rem)] leading-none font-semibold tracking-normal text-white/12 select-none'>
-                <span />
+                <span className='about-type-word about-type-word--sharp'>
+                  Sharp
+                </span>
+                <span className='about-type-word about-type-word--fast'>
+                  Fast
+                </span>
+                <span className='about-type-word about-type-word--useful'>
+                  Useful
+                </span>
               </div>
               <div className='mt-6 max-w-sm'>
                 <p className='text-sm font-semibold text-sky-200'>

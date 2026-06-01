@@ -476,17 +476,16 @@ export function SkillsPage() {
     <main className='relative z-10 min-h-screen px-4 pt-32 pb-20 sm:px-6 lg:px-8'>
       <div
         className={cn(
-          'pointer-events-none fixed right-4 bottom-5 z-40 flex items-center gap-2 rounded-full border border-zinc-900/10 bg-white/78 px-3 py-2 text-xs font-semibold text-zinc-700 shadow-2xl shadow-zinc-900/10 backdrop-blur-xl transition duration-500 sm:right-6 sm:bottom-6 dark:border-white/10 dark:bg-zinc-950/72 dark:text-zinc-200 dark:shadow-black/30',
+          'pointer-events-none fixed bottom-7 left-1/2 z-[100] -translate-x-1/2 text-sky-600 transition duration-500 dark:text-sky-200',
           showScrollHint
-            ? 'translate-y-0 opacity-100'
+            ? 'translate-y-0 opacity-90'
             : 'translate-y-3 opacity-0',
         )}
         aria-hidden='true'
       >
-        <span className='grid h-8 w-5 justify-center rounded-full border-2 border-current pt-1.5 opacity-80'>
+        <span className='grid h-9 w-6 justify-center rounded-full border-2 border-current pt-1.5 drop-shadow-[0_0_20px_rgb(14_165_233/0.35)]'>
           <span className='animate-scroll-wheel h-1.5 w-1 rounded-full bg-current' />
         </span>
-        <span className='hidden sm:inline'>Scroll</span>
       </div>
       <section className='mx-auto w-full max-w-7xl'>
         <div className='grid gap-8 lg:grid-cols-[0.86fr_1.14fr] lg:items-end'>
