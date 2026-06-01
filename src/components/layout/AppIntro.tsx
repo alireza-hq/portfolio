@@ -24,9 +24,22 @@ export function AppIntro() {
       aria-hidden='true'
     >
       <div className='app-intro__panel'>
-        <p className='app-intro__eyebrow'>initializing portfolio</p>
-        <div className='app-intro__brand'>Welcome</div>
-        <div className='app-intro__progress' />
+        <div className='app-intro__orb'>
+          <span />
+          <span />
+          <span />
+        </div>
+
+        <div className='app-intro__content'>
+          <p className='app-intro__eyebrow'>portfolio interface</p>
+          <div className='app-intro__brand'>ALIREZA</div>
+          <div className='app-intro__terminal'>
+            <span>booting terminal</span>
+            <span>syncing stack</span>
+            <span>opening workspace</span>
+          </div>
+          <div className='app-intro__progress' />
+        </div>
       </div>
     </div>
   )

@@ -1,6 +1,6 @@
 'use client'
 
-import { Send } from 'lucide-react'
+import { Check, Clock, Send, ShieldCheck } from 'lucide-react'
 
 import { cn } from '@/lib/utils/cn'
 import { useContact } from '../hooks/useContact'
@@ -27,7 +27,7 @@ export const ContactForm = () => {
 
   return (
     <form
-      className='h-full rounded-4xl border border-zinc-900/10 bg-white/76 p-6 shadow-2xl shadow-zinc-900/8 backdrop-blur-md sm:p-8 dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/25'
+      className='flex h-full flex-col rounded-4xl border border-zinc-900/10 bg-white/76 p-6 shadow-2xl shadow-zinc-900/8 backdrop-blur-md sm:p-8 dark:border-white/10 dark:bg-zinc-950/70 dark:shadow-black/25'
       onSubmit={handleSubmit(onSubmit)}
       noValidate
     >
@@ -137,6 +137,23 @@ export const ContactForm = () => {
           <Send className='h-4 w-4' />
           {isSubmitting ? 'Sending...' : 'Send message'}
         </button>
+      </div>
+
+      <div className='mt-auto pt-6'>
+        <div className='grid gap-2 rounded-3xl border border-zinc-900/10 bg-zinc-50/80 p-3 text-sm text-zinc-600 sm:grid-cols-3 dark:border-white/10 dark:bg-white/5 dark:text-zinc-400'>
+          <span className='flex items-center gap-2'>
+            <Clock className='h-4 w-4 text-sky-600 dark:text-sky-300' />
+            Fast reply
+          </span>
+          <span className='flex items-center gap-2'>
+            <Check className='h-4 w-4 text-sky-600 dark:text-sky-300' />
+            Clear next step
+          </span>
+          <span className='flex items-center gap-2'>
+            <ShieldCheck className='h-4 w-4 text-sky-600 dark:text-sky-300' />
+            Details respected
+          </span>
+        </div>
       </div>
     </form>
   )
