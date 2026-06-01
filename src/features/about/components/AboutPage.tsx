@@ -1,6 +1,3 @@
-import { certifications } from '../data/certifications'
-import { education } from '../data/education'
-import { values } from '../data/values'
 import { AboutCertifications } from './AboutCertifications'
 import { AboutEducation } from './AboutEducation'
 import { AboutHero } from './AboutHero'
