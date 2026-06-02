@@ -3,28 +3,30 @@ import { ArrowUpRight } from 'lucide-react'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { MdOutlineMail } from 'react-icons/md'
 
+import { routes } from '@/lib/routes'
+
 const sitemap = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/skills', label: 'Skills' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/contact', label: 'Contact' },
+  { href: routes.home, label: 'Home' },
+  { href: routes.about, label: 'About' },
+  { href: routes.skills, label: 'Skills' },
+  { href: routes.projects, label: 'Projects' },
+  { href: routes.contact, label: 'Contact' },
 ]
 
 const contactLinks = [
   {
-    href: 'https://github.com/yourusername',
-    label: 'github.com/yourusername',
+    href: routes.social.github,
+    label: 'github.com/alireza-hq',
     icon: FaGithub,
   },
   {
-    href: 'https://linkedin.com/in/yourusername',
-    label: 'linkedin.com/in/yourusername',
+    href: routes.social.linkedin,
+    label: 'linkedin.com/in/alireza-hq-dev',
     icon: FaLinkedinIn,
   },
   {
-    href: 'mailto:your.email@example.com',
-    label: 'your.email@example.com',
+    href: routes.social.email,
+    label: 'alireza.h.dev@outlook.com',
     icon: MdOutlineMail,
   },
 ]

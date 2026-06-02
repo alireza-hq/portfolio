@@ -1,12 +1,14 @@
 import { TerminalCommand, CommandContext, CommandResult } from '../types'
+import { routes } from '@/lib/routes'
 
 const developer = {
   name: 'Alireza',
   role: 'React / Next.js Developer',
-  email: 'your.email@example.com',
-  github: 'https://github.com/yourusername',
-  linkedin: 'https://linkedin.com/in/yourusername',
-  resume: '/resume.pdf',
+  email: 'alireza.h.dev@outlook.com',
+  github: routes.social.github,
+  linkedin: routes.social.linkedin,
+  emailHref: routes.social.email,
+  resume: routes.resume,
 }
 
 const terminalProjects = [
@@ -14,7 +16,7 @@ const terminalProjects = [
     slug: 'portfolio-terminal',
     name: 'Portfolio Terminal',
     type: 'Interactive portfolio',
-    url: '/',
+    url: routes.home,
     github: developer.github,
     stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
     description:
@@ -29,7 +31,7 @@ const terminalProjects = [
     slug: 'commerce-dashboard',
     name: 'Commerce Dashboard',
     type: 'Full-stack app',
-    url: '/projects',
+    url: routes.projects,
     github: developer.github,
     stack: ['Next.js', 'Prisma', 'PostgreSQL', 'React Hook Form'],
     description:
@@ -44,7 +46,7 @@ const terminalProjects = [
     slug: 'ops-interface',
     name: 'Ops Interface',
     type: 'Internal tool',
-    url: '/projects',
+    url: routes.projects,
     github: developer.github,
     stack: ['TypeScript', 'REST APIs', 'Zod', 'Git'],
     description:
@@ -440,7 +442,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
             The skills page is now interactive: tabs, mission presets, icons,
             soft-skill modules, and live readouts.
           </p>
-          <a href='/skills' className={`mt-3 inline-block ${linkClass}`}>
+          <a href={routes.skills} className={`mt-3 inline-block ${linkClass}`}>
             Open skills page
           </a>
         </div>
@@ -515,11 +517,13 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       const project = findProject(args)
 
       if (project) return { type: 'external', url: project.url }
-      if (target === 'projects') return { type: 'external', url: '/projects' }
-      if (target === 'skills') return { type: 'external', url: '/skills' }
-      if (target === 'contact') return { type: 'external', url: '/contact' }
+      if (target === 'projects') {
+        return { type: 'external', url: routes.projects }
+      }
+      if (target === 'skills') return { type: 'external', url: routes.skills }
+      if (target === 'contact') return { type: 'external', url: routes.contact }
       if (target === 'home' || target === 'portfolio') {
-        return { type: 'external', url: '/' }
+        return { type: 'external', url: routes.home }
       }
 
       return {
@@ -635,7 +639,7 @@ export const commandRegistry: Record<string, TerminalCommand> = {
           </p>
           <p>
             Email:{' '}
-            <a className={linkClass} href={`mailto:${developer.email}`}>
+            <a className={linkClass} href={developer.emailHref}>
               {developer.email}
             </a>
           </p>

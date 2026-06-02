@@ -1,5 +1,7 @@
 import { Boxes, LayoutDashboard, TerminalSquare } from 'lucide-react'
 
+import { routes } from '@/lib/routes'
+
 import type { Project, ProjectFilter } from '../types'
 
 export const projectFilters: ProjectFilter[] = [
@@ -19,8 +21,8 @@ export const projects: Project[] = [
     statusLabels: ['Live', 'Interactive'],
     icon: TerminalSquare,
     image: '/projects/portfolio.png',
-    liveUrl: '/',
-    githubUrl: 'https://github.com/yourusername',
+    liveUrl: routes.home,
+    githubUrl: routes.social.github,
     description:
       'A terminal-first developer portfolio built to feel like an interactive workspace instead of a static personal website.',
     stack: [
@@ -112,8 +114,8 @@ export const projects: Project[] = [
     statusLabels: ['In development', 'Case study'],
     icon: LayoutDashboard,
     image: '/projects/e-commerce.png',
-    liveUrl: '#',
-    githubUrl: 'https://github.com/yourusername',
+    liveUrl: routes.unavailable,
+    githubUrl: routes.social.github,
     description:
       'A production-style e-commerce application with customer-facing shopping flows and admin-side management tools.',
     stack: [
@@ -215,8 +217,8 @@ export const projects: Project[] = [
     statusLabels: ['Internal tool', 'Real-world dashboard app'],
     icon: Boxes,
     image: '/projects/internal-panel.png',
-    liveUrl: '#',
-    githubUrl: 'https://github.com/yourusername',
+    liveUrl: routes.unavailable,
+    githubUrl: routes.social.github,
     description:
       'An internal dashboard for operational workflows, user management, tickets, roles, contact lists, forms, and monitoring.',
     stack: [

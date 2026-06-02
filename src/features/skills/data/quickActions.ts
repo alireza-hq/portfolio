@@ -1,20 +1,22 @@
+import { routes } from '@/lib/routes'
+
 import type { QuickAction } from '../types'
 
 export const quickActions: QuickAction[] = [
   {
     label: 'Review build recipe',
-    href: '#build-recipe',
+    href: routes.skillsAnchors.buildRecipe,
   },
   {
     label: 'Open stack inspector',
-    href: '#stack-inspector',
+    href: routes.skillsAnchors.stackInspector,
   },
   {
     label: 'Tune soft-skill modules',
-    href: '#soft-skills',
+    href: routes.skillsAnchors.softSkills,
   },
   {
     label: 'Use the terminal',
-    href: '#terminal-shortcut',
+    href: routes.skillsAnchors.terminalShortcut,
   },
 ]

@@ -2,6 +2,8 @@ import type { ComponentType } from 'react'
 import { Mail } from 'lucide-react'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 
+import { routes } from '@/lib/routes'
+
 export type ContactChannel = {
   label: string
   href: string
@@ -14,7 +16,7 @@ export type ContactChannel = {
 export const channels: ContactChannel[] = [
   {
     label: 'GitHub',
-    href: 'https://github.com/alireza-hq',
+    href: routes.social.github,
     value: 'Code, projects & experiments',
     icon: FaGithub,
     status: 'Best for code, repos, and proof of work.',
@@ -22,7 +24,7 @@ export const channels: ContactChannel[] = [
   },
   {
     label: 'LinkedIn',
-    href: 'https://www.linkedin.com/in/alireza-hq-dev/',
+    href: routes.social.linkedin,
     value: 'Professional profile & experience',
     icon: FaLinkedinIn,
     status: 'Best for roles, contracts, and quick intros.',
@@ -30,7 +32,7 @@ export const channels: ContactChannel[] = [
   },
   {
     label: 'Email',
-    href: 'mailto:alireza.h.dev@outlook.com',
+    href: routes.social.email,
     value: 'Direct communication',
     icon: Mail,
     status: 'Best for detailed scope and async planning.',

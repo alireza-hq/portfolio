@@ -4,14 +4,15 @@ import Link from 'next/link'
 import { Download, Moon, Sun } from 'lucide-react'
 import { useTheme } from 'next-themes'
 import { usePathname } from 'next/navigation'
-import { cn } from '@/lib/utils'
+import { routes } from '@/lib/routes'
+import { cn } from '@/lib/utils/cn'
 
 const navLinks = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/skills', label: 'Skills' },
-  { href: '/projects', label: 'Projects' },
-  { href: '/contact', label: 'Contact' },
+  { href: routes.home, label: 'Home' },
+  { href: routes.about, label: 'About' },
+  { href: routes.skills, label: 'Skills' },
+  { href: routes.projects, label: 'Projects' },
+  { href: routes.contact, label: 'Contact' },
 ]
 
 function ThemeToggle() {
@@ -41,7 +42,7 @@ export function Navbar() {
         aria-label='Primary navigation'
       >
         <Link
-          href='/'
+          href={routes.home}
           className='brand-type-link rounded-full px-3 py-2 font-mono text-xs font-semibold tracking-widest text-zinc-800 uppercase transition hover:text-sky-700 focus-visible:ring-1 focus-visible:ring-sky-500/60 focus-visible:outline-none dark:text-zinc-100 dark:hover:text-sky-200'
           aria-label='Go home'
         >
@@ -81,7 +82,7 @@ export function Navbar() {
 
         <div className='flex shrink-0 items-center justify-end gap-1'>
           <Link
-            href='/resume.pdf'
+            href={routes.resume}
             download
             className='hidden items-center gap-2 rounded-full border border-zinc-900/10 bg-zinc-950 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-zinc-900/10 transition duration-200 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:outline-none md:inline-flex dark:border-white/10 dark:bg-white/8 dark:text-zinc-100 dark:shadow-inner dark:shadow-white/5 dark:hover:border-sky-300/30 dark:hover:bg-sky-400/10 dark:hover:text-white'
           >
