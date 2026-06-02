@@ -2,12 +2,12 @@ export const certifications = [
   {
     title: 'Project-Oriented React Development',
     issuer: 'Quera',
-    image: '/professional-react.jpg',
+    image: '/certifications/professional-react.jpg',
   },
   {
     title: 'Advanced Python Programming',
     issuer: 'Quera',
-    image: '/advanced-python.jpg',
+    image: '/certifications/advanced-python.jpg',
   },
 ] as const
 
