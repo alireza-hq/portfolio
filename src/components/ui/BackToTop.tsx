@@ -1,14 +1,23 @@
 'use client'
 
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 import { cn } from '@/lib/utils/cn'
 
 const scrollThreshold = 500
+const minScrollDuration = 1200
+const maxScrollDuration = 2200
+
+function easeInOutCubic(progress: number) {
+  return progress < 0.5
+    ? 4 * progress * progress * progress
+    : 1 - Math.pow(-2 * progress + 2, 3) / 2
+}
 
 export function BackToTop() {
   const [isVisible, setIsVisible] = useState(false)
   const [isReturning, setIsReturning] = useState(false)
+  const animationFrameRef = useRef<number | null>(null)
 
   useEffect(() => {
     function handleScroll() {
@@ -18,24 +27,58 @@ export function BackToTop() {
     handleScroll()
     window.addEventListener('scroll', handleScroll, { passive: true })
 
-    return () => window.removeEventListener('scroll', handleScroll)
+    return () => {
+      window.removeEventListener('scroll', handleScroll)
+
+      if (animationFrameRef.current) {
+        window.cancelAnimationFrame(animationFrameRef.current)
+      }
+    }
   }, [])
 
   function returnToTop() {
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches
+    const startY = window.scrollY
+
+    if (animationFrameRef.current) {
+      window.cancelAnimationFrame(animationFrameRef.current)
+    }
 
     setIsReturning(true)
-    window.scrollTo({
-      top: 0,
-      behavior: prefersReducedMotion ? 'auto' : 'smooth',
-    })
 
-    window.setTimeout(
-      () => setIsReturning(false),
-      prefersReducedMotion ? 250 : 950,
+    if (prefersReducedMotion || startY === 0) {
+      window.scrollTo({ top: 0, behavior: 'auto' })
+      window.setTimeout(() => setIsReturning(false), 250)
+      return
+    }
+
+    const duration = Math.min(
+      maxScrollDuration,
+      Math.max(minScrollDuration, startY * 0.9),
     )
+    const startTime = performance.now()
+
+    function scrollStep(currentTime: number) {
+      const elapsed = currentTime - startTime
+      const progress = Math.min(elapsed / duration, 1)
+      const easedProgress = easeInOutCubic(progress)
+
+      window.scrollTo(0, Math.round(startY * (1 - easedProgress)))
+
+      if (progress < 1) {
+        animationFrameRef.current = window.requestAnimationFrame(scrollStep)
+        return
+      }
+
+      animationFrameRef.current = null
+      setIsReturning(false)
+    }
+
+    animationFrameRef.current = window.requestAnimationFrame(scrollStep)
+
+    window.setTimeout(() => setIsReturning(false), duration + 150)
   }
 
   return (
