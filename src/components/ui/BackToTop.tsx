@@ -5,13 +5,16 @@ import { useEffect, useRef, useState } from 'react'
 import { cn } from '@/lib/utils/cn'
 
 const scrollThreshold = 500
-const minScrollDuration = 1200
-const maxScrollDuration = 2200
+const minScrollDuration = 2200
+const maxScrollDuration = 5200
 
-function easeInOutCubic(progress: number) {
-  return progress < 0.5
-    ? 4 * progress * progress * progress
-    : 1 - Math.pow(-2 * progress + 2, 3) / 2
+function easeOutCubic(progress: number) {
+  return 1 - Math.pow(1 - progress, 3)
+}
+
+function setPageScrollTop(value: number) {
+  document.documentElement.scrollTop = value
+  document.body.scrollTop = value
 }
 
 export function BackToTop() {
@@ -40,11 +43,11 @@ export function BackToTop() {
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches
-    const scrollingElement =
-      document.scrollingElement ?? document.documentElement
     const rootElement = document.documentElement
-    const previousScrollBehavior = rootElement.style.scrollBehavior
-    const startY = scrollingElement.scrollTop
+    const bodyElement = document.body
+    const previousRootScrollBehavior = rootElement.style.scrollBehavior
+    const previousBodyScrollBehavior = bodyElement.style.scrollBehavior
+    const startY = window.scrollY
 
     if (animationFrameRef.current) {
       window.cancelAnimationFrame(animationFrameRef.current)
@@ -53,25 +56,27 @@ export function BackToTop() {
     setIsReturning(true)
 
     if (prefersReducedMotion || startY === 0) {
-      scrollingElement.scrollTop = 0
+      setPageScrollTop(0)
       window.setTimeout(() => setIsReturning(false), 250)
       return
     }
 
     rootElement.style.scrollBehavior = 'auto'
+    bodyElement.style.scrollBehavior = 'auto'
 
     const duration = Math.min(
       maxScrollDuration,
-      Math.max(minScrollDuration, startY * 0.9),
+      Math.max(minScrollDuration, startY * 1.15),
     )
     const startTime = performance.now()
 
     function scrollStep(currentTime: number) {
       const elapsed = currentTime - startTime
       const progress = Math.min(elapsed / duration, 1)
-      const easedProgress = easeInOutCubic(progress)
+      const easedProgress = easeOutCubic(progress)
+      const nextY = Math.max(0, Math.round(startY * (1 - easedProgress)))
 
-      scrollingElement.scrollTop = Math.round(startY * (1 - easedProgress))
+      setPageScrollTop(nextY)
 
       if (progress < 1) {
         animationFrameRef.current = window.requestAnimationFrame(scrollStep)
@@ -79,15 +84,17 @@ export function BackToTop() {
       }
 
       animationFrameRef.current = null
-      scrollingElement.scrollTop = 0
-      rootElement.style.scrollBehavior = previousScrollBehavior
+      setPageScrollTop(0)
+      rootElement.style.scrollBehavior = previousRootScrollBehavior
+      bodyElement.style.scrollBehavior = previousBodyScrollBehavior
       setIsReturning(false)
     }
 
     animationFrameRef.current = window.requestAnimationFrame(scrollStep)
 
     window.setTimeout(() => {
-      rootElement.style.scrollBehavior = previousScrollBehavior
+      rootElement.style.scrollBehavior = previousRootScrollBehavior
+      bodyElement.style.scrollBehavior = previousBodyScrollBehavior
       setIsReturning(false)
     }, duration + 150)
   }
