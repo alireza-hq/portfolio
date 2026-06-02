@@ -40,7 +40,11 @@ export function BackToTop() {
     const prefersReducedMotion = window.matchMedia(
       '(prefers-reduced-motion: reduce)',
     ).matches
-    const startY = window.scrollY
+    const scrollingElement =
+      document.scrollingElement ?? document.documentElement
+    const rootElement = document.documentElement
+    const previousScrollBehavior = rootElement.style.scrollBehavior
+    const startY = scrollingElement.scrollTop
 
     if (animationFrameRef.current) {
       window.cancelAnimationFrame(animationFrameRef.current)
@@ -49,10 +53,12 @@ export function BackToTop() {
     setIsReturning(true)
 
     if (prefersReducedMotion || startY === 0) {
-      window.scrollTo({ top: 0, behavior: 'auto' })
+      scrollingElement.scrollTop = 0
       window.setTimeout(() => setIsReturning(false), 250)
       return
     }
+
+    rootElement.style.scrollBehavior = 'auto'
 
     const duration = Math.min(
       maxScrollDuration,
@@ -65,7 +71,7 @@ export function BackToTop() {
       const progress = Math.min(elapsed / duration, 1)
       const easedProgress = easeInOutCubic(progress)
 
-      window.scrollTo(0, Math.round(startY * (1 - easedProgress)))
+      scrollingElement.scrollTop = Math.round(startY * (1 - easedProgress))
 
       if (progress < 1) {
         animationFrameRef.current = window.requestAnimationFrame(scrollStep)
@@ -73,12 +79,17 @@ export function BackToTop() {
       }
 
       animationFrameRef.current = null
+      scrollingElement.scrollTop = 0
+      rootElement.style.scrollBehavior = previousScrollBehavior
       setIsReturning(false)
     }
 
     animationFrameRef.current = window.requestAnimationFrame(scrollStep)
 
-    window.setTimeout(() => setIsReturning(false), duration + 150)
+    window.setTimeout(() => {
+      rootElement.style.scrollBehavior = previousScrollBehavior
+      setIsReturning(false)
+    }, duration + 150)
   }
 
   return (
