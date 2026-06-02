@@ -7,6 +7,7 @@ import { ThemeProvider } from '@/components/providers/ThemeProvider'
 import { Footer } from '@/components/layout/Footer'
 import { CustomCursor } from '@/components/layout/CustomCursor'
 import { AppIntro } from '@/components/layout/AppIntro'
+import { BackToTop } from '@/components/ui/BackToTop'
 
 const geistSans = Geist({
   variable: '--font-geist-sans',
@@ -43,6 +44,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <BackToTop />
         </ThemeProvider>
       </body>
     </html>
