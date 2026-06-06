@@ -9,8 +9,14 @@ import { ContactSubmitBar } from './ContactSubmitBar'
 import { useContact } from '../hooks/useContact'
 
 export const ContactForm = () => {
-  const { register, handleSubmit, onSubmit, errors, isSubmitting } =
-    useContact()
+  const {
+    register,
+    handleSubmit,
+    onSubmit,
+    errors,
+    isSubmitting,
+    submitMessage,
+  } = useContact()
 
   return (
     <form
@@ -48,7 +54,10 @@ export const ContactForm = () => {
         registration={register('message')}
       />
 
-      <ContactSubmitBar isSubmitting={isSubmitting} />
+      <ContactSubmitBar
+        isSubmitting={isSubmitting}
+        submitMessage={submitMessage}
+      />
     </form>
   )
 }

@@ -336,6 +336,7 @@ function uninstallCoffee() {
 
 function CoffeeProgress() {
   const [progress, setProgress] = useState(0)
+  const isComplete = progress === 100
 
   useEffect(() => {
     const startedAt = performance.now()
@@ -347,7 +348,11 @@ function CoffeeProgress() {
         Math.round(((now - startedAt) / 5000) * 100),
       )
       setProgress(nextProgress)
-      if (nextProgress < 100) frame = requestAnimationFrame(update)
+      if (nextProgress < 100) {
+        frame = requestAnimationFrame(update)
+      } else {
+        installCoffee()
+      }
     }
 
     frame = requestAnimationFrame(update)
@@ -355,40 +360,33 @@ function CoffeeProgress() {
   }, [])
 
   return (
-    <div className='grid gap-1 font-mono text-sm text-zinc-700 dark:text-zinc-300'>
+    <div className='grid gap-2 font-mono text-sm text-zinc-700 dark:text-zinc-300'>
       <p>Installing coffee... {progress}%</p>
-      <span className='relative inline-block'>
-        <span className='text-zinc-300 dark:text-zinc-700'>
-          ████████████████
-        </span>
+      <span className='h-2 w-full max-w-xs overflow-hidden rounded-sm bg-zinc-300 dark:bg-zinc-700'>
         <span
-          className='absolute inset-0 overflow-hidden text-sky-600 dark:text-sky-300'
-          style={{ clipPath: `inset(0 ${100 - progress}% 0 0)` }}
-        >
-          ████████████████
-        </span>
+          className='block h-full bg-sky-600 dark:bg-sky-300'
+          style={{ width: `${progress}%` }}
+        />
       </span>
+      {isComplete ? (
+        <DefinitionList
+          rows={[
+            ['Status', 'Installed'],
+            ['Version', 'Fresh'],
+            ['Role', 'Runtime dependency for late-night debugging sessions.'],
+            [
+              'Warning',
+              'Removing this package may reduce developer performance.',
+            ],
+          ]}
+        />
+      ) : null}
     </div>
   )
 }
 
 function renderCoffeeInstall() {
-  return (
-    <div className='grid gap-2'>
-      <CoffeeProgress />
-      <DefinitionList
-        rows={[
-          ['Status', 'Installed'],
-          ['Version', 'Fresh'],
-          ['Role', 'Runtime dependency for late-night debugging sessions.'],
-          [
-            'Warning',
-            'Removing this package may reduce developer performance.',
-          ],
-        ]}
-      />
-    </div>
-  )
+  return <CoffeeProgress />
 }
 
 function renderCoffeeActive() {
@@ -732,7 +730,6 @@ const commandRegistry: Record<string, TerminalCommand> = {
         return { type: 'output', content: renderCoffeeActive() }
       }
 
-      installCoffee()
       return { type: 'output', content: renderCoffeeInstall() }
     },
   },
