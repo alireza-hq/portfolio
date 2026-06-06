@@ -1,12 +1,13 @@
 'use client'
 
-import { useCallback, useEffect, useRef, useState } from 'react'
 import { useTheme } from 'next-themes'
-import { useTerminal } from '@/features/terminal/hooks/useTerminal'
-import { cn } from '@/lib/utils'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
-import { TerminalOutput } from './TerminalOutput'
+import { useTerminal } from '@/features/terminal/hooks/useTerminal'
+import { cn } from '@/lib/utils/cn'
+
 import { TerminalInput } from './TerminalInput'
+import { TerminalOutput } from './TerminalOutput'
 
 const BOOT_LINES = [
   'alireza v1.0.0',
