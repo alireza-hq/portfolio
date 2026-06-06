@@ -13,7 +13,6 @@ export type StackItem = {
   name: string
   icon: IconType
   comfort: ComfortLabel
-  fitScore: number
   tone: string
   use: string
 }
@@ -40,9 +39,4 @@ export type SoftSkill = {
   label: string
   icon: ComponentType<{ className?: string }>
   signal: string
-}
-
-export type QuickAction = {
-  label: string
-  href: string
 }

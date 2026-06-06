@@ -29,10 +29,6 @@ export function useSkillsWorkspace() {
     [],
   )
 
-  const workspaceScore = Math.round(
-    (previewTool.fitScore + activeMission.result.length + stackCount) / 3,
-  )
-
   function selectCategory(category: StackCategory) {
     setActiveCategoryId(category.id)
     setLockedToolName(category.items[0].name)
@@ -74,7 +70,6 @@ export function useSkillsWorkspace() {
     previewToolCandidate,
     selectSoftSkill,
     stackCount,
-    workspaceScore,
   }
 }
 

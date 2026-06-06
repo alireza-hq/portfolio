@@ -3,13 +3,11 @@ import type { SoftSkill, StackItem } from '../types'
 type LiveReadoutProps = {
   activeSoftSkill: SoftSkill
   activeStack: StackItem
-  workspaceScore: number
 }
 
 export function LiveReadout({
   activeSoftSkill,
   activeStack,
-  workspaceScore,
 }: LiveReadoutProps) {
   const ActiveIcon = activeSoftSkill.icon
   const commandTool = activeStack.name.toLowerCase().replaceAll(' ', '-')
@@ -27,19 +25,10 @@ export function LiveReadout({
           />
         </div>
         <div>
-          <div className='flex items-start justify-between gap-4'>
-            <div>
-              <h2 className='text-3xl font-semibold'>
-                {activeSoftSkill.label}
-              </h2>
-              <p className='mt-3 leading-7 text-zinc-600 dark:text-zinc-400'>
-                {activeSoftSkill.signal}
-              </p>
-            </div>
-            <span className='font-mono text-3xl font-semibold text-sky-600 dark:text-sky-200'>
-              {workspaceScore}
-            </span>
-          </div>
+          <h2 className='text-3xl font-semibold'>{activeSoftSkill.label}</h2>
+          <p className='mt-3 leading-7 text-zinc-600 dark:text-zinc-400'>
+            {activeSoftSkill.signal}
+          </p>
           <div className='mt-5 grid gap-2 font-mono text-sm text-zinc-500 dark:text-zinc-400'>
             <p>
               <span className='text-sky-600 dark:text-sky-300'>$</span> combine{' '}

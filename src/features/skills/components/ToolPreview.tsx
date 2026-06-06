@@ -49,10 +49,6 @@ export function ToolPreview({ activeMission, tool }: ToolPreviewProps) {
 
       <div className='mt-6 grid gap-2 font-mono text-sm text-zinc-500 dark:text-zinc-400'>
         <p>
-          <span className='text-sky-600 dark:text-sky-300'>$</span> fit-score{' '}
-          {tool.fitScore}
-        </p>
-        <p>
           <span className='text-sky-600 dark:text-sky-300'>$</span> related{' '}
           {activeMission.command}
         </p>

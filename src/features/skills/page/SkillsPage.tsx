@@ -8,12 +8,7 @@ import { SkillsHero } from '../components/SkillsHero'
 import { SkillsScrollHint } from '../components/SkillsScrollHint'
 import { SoftSkillModules } from '../components/SoftSkillModules'
 import { StackInspector } from '../components/StackInspector'
-import {
-  missions,
-  quickActions,
-  softSkills,
-  stackCategories,
-} from '../data/skills'
+import { missions, softSkills, stackCategories } from '../data/skills'
 import { useSkillsScrollHint } from '../hooks/useSkillsScrollHint'
 import { useSkillsWorkspace } from '../hooks/useSkillsWorkspace'
 
@@ -35,7 +30,6 @@ export function SkillsPage() {
             missions={missions}
             onMissionSelect={workspace.runMission}
             stackCount={workspace.stackCount}
-            workspaceScore={workspace.workspaceScore}
           />
         </div>
 
@@ -59,7 +53,6 @@ export function SkillsPage() {
           <LiveReadout
             activeSoftSkill={workspace.activeSoftSkill}
             activeStack={workspace.previewTool}
-            workspaceScore={workspace.workspaceScore}
           />
         </section>
 
@@ -69,7 +62,7 @@ export function SkillsPage() {
             activeSoftSkill={workspace.activeSoftSkill}
             activeStack={workspace.previewTool}
           />
-          <QuickActions actions={quickActions} />
+          <QuickActions />
         </div>
       </section>
     </main>

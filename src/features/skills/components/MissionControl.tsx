@@ -9,7 +9,6 @@ type MissionControlProps = {
   missions: Mission[]
   onMissionSelect: (mission: Mission) => void
   stackCount: number
-  workspaceScore: number
 }
 
 export function MissionControl({
@@ -19,7 +18,6 @@ export function MissionControl({
   missions,
   onMissionSelect,
   stackCount,
-  workspaceScore,
 }: MissionControlProps) {
   return (
     <section className='rounded-4xl border border-zinc-900/10 bg-white/75 p-5 text-zinc-950 shadow-2xl shadow-zinc-900/8 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-black/25'>
@@ -34,8 +32,8 @@ export function MissionControl({
             and build recipe together.
           </p>
         </div>
-        <span className='rounded-2xl border border-sky-500/20 bg-sky-500/10 px-3 py-2 font-mono text-2xl font-semibold text-sky-700 dark:border-sky-300/20 dark:bg-sky-300/10 dark:text-sky-200'>
-          {workspaceScore}
+        <span className='rounded-full border border-sky-500/20 bg-sky-500/10 px-3 py-1.5 font-mono text-xs font-semibold text-sky-700 dark:border-sky-300/20 dark:bg-sky-300/10 dark:text-sky-200'>
+          {activeStack.comfort}
         </span>
       </div>
 
