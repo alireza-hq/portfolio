@@ -164,8 +164,7 @@ const cardClass =
 const labelClass =
   'font-mono text-xs font-semibold text-sky-600 dark:text-sky-300'
 const mutedClass = 'text-zinc-600 dark:text-zinc-400'
-const linkClass =
-  'font-semibold text-sky-600 hover:underline focus-visible:ring-1 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:text-sky-400'
+const linkClass = 'font-semibold text-sky-600 hover:underline dark:text-sky-400'
 
 function normalizeArgs(args: string[]) {
   return args.join(' ').trim().toLowerCase()
@@ -265,7 +264,7 @@ function renderProjects() {
           key={project.aliases[0]}
           type='button'
           onClick={() => window.location.assign(routes.projects)}
-          className={`${cardClass} group text-left transition hover:-translate-y-0.5 hover:border-sky-400/40 focus-visible:ring-1 focus-visible:ring-sky-400/70 focus-visible:outline-none`}
+          className={`${cardClass} group text-left transition hover:-translate-y-0.5 hover:border-sky-400/40`}
         >
           <p className='font-mono text-xs text-sky-600 dark:text-sky-300'>
             {index + 1}. {project.type}
@@ -300,7 +299,7 @@ function renderContact() {
             href={href}
             target={href.startsWith('http') ? '_blank' : undefined}
             rel={href.startsWith('http') ? 'noreferrer' : undefined}
-            className={`${cardClass} group flex items-center justify-between gap-4 transition hover:border-sky-400/40 focus-visible:ring-1 focus-visible:ring-sky-400/70 focus-visible:outline-none`}
+            className={`${cardClass} group flex items-center justify-between gap-4 transition hover:border-sky-400/40`}
           >
             <span>
               <span className={labelClass}>{channel.command}</span>

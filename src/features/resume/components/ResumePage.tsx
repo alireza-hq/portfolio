@@ -22,7 +22,7 @@ export function ResumePage() {
               href={routes.resumeFile}
               target='_blank'
               rel='noreferrer'
-              className='inline-flex items-center gap-2 rounded-full border border-zinc-900/10 bg-white/75 px-4 py-2.5 text-sm font-semibold text-zinc-800 transition hover:border-sky-400/45 hover:text-sky-700 focus-visible:ring-1 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:border-white/10 dark:bg-white/7 dark:text-zinc-100 dark:hover:text-sky-200'
+              className='inline-flex items-center gap-2 rounded-full border border-zinc-900/10 bg-white/75 px-4 py-2.5 text-sm font-semibold text-zinc-800 transition hover:border-sky-400/45 hover:text-sky-700 dark:border-white/10 dark:bg-white/7 dark:text-zinc-100 dark:hover:text-sky-200'
             >
               <ExternalLink className='h-4 w-4' />
               Open PDF
@@ -30,7 +30,7 @@ export function ResumePage() {
             <a
               href={routes.resumeFile}
               download
-              className='inline-flex items-center gap-2 rounded-full bg-zinc-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-sky-700 focus-visible:ring-1 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
+              className='inline-flex items-center gap-2 rounded-full bg-zinc-950 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-sky-700 dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
             >
               <Download className='h-4 w-4' />
               Download

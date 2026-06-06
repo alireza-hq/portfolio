@@ -23,7 +23,7 @@ function ThemeToggle() {
     <button
       type='button'
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className='grid h-9.5 w-9.5 cursor-pointer place-items-center rounded-full border border-zinc-900/10 bg-white/55 text-zinc-700 shadow-inner shadow-white/70 transition duration-200 hover:border-sky-500/30 hover:bg-sky-50 hover:text-zinc-950 focus-visible:ring-1 focus-visible:ring-sky-500/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:shadow-white/5 dark:hover:bg-sky-400/10 dark:hover:text-white'
+      className='grid h-9.5 w-9.5 cursor-pointer place-items-center rounded-full border border-zinc-900/10 bg-white/55 text-zinc-700 shadow-inner shadow-white/70 transition duration-200 hover:border-sky-500/30 hover:bg-sky-50 hover:text-zinc-950 dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:shadow-white/5 dark:hover:bg-sky-400/10 dark:hover:text-white'
       aria-label='Toggle color theme'
       title='Toggle color theme'
     >
@@ -44,7 +44,7 @@ export function Navbar() {
       >
         <Link
           href={routes.home}
-          className='brand-type-link rounded-full px-3 py-2 font-mono text-xs font-semibold tracking-widest text-zinc-800 uppercase transition hover:text-sky-700 focus-visible:ring-1 focus-visible:ring-sky-500/60 focus-visible:outline-none dark:text-zinc-100 dark:hover:text-sky-200'
+          className='brand-type-link rounded-full px-3 py-2 font-mono text-xs font-semibold tracking-widest text-zinc-800 uppercase transition hover:text-sky-700 dark:text-zinc-100 dark:hover:text-sky-200'
           aria-label='Go home'
         >
           <span className='brand-type' aria-hidden='true' />
@@ -60,7 +60,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={cn(
-                  'group relative shrink-0 rounded-full px-3 py-2 text-sm font-medium transition duration-200 focus-visible:ring-1 focus-visible:ring-sky-500/60 focus-visible:outline-none sm:px-4',
+                  'group relative shrink-0 rounded-full px-3 py-2 text-sm font-medium transition duration-200 sm:px-4',
                   'text-zinc-600 hover:bg-zinc-950/5 hover:text-zinc-950',
                   'dark:text-zinc-300 dark:hover:bg-sky-400/10 dark:hover:text-white',
                   isActive &&
@@ -84,7 +84,7 @@ export function Navbar() {
         <div className='flex shrink-0 items-center justify-end gap-1'>
           <Link
             href={routes.resume}
-            className='hidden items-center gap-2 rounded-full border border-zinc-900/10 bg-zinc-950/85 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-zinc-900/10 backdrop-blur-xl transition duration-200 hover:border-sky-400/45 hover:bg-sky-100 hover:text-sky-800 hover:shadow-[0_8px_24px_rgb(14_165_233/0.14)] focus-visible:ring-1 focus-visible:ring-sky-500/60 focus-visible:outline-none md:inline-flex dark:border-white/12 dark:bg-white/8 dark:text-white dark:hover:border-sky-300/35 dark:hover:bg-sky-400/15 dark:hover:text-sky-200'
+            className='hidden items-center gap-2 rounded-full border border-zinc-900/10 bg-zinc-950/85 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-zinc-900/10 backdrop-blur-xl transition duration-200 hover:border-sky-400/45 hover:bg-sky-100 hover:text-sky-800 hover:shadow-[0_8px_24px_rgb(14_165_233/0.14)] md:inline-flex dark:border-white/12 dark:bg-white/8 dark:text-white dark:hover:border-sky-300/35 dark:hover:bg-sky-400/15 dark:hover:text-sky-200'
           >
             <FileText className='h-4 w-4' />
             Resume

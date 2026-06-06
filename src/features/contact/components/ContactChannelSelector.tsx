@@ -47,7 +47,7 @@ function ContactChannelButton({
       type='button'
       onClick={() => onSelect(channel)}
       className={cn(
-        'group flex items-center justify-between gap-3 rounded-2xl border px-3 py-2.5 text-left transition focus-visible:ring-1 focus-visible:ring-sky-300/70 focus-visible:outline-none',
+        'group flex items-center justify-between gap-3 rounded-2xl border px-3 py-2.5 text-left transition',
         isActive
           ? 'border-sky-500/35 bg-sky-500/10 dark:border-sky-200/30 dark:bg-sky-300/12'
           : 'border-zinc-900/10 bg-white/70 hover:border-sky-400/30 hover:bg-white dark:border-white/10 dark:bg-white/6 dark:hover:border-white/20 dark:hover:bg-white/9',

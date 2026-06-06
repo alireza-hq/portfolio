@@ -47,7 +47,7 @@ export function SoftSkillModules({
               onFocus={() => onSoftSkillSelect(skill)}
               onClick={() => onSoftSkillSelect(skill)}
               className={cn(
-                'group rounded-3xl border p-4 text-left transition focus-visible:ring-1 focus-visible:ring-sky-400/60 focus-visible:outline-none active:scale-95',
+                'group rounded-3xl border p-4 text-left transition active:scale-95',
                 isActive
                   ? 'border-sky-400/45 bg-sky-500/10 text-sky-700 dark:bg-sky-400/12 dark:text-sky-200'
                   : 'border-zinc-900/10 bg-zinc-50/80 text-zinc-700 hover:-translate-y-0.5 hover:border-sky-400/35 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300',

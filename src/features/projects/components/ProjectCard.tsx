@@ -17,7 +17,7 @@ export function ProjectCard({ project, isActive, onSelect }: ProjectCardProps) {
       type='button'
       onClick={() => onSelect(project)}
       className={cn(
-        'group rounded-[2rem] border bg-white/70 p-3 text-left shadow-xl shadow-zinc-900/5 backdrop-blur-xl transition focus-visible:ring-1 focus-visible:ring-sky-400/70 focus-visible:outline-none active:scale-[0.99] dark:border-white/10 dark:bg-white/6 dark:shadow-black/20',
+        'group rounded-[2rem] border bg-white/70 p-3 text-left shadow-xl shadow-zinc-900/5 backdrop-blur-xl transition active:scale-[0.99] dark:border-white/10 dark:bg-white/6 dark:shadow-black/20',
         isActive
           ? 'border-sky-400/45'
           : 'border-zinc-900/10 hover:-translate-y-0.5 hover:border-sky-400/35',

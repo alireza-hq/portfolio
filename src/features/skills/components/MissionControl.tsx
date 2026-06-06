@@ -44,7 +44,7 @@ export function MissionControl({
             type='button'
             onClick={() => onMissionSelect(mission)}
             className={cn(
-              'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition focus-visible:ring-1 focus-visible:ring-sky-300/70 focus-visible:outline-none active:scale-95',
+              'shrink-0 rounded-full border px-4 py-2 text-sm font-semibold transition active:scale-95',
               activeMission.id === mission.id
                 ? 'border-sky-500/35 bg-sky-500/10 text-sky-700 dark:border-cyan-300/45 dark:bg-cyan-300/12 dark:text-cyan-100'
                 : 'border-zinc-900/10 bg-zinc-50/80 text-zinc-600 hover:border-sky-400/35 hover:text-zinc-950 dark:border-white/10 dark:bg-white/5 dark:text-zinc-300 dark:hover:border-cyan-300/30 dark:hover:text-white',

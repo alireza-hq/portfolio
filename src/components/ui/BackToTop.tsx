@@ -105,7 +105,7 @@ export function BackToTop() {
       onClick={returnToTop}
       aria-label='Return to top'
       className={cn(
-        'group fixed right-4 bottom-4 z-40 inline-flex items-center gap-2 rounded-full border border-sky-300/20 bg-zinc-950/72 px-3.5 py-2 font-mono text-xs font-semibold text-sky-100 shadow-lg shadow-black/20 backdrop-blur-xl transition duration-300 focus-visible:ring-1 focus-visible:ring-sky-300/70 focus-visible:outline-none sm:right-6 sm:bottom-6',
+        'group fixed right-4 bottom-4 z-40 inline-flex items-center gap-2 rounded-full border border-sky-300/20 bg-zinc-950/72 px-3.5 py-2 font-mono text-xs font-semibold text-sky-100 shadow-lg shadow-black/20 backdrop-blur-xl transition duration-300 sm:right-6 sm:bottom-6',
         'hover:-translate-y-0.5 hover:border-sky-300/55 hover:bg-zinc-950/88 hover:shadow-[0_14px_36px_rgb(14_165_233/0.16)]',
         isVisible
           ? 'pointer-events-auto translate-y-0 opacity-100'
