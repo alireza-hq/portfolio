@@ -24,7 +24,8 @@ function ThemeToggle() {
       type='button'
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
       className='grid h-9.5 w-9.5 cursor-pointer place-items-center rounded-full border border-zinc-900/10 bg-white/55 text-zinc-700 shadow-inner shadow-white/70 transition duration-200 hover:border-sky-500/30 hover:bg-sky-50 hover:text-zinc-950 focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/5 dark:text-zinc-200 dark:shadow-white/5 dark:hover:bg-sky-400/10 dark:hover:text-white'
-      aria-label={isDark ? 'Switch to light mode' : 'Switch to dark mode'}
+      aria-label='Toggle color theme'
+      title='Toggle color theme'
     >
       <Sun className='hidden h-4 w-4 dark:block' />
       <Moon className='h-4 w-4 dark:hidden' />
