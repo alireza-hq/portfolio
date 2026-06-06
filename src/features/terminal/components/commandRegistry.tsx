@@ -1,82 +1,155 @@
-import { TerminalCommand, CommandContext, CommandResult } from '../types'
+import type { ReactNode } from 'react'
+
+import { channels } from '@/features/contact/data/channels'
+import { projects } from '@/features/projects/data/projects'
 import { routes } from '@/lib/routes'
 
-const developer = {
-  name: 'Alireza',
-  role: 'React / Next.js Developer',
-  email: 'alireza.h.dev@outlook.com',
-  github: routes.social.github,
-  linkedin: routes.social.linkedin,
-  emailHref: routes.social.email,
-  resume: routes.resume,
+import type { CommandContext, CommandResult, TerminalCommand } from '../types'
+
+type HelpSection = {
+  title: string
+  commands: { command: string; description: string }[]
 }
 
-const terminalProjects = [
+type TerminalProject = {
+  aliases: string[]
+  title: string
+  type: string
+  stack: string[]
+  highlights: string[]
+  description: string
+}
+
+const coffeeStorageKey = 'portfolio:coffee-installed'
+const emailAddress = routes.social.email.replace('mailto:', '')
+
+const terminalProjects: TerminalProject[] = [
   {
-    slug: 'portfolio-terminal',
-    name: 'Portfolio Terminal',
-    type: 'Interactive portfolio',
-    url: routes.home,
-    github: developer.github,
-    stack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS'],
-    description:
-      'A terminal-first portfolio with command discovery, theme control, custom cursor, and animated workspace atmosphere.',
-    build: [
-      'Command registry maps typed input to JSX output.',
-      'Terminal history and focus behavior live in small hooks.',
-      'Layout chrome, motion, and theme stay outside the command surface.',
+    aliases: ['portfolio', 'portfolio-terminal', 'interactive-portfolio'],
+    title: 'Interactive Portfolio',
+    type: 'Developer workspace',
+    stack: ['Next.js', 'TypeScript', 'Tailwind CSS'],
+    description: projects[0].description,
+    highlights: [
+      'Custom terminal command system',
+      'Project explorer',
+      'Theme controls',
+      'Coffee easter egg',
+      'Resume inspector',
+      'Signal-style contact page',
     ],
   },
   {
-    slug: 'commerce-dashboard',
-    name: 'Commerce Dashboard',
-    type: 'Full-stack app',
-    url: routes.projects,
-    github: developer.github,
-    stack: ['Next.js', 'Prisma', 'PostgreSQL', 'React Hook Form'],
-    description:
-      'A dashboard shape for product, order, and admin workflows with scanning-first screens.',
-    build: [
-      'Admin actions are grouped by workflow, not decoration.',
-      'Forms use clear validation states and calm recovery paths.',
-      'Dense UI is designed around repeated daily use.',
+    aliases: ['ecommerce', 'e-commerce', 'e-commerce-platform', 'commerce'],
+    title: 'E-Commerce Platform',
+    type: 'Full-stack application',
+    stack: [
+      'Next.js',
+      'TypeScript',
+      'Node',
+      'Express',
+      'PostgreSQL',
+      'JWT Auth',
+    ],
+    description: projects[1].description,
+    highlights: [
+      'Authentication',
+      'Product management',
+      'Cart and checkout flow',
+      'Order workflows',
+      'Admin dashboard',
+      'Form validation',
     ],
   },
   {
-    slug: 'ops-interface',
-    name: 'Ops Interface',
-    type: 'Internal tool',
-    url: routes.projects,
-    github: developer.github,
-    stack: ['TypeScript', 'REST APIs', 'Zod', 'Git'],
+    aliases: ['dashboard', 'internal-dashboard', 'operations-dashboard'],
+    title: 'Internal Operations Dashboard',
+    type: 'Production internal dashboard',
+    stack: [
+      'Next.js',
+      'TypeScript',
+      'Node',
+      'Express',
+      'PostgreSQL',
+      'LDAP Auth',
+      'JWT Auth',
+    ],
     description:
-      'A focused internal-tool prototype for protected flows, queues, filters, and bulk decisions.',
-    build: [
-      'Stateful views make active filters obvious.',
-      'Bulk actions are separated from destructive confirmations.',
-      'Panels stay compact for fast operational scanning.',
+      'Company dashboard used by 237 employees for authentication, tickets, forms, contacts, monitoring, and admin workflows.',
+    highlights: [
+      'Used by 237 employees',
+      'LDAP login with JWT authorization',
+      'Ticket management',
+      'Roles and admin controls',
+      'Forms and contact management',
+      'Monitoring tools',
+    ],
+  },
+]
+
+const helpSections: HelpSection[] = [
+  {
+    title: 'Core',
+    commands: [
+      { command: 'about', description: 'Show a compact developer profile.' },
+      { command: 'whoami', description: 'Print the human behind the prompt.' },
+      { command: 'skills', description: 'Inspect the working stack.' },
+      { command: 'projects', description: 'List featured project systems.' },
+      { command: 'journey', description: 'Show the short build timeline.' },
+      { command: 'currently', description: 'Show the active work queue.' },
+    ],
+  },
+  {
+    title: 'Projects',
+    commands: [
+      { command: 'project portfolio', description: 'Inspect the portfolio.' },
+      { command: 'project ecommerce', description: 'Inspect ecommerce.' },
+      { command: 'project dashboard', description: 'Inspect the dashboard.' },
+      { command: 'open portfolio', description: 'Open the project atlas.' },
+      { command: 'open ecommerce', description: 'Open the project atlas.' },
+      { command: 'open dashboard', description: 'Open the project atlas.' },
+    ],
+  },
+  {
+    title: 'Links',
+    commands: [
+      { command: 'contact', description: 'Show every signal route.' },
+      { command: 'resume', description: 'Open the resume inspector.' },
+      { command: 'github', description: 'Open the GitHub profile.' },
+      { command: 'linkedin', description: 'Open the LinkedIn profile.' },
+      { command: 'email', description: 'Open a new email draft.' },
+    ],
+  },
+  {
+    title: 'System',
+    commands: [
+      { command: 'date', description: 'Print local date and time.' },
+      { command: 'theme', description: 'Toggle the workspace theme.' },
+      { command: 'clear', description: 'Clear terminal output.' },
+      { command: 'cls', description: 'Alias for clear.' },
     ],
   },
 ]
 
 export const terminalCompletions = [
-  '?',
   'about',
   'clear',
   'cls',
-  'contact',
   'coffee',
+  'contact',
+  'currently',
   'date',
+  'email',
+  'github',
   'help',
   'journey',
-  'open contact',
-  'open home',
+  'linkedin',
+  'open dashboard',
+  'open ecommerce',
   'open portfolio',
-  'open projects',
-  'open skills',
-  'project commerce-dashboard',
-  'project ops-interface',
-  'project portfolio-terminal',
+  'project dashboard',
+  'project ecommerce',
+  'project portfolio',
   'projects',
   'resume',
   'secret',
@@ -91,50 +164,161 @@ export const terminalCompletions = [
 ]
 
 const cardClass =
-  'rounded-2xl border border-zinc-900/10 bg-white/70 p-4 shadow-sm shadow-zinc-900/5 dark:border-white/10 dark:bg-white/6'
-const chipClass =
-  'rounded-full border border-zinc-900/10 bg-zinc-50/90 px-2.5 py-1 text-xs font-medium text-zinc-700 dark:border-white/10 dark:bg-zinc-950/45 dark:text-zinc-300'
+  'rounded-xl border border-zinc-900/10 bg-white/65 p-4 dark:border-white/10 dark:bg-white/5'
+const labelClass =
+  'font-mono text-xs font-semibold text-sky-600 dark:text-sky-300'
+const mutedClass = 'text-zinc-600 dark:text-zinc-400'
 const linkClass =
   'font-semibold text-sky-600 hover:underline focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:text-sky-400'
-const coffeeStorageKey = 'portfolio:coffee-installed'
 
-function findProject(args: string[]) {
-  const query = args.join(' ').toLowerCase().trim()
-
-  return terminalProjects.find((project) => {
-    return (
-      project.slug.includes(query.replace(/\s+/g, '-')) ||
-      project.name.toLowerCase().includes(query)
-    )
-  })
+function normalizeArgs(args: string[]) {
+  return args.join(' ').trim().toLowerCase()
 }
 
-function projectCard(project: (typeof terminalProjects)[number]) {
+function findTerminalProject(args: string[]) {
+  const query = normalizeArgs(args).replace(/\s+/g, '-')
+
+  return terminalProjects.find((project) => project.aliases.includes(query))
+}
+
+function DefinitionList({
+  rows,
+}: {
+  rows: [label: string, value: ReactNode][]
+}) {
+  return (
+    <div className='grid gap-2 text-sm'>
+      {rows.map(([label, value]) => (
+        <div key={label} className='grid gap-1 sm:grid-cols-[8.5rem_1fr]'>
+          <span className={labelClass}>{label}</span>
+          <span className={mutedClass}>{value}</span>
+        </div>
+      ))}
+    </div>
+  )
+}
+
+function BulletList({ items }: { items: string[] }) {
+  return (
+    <div className='grid gap-1.5 text-sm'>
+      {items.map((item) => (
+        <p key={item} className='flex gap-2'>
+          <span className='text-sky-600 dark:text-sky-300'>-</span>
+          <span className={mutedClass}>{item}</span>
+        </p>
+      ))}
+    </div>
+  )
+}
+
+function renderHelp() {
+  return (
+    <div className='grid gap-5'>
+      <p className={mutedClass}>
+        Available commands. Press Tab to autocomplete.
+      </p>
+      {helpSections.map((section) => (
+        <section key={section.title} className='grid gap-2'>
+          <p className={labelClass}>{section.title}</p>
+          <div className='grid gap-1'>
+            {section.commands.map((item) => (
+              <div
+                key={item.command}
+                className='grid gap-1 text-sm sm:grid-cols-[10rem_1fr]'
+              >
+                <code className='text-zinc-900 dark:text-zinc-100'>
+                  {item.command}
+                </code>
+                <span className={mutedClass}>{item.description}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      ))}
+    </div>
+  )
+}
+
+function renderProject(project: TerminalProject) {
   return (
     <div className={cardClass}>
-      <div className='flex flex-wrap items-start justify-between gap-3'>
-        <div>
-          <p className='text-sm font-semibold text-sky-600 dark:text-sky-300'>
-            {project.type}
-          </p>
-          <h3 className='mt-1 text-lg font-semibold text-zinc-950 dark:text-white'>
-            {project.name}
-          </h3>
-        </div>
-        <a href={project.url} className={linkClass}>
-          open
-        </a>
-      </div>
-      <p className='mt-3 leading-7 text-zinc-600 dark:text-zinc-400'>
+      <p className={labelClass}>{project.type}</p>
+      <h3 className='mt-1 text-lg font-semibold text-zinc-950 dark:text-white'>
+        {project.title}
+      </h3>
+      <p className={`mt-2 text-sm leading-6 ${mutedClass}`}>
         {project.description}
       </p>
-      <div className='mt-4 flex flex-wrap gap-2'>
-        {project.stack.map((item) => (
-          <span key={item} className={chipClass}>
-            {item}
-          </span>
-        ))}
+      <div className='mt-4'>
+        <DefinitionList rows={[['Stack', project.stack.join(', ')]]} />
       </div>
+      <p className={`mt-4 ${labelClass}`}>Highlights</p>
+      <div className='mt-2'>
+        <BulletList items={project.highlights} />
+      </div>
+    </div>
+  )
+}
+
+function renderProjects() {
+  return (
+    <div className='grid gap-3'>
+      <p className={labelClass}>Projects</p>
+      {terminalProjects.map((project, index) => (
+        <button
+          key={project.aliases[0]}
+          type='button'
+          onClick={() => window.location.assign(routes.projects)}
+          className={`${cardClass} group text-left transition hover:-translate-y-0.5 hover:border-sky-400/40 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none`}
+        >
+          <p className='font-mono text-xs text-sky-600 dark:text-sky-300'>
+            {index + 1}. {project.type}
+          </p>
+          <p className='mt-1 font-semibold text-zinc-950 group-hover:text-sky-700 dark:text-white dark:group-hover:text-sky-200'>
+            {project.title}
+          </p>
+          <p className={`mt-2 text-sm leading-6 ${mutedClass}`}>
+            {project.description}
+          </p>
+        </button>
+      ))}
+      <p className={`text-sm ${mutedClass}`}>
+        Run <code>&apos;project portfolio&apos;</code>,{' '}
+        <code>&apos;project ecommerce&apos;</code>, or{' '}
+        <code>&apos;project dashboard&apos;</code> for details.
+      </p>
+    </div>
+  )
+}
+
+function renderContact() {
+  return (
+    <div className='grid gap-2'>
+      {channels.map((channel) => {
+        const href =
+          channel.label === 'Email' ? routes.social.email : channel.href
+
+        return (
+          <a
+            key={channel.label}
+            href={href}
+            target={href.startsWith('http') ? '_blank' : undefined}
+            rel={href.startsWith('http') ? 'noreferrer' : undefined}
+            className={`${cardClass} group flex items-center justify-between gap-4 transition hover:border-sky-400/40 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none`}
+          >
+            <span>
+              <span className={labelClass}>{channel.command}</span>
+              <span className='mt-1 block font-semibold text-zinc-950 group-hover:text-sky-700 dark:text-white dark:group-hover:text-sky-200'>
+                {channel.label}
+              </span>
+            </span>
+            <span className={`text-xs ${mutedClass}`}>open</span>
+          </a>
+        )
+      })}
+      <a href={routes.contact} className={linkClass}>
+        Open portfolio contact page
+      </a>
     </div>
   )
 }
@@ -147,15 +331,11 @@ function isCoffeeInstalled() {
 }
 
 function installCoffee() {
-  if (typeof window !== 'undefined') {
-    window.localStorage.setItem(coffeeStorageKey, 'true')
-  }
+  window.localStorage.setItem(coffeeStorageKey, 'true')
 }
 
 function uninstallCoffee() {
-  if (typeof window !== 'undefined') {
-    window.localStorage.removeItem(coffeeStorageKey)
-  }
+  window.localStorage.removeItem(coffeeStorageKey)
 }
 
 function CoffeeProgress() {
@@ -177,40 +357,19 @@ function CoffeeProgress() {
 function renderCoffeeInstall() {
   return (
     <div className='grid gap-2'>
-      <p className='font-mono text-sm text-sky-600 dark:text-sky-300'>
-        Installing coffee...
-      </p>
+      <p className={labelClass}>Installing coffee...</p>
       <CoffeeProgress />
-      <div className='mt-2 grid gap-2'>
-        <p>
-          <span className='font-semibold text-zinc-950 dark:text-white'>
-            Status:
-          </span>{' '}
-          <span className='text-zinc-600 dark:text-zinc-400'>Installed</span>
-        </p>
-        <p>
-          <span className='font-semibold text-zinc-950 dark:text-white'>
-            Version:
-          </span>{' '}
-          <span className='text-zinc-600 dark:text-zinc-400'>Fresh</span>
-        </p>
-        <p>
-          <span className='font-semibold text-zinc-950 dark:text-white'>
-            Role:
-          </span>{' '}
-          <span className='text-zinc-600 dark:text-zinc-400'>
-            Runtime dependency for late-night debugging sessions.
-          </span>
-        </p>
-        <p>
-          <span className='font-semibold text-zinc-950 dark:text-white'>
-            Warning:
-          </span>{' '}
-          <span className='text-zinc-600 dark:text-zinc-400'>
-            Removing this package may reduce developer performance.
-          </span>
-        </p>
-      </div>
+      <DefinitionList
+        rows={[
+          ['Status', 'Installed'],
+          ['Version', 'Fresh'],
+          ['Role', 'Runtime dependency for late-night debugging sessions.'],
+          [
+            'Warning',
+            'Removing this package may reduce developer performance.',
+          ],
+        ]}
+      />
     </div>
   )
 }
@@ -221,475 +380,340 @@ function renderCoffeeActive() {
       <p className='font-semibold text-zinc-950 dark:text-white'>
         Coffee is already installed.
       </p>
-      <div className='grid gap-2'>
-        <p>
-          <span className='font-semibold text-zinc-950 dark:text-white'>
-            Version:
-          </span>{' '}
-          <span className='text-zinc-600 dark:text-zinc-400'>Fresh</span>
-        </p>
-        <p>
-          <span className='font-semibold text-zinc-950 dark:text-white'>
-            Status:
-          </span>{' '}
-          <span className='text-zinc-600 dark:text-zinc-400'>Active</span>
-        </p>
-        <p>
-          <span className='font-semibold text-zinc-950 dark:text-white'>
-            Tip:
-          </span>{' '}
-          <span className='text-zinc-600 dark:text-zinc-400'>
-            Stay hydrated too.
-          </span>
-        </p>
-      </div>
+      <DefinitionList
+        rows={[
+          ['Version', 'Fresh'],
+          ['Status', 'Active'],
+          ['Tip', 'Stay hydrated too.'],
+        ]}
+      />
     </div>
   )
 }
 
-function renderCoffeeUninstallError() {
-  return (
-    <div className='grid gap-2'>
-      <p className='font-mono text-sm text-sky-600 dark:text-sky-300'>
-        Uninstalling coffee...
-      </p>
-      <p>
-        <span className='font-semibold text-red-500 dark:text-red-400'>
-          Error:
-        </span>{' '}
-        <span className='text-zinc-600 dark:text-zinc-400'>
-          Package &quot;coffee&quot; is marked as a critical dependency and
-          cannot be removed.
-        </span>
-      </p>
-    </div>
-  )
-}
-
-function renderCoffeeSudoUninstall() {
-  return (
-    <div className='grid gap-2'>
-      <p className='font-mono text-sm text-sky-600 dark:text-sky-300'>
-        sudo uninstall coffee
-      </p>
-      <p className='font-mono text-sm text-zinc-700 dark:text-zinc-300'>
-        Uninstalling coffee...
-      </p>
-      <p>
-        <span className='font-semibold text-zinc-950 dark:text-white'>
-          Status:
-        </span>{' '}
-        <span className='text-zinc-600 dark:text-zinc-400'>Removed</span>
-      </p>
-    </div>
-  )
-}
-
-const helpSections: {
-  title: string
-  commands: { command: string; description: string }[]
-}[] = [
-  {
-    title: 'Explore',
-    commands: [
-      { command: 'about', description: 'Show the short developer profile.' },
-      { command: 'whoami', description: 'Print a one-line identity.' },
-      { command: 'skills', description: 'Open the interactive stack summary.' },
-      { command: 'projects', description: 'List featured project artifacts.' },
-      { command: 'journey', description: 'Show the learning and build path.' },
-    ],
-  },
-  {
-    title: 'Projects',
-    commands: [
-      {
-        command: 'project [name]',
-        description: 'Inspect one project with build notes.',
-      },
-      {
-        command: 'open [project]',
-        description: 'Navigate to a project or page in this tab.',
-      },
-    ],
-  },
-  {
-    title: 'System',
-    commands: [
-      { command: 'setup', description: 'Show workspace and workflow tools.' },
-      { command: 'uses', description: 'Show the stack and working style.' },
-      { command: 'date', description: 'Print the current date and time.' },
-      { command: 'theme', description: 'Toggle light and dark mode.' },
-      { command: 'secret', description: 'Reveal a tiny hidden note.' },
-      { command: 'clear', description: 'Clear the terminal output.' },
-    ],
-  },
-  {
-    title: 'Contact',
-    commands: [
-      { command: 'contact', description: 'Show GitHub, LinkedIn, and email.' },
-      { command: 'resume', description: 'Open the resume file.' },
-      {
-        command: 'sudo hire-me',
-        description: 'Run the highly scientific hiring protocol.',
-      },
-    ],
-  },
-] as const
-
-function renderHelp() {
-  return (
-    <div className='space-y-3'>
-      <p className='text-zinc-500 dark:text-zinc-400'>
-        Available commands. Press Tab to autocomplete.
-      </p>
-      <div className='grid gap-3'>
-        {helpSections.map((section) => (
-          <section key={section.title} className='grid gap-2'>
-            <p className='font-semibold text-sky-600 dark:text-sky-400'>
-              {section.title}
-            </p>
-            <div className='grid gap-1'>
-              {section.commands.map((item) => (
-                <div
-                  key={item.command}
-                  className='grid gap-1 sm:grid-cols-[9.5rem_1fr]'
-                >
-                  <code className='font-mono text-sm text-zinc-800 dark:text-zinc-200'>
-                    {item.command}
-                  </code>
-                  <span className='text-zinc-500 dark:text-zinc-400'>
-                    {item.description}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </section>
-        ))}
-        <div className='grid gap-1 sm:grid-cols-[9.5rem_1fr]'>
-          <code className='font-mono text-sm text-zinc-800 dark:text-zinc-200'>
-            ?
-          </code>
-          <span className='text-zinc-500 dark:text-zinc-400'>
-            Alias for help.
-          </span>
-        </div>
-      </div>
-    </div>
-  )
-}
-
-export const commandRegistry: Record<string, TerminalCommand> = {
+const commandRegistry: Record<string, TerminalCommand> = {
   help: {
     name: 'help',
-    description: 'Display all available commands',
-    execute: () => ({
-      type: 'output',
-      content: renderHelp(),
-    }),
+    description: 'Show available commands',
+    execute: () => ({ type: 'output', content: renderHelp() }),
   },
-
-  '?': {
-    name: '?',
-    description: 'Alias for help',
-    execute: () => ({
-      type: 'output',
-      content: renderHelp(),
-    }),
-  },
-
   about: {
     name: 'about',
-    description: 'Show information about the developer',
+    description: 'Show a compact developer profile',
     execute: () => ({
       type: 'output',
       content: (
         <div className={cardClass}>
-          <p className='text-sm font-semibold text-sky-600 dark:text-sky-300'>
-            {developer.role}
-          </p>
-          <h3 className='mt-2 text-xl font-semibold text-zinc-950 dark:text-white'>
-            {developer.name}
-          </h3>
-          <p className='mt-3 leading-7 text-zinc-600 dark:text-zinc-400'>
-            I build fast, app-like interfaces with React, Next.js, TypeScript,
-            and interaction details that make a portfolio feel like software.
-          </p>
+          <DefinitionList
+            rows={[
+              ['Name', 'Alireza Haghighi'],
+              ['Role', 'Software Developer'],
+              ['Focus', 'React, Next.js, TypeScript'],
+              [
+                'Current direction',
+                'Building practical web applications with clean structure and maintainable UI.',
+              ],
+            ]}
+          />
         </div>
       ),
     }),
   },
-
   whoami: {
     name: 'whoami',
-    description: 'Display short intro',
+    description: 'Show the human behind the prompt',
     execute: () => ({
       type: 'output',
-      content: `${developer.name} - ${developer.role}`,
+      content: (
+        <div className='grid gap-3'>
+          <p className='font-semibold text-zinc-950 dark:text-white'>alireza</p>
+          <BulletList
+            items={[
+              'Software developer who enjoys building things.',
+              'Frontend is the main focus.',
+              'Architecture and maintainability are the obsession.',
+              'Currently building: portfolio, ecommerce, internal dashboard systems.',
+            ]}
+          />
+        </div>
+      ),
     }),
   },
-
   skills: {
     name: 'skills',
-    description: 'Display tech stack and skills',
+    description: 'Inspect the working stack',
     execute: () => ({
       type: 'output',
       content: (
-        <div className={cardClass}>
-          <p className='font-semibold text-zinc-950 dark:text-white'>
-            Stack explorer
+        <div className='grid gap-4'>
+          <DefinitionList
+            rows={[
+              ['Frontend', 'React, Next.js, TypeScript, Tailwind CSS'],
+              ['Backend-adjacent', 'Node, Express, PostgreSQL, JWT Auth'],
+              [
+                'Workflow',
+                'Git, GitHub, Docker, Vercel, Postman, ChatGPT, Codex',
+              ],
+            ]}
+          />
+          <p className={`text-sm ${mutedClass}`}>
+            Run <code>&apos;projects&apos;</code> to see where these tools are
+            used.
           </p>
-          <p className='mt-2 text-zinc-500 dark:text-zinc-400'>
-            The skills page is now interactive: tabs, mission presets, icons,
-            soft-skill modules, and live readouts.
-          </p>
-          <a href={routes.skills} className={`mt-3 inline-block ${linkClass}`}>
-            Open skills page
-          </a>
         </div>
       ),
     }),
   },
-
   projects: {
     name: 'projects',
-    description: 'List featured projects',
-    execute: () => ({
-      type: 'output',
-      content: (
-        <div className='space-y-3'>
-          {terminalProjects.map((project) => (
-            <div key={project.slug}>{projectCard(project)}</div>
-          ))}
-        </div>
-      ),
-    }),
+    description: 'List featured project systems',
+    execute: () => ({ type: 'output', content: renderProjects() }),
   },
-
   project: {
     name: 'project',
-    description: 'Show project details',
+    description: 'Inspect one project',
     execute: (args) => {
-      const project = findProject(args)
+      const project = findTerminalProject(args)
 
-      if (!project) {
+      return project
+        ? { type: 'output', content: renderProject(project) }
+        : {
+            type: 'output',
+            content:
+              "Project not found. Try 'project portfolio', 'project ecommerce', or 'project dashboard'.",
+          }
+    },
+  },
+  open: {
+    name: 'open',
+    description: 'Open a project in the atlas',
+    execute: (args) => {
+      const project = findTerminalProject(args)
+
+      if (project) {
         return {
-          type: 'output',
-          content: "Project not found. Try 'projects' first.",
+          type: 'external',
+          url: routes.projects,
+          message: `Opening ${project.title} in the project atlas...`,
         }
       }
 
       return {
         type: 'output',
-        content: (
-          <div className={cardClass}>
-            <p className='text-sm font-semibold text-sky-600 dark:text-sky-300'>
-              {project.type}
-            </p>
-            <h3 className='mt-1 text-lg font-semibold text-zinc-950 dark:text-white'>
-              {project.name}
-            </h3>
-            <p className='mt-3 leading-7 text-zinc-600 dark:text-zinc-400'>
-              {project.description}
-            </p>
-            <div className='mt-4 grid gap-2'>
-              {project.build.map((step, index) => (
-                <div key={step} className='flex gap-3 text-sm'>
-                  <span className='font-mono text-sky-600 dark:text-sky-300'>
-                    0{index + 1}
-                  </span>
-                  <span className='text-zinc-600 dark:text-zinc-400'>
-                    {step}
-                  </span>
-                </div>
-              ))}
-            </div>
-          </div>
-        ),
-      }
-    },
-  },
-
-  open: {
-    name: 'open',
-    description: 'Open a project or page',
-    execute: (args) => {
-      const target = args.join(' ').toLowerCase()
-      const project = findProject(args)
-
-      if (project) return { type: 'external', url: project.url }
-      if (target === 'projects') {
-        return { type: 'external', url: routes.projects }
-      }
-      if (target === 'skills') return { type: 'external', url: routes.skills }
-      if (target === 'contact') return { type: 'external', url: routes.contact }
-      if (target === 'home' || target === 'portfolio') {
-        return { type: 'external', url: routes.home }
-      }
-
-      return {
-        type: 'output',
         content:
-          "Try 'open projects', 'open skills', or 'open portfolio terminal'.",
+          "Project not found. Try 'open portfolio', 'open ecommerce', or 'open dashboard'.",
       }
     },
   },
-
   journey: {
     name: 'journey',
-    description: 'Show learning/building path',
+    description: 'Show the short build timeline',
     execute: () => ({
       type: 'output',
       content: (
-        <div className='space-y-3'>
+        <DefinitionList
+          rows={[
+            [
+              '2022',
+              'Started deeper software development with Python and Django.',
+            ],
+            [
+              '2023',
+              'Built real web apps and learned from messy architecture.',
+            ],
+            [
+              '2024',
+              'Started Computer Engineering and built the first internal dashboard.',
+            ],
+            [
+              '2025',
+              'Moved deeper into JavaScript, TypeScript, React, and the PERN stack.',
+            ],
+            [
+              '2026',
+              'Focused on Next.js, frontend architecture, and production-style projects.',
+            ],
+          ]}
+        />
+      ),
+    }),
+  },
+  currently: {
+    name: 'currently',
+    description: 'Show the active work queue',
+    execute: () => ({
+      type: 'output',
+      content: (
+        <div className='grid gap-4'>
           {[
-            'Foundation: HTML, CSS, JavaScript, and browser behavior.',
-            'Frontend depth: React, TypeScript, state, forms, and component architecture.',
-            'Product polish: motion, accessibility, responsive layout, and app-like interactions.',
-            'Current direction: Developer OS portfolio with terminal, atlas, and inspectable pages.',
-          ].map((item, index) => (
-            <div key={item} className={cardClass}>
-              <span className='font-mono text-sm text-sky-600 dark:text-sky-300'>
-                0{index + 1}
-              </span>
-              <p className='mt-1 text-zinc-700 dark:text-zinc-300'>{item}</p>
-            </div>
+            [
+              'Building',
+              [
+                'Interactive portfolio',
+                'E-Commerce Platform',
+                'Internal dashboard improvements',
+              ],
+            ],
+            [
+              'Learning',
+              [
+                'Docker',
+                'Advanced Git',
+                'Better frontend architecture',
+                'CI/CD basics',
+              ],
+            ],
+            [
+              'Improving',
+              [
+                'Clean code',
+                'UI polish',
+                'Project structure',
+                'Real-world product thinking',
+              ],
+            ],
+          ].map(([title, items]) => (
+            <section key={title as string}>
+              <p className={labelClass}>{title as string}</p>
+              <div className='mt-2'>
+                <BulletList items={items as string[]} />
+              </div>
+            </section>
           ))}
         </div>
       ),
     }),
   },
-
   setup: {
     name: 'setup',
-    description: 'Show development environment',
+    description: 'Show the development environment',
     execute: () => ({
       type: 'output',
       content: (
-        <div className={cardClass}>
-          <p className='font-semibold text-zinc-950 dark:text-white'>
-            Workspace setup
-          </p>
-          <div className='mt-3 flex flex-wrap gap-2'>
-            {[
-              'VS Code',
-              'pnpm',
-              'Git',
-              'Next.js',
-              'TypeScript',
-              'Tailwind CSS',
-            ].map((item) => (
-              <span key={item} className={chipClass}>
-                {item}
-              </span>
-            ))}
-          </div>
-          <p className='mt-3 text-sm text-zinc-500 dark:text-zinc-400'>
-            Bias: fast feedback loops, small commits, readable structure.
-          </p>
-        </div>
+        <DefinitionList
+          rows={[
+            ['Editor', 'VS Code'],
+            ['Framework', 'Next.js'],
+            ['Language', 'TypeScript'],
+            ['Styling', 'Tailwind CSS'],
+            ['Package Manager', 'pnpm'],
+            ['Version Control', 'Git + GitHub'],
+            ['AI tools', 'ChatGPT, Codex, Copilot'],
+          ]}
+        />
       ),
     }),
   },
-
   uses: {
     name: 'uses',
-    description: 'Show tools and workflow',
+    description: 'Show the daily workflow',
     execute: () => ({
       type: 'output',
       content: (
-        <div className='grid gap-3 sm:grid-cols-2'>
-          {[
-            ['Editor', 'VS Code, terminal, browser devtools'],
-            ['Frontend', 'React, Next.js, TypeScript, Tailwind CSS'],
-            ['Workflow', 'pnpm, Git, lint/build checks'],
-            ['Thinking', 'Break UI into states, flows, and inspectable panels'],
-          ].map(([title, value]) => (
-            <div key={title} className={cardClass}>
-              <p className='font-semibold text-zinc-950 dark:text-white'>
-                {title}
-              </p>
-              <p className='mt-2 text-sm leading-6 text-zinc-500 dark:text-zinc-400'>
-                {value}
-              </p>
-            </div>
-          ))}
+        <div>
+          <p className={labelClass}>Daily workflow</p>
+          <div className='mt-2'>
+            <BulletList
+              items={[
+                'Plan structure before building',
+                'Build in small commits',
+                'Use AI tools for debugging, refactoring, and exploring tradeoffs',
+                'Keep UI fast, clean, and usable',
+              ]}
+            />
+          </div>
         </div>
       ),
     }),
   },
-
   contact: {
     name: 'contact',
-    description: 'Show contact links',
-    execute: () => ({
-      type: 'output',
-      content: (
-        <div className='space-y-1'>
-          <p>
-            GitHub:{' '}
-            <a className={linkClass} href={developer.github} target='_blank'>
-              {developer.github}
-            </a>
-          </p>
-          <p>
-            LinkedIn:{' '}
-            <a className={linkClass} href={developer.linkedin} target='_blank'>
-              {developer.linkedin}
-            </a>
-          </p>
-          <p>
-            Email:{' '}
-            <a className={linkClass} href={developer.emailHref}>
-              {developer.email}
-            </a>
-          </p>
-        </div>
-      ),
-    }),
+    description: 'Show every signal route',
+    execute: () => ({ type: 'output', content: renderContact() }),
   },
-
   resume: {
     name: 'resume',
-    description: 'Open resume in a new tab',
-    execute: () => ({ type: 'external', url: developer.resume }),
+    description: 'Open the resume inspector',
+    execute: () => ({
+      type: 'external',
+      url: routes.resume,
+      message: 'Opening resume inspector...',
+    }),
   },
-
-  clear: {
-    name: 'clear',
-    description: 'Clear terminal output',
-    execute: () => ({ type: 'clear' }),
+  github: {
+    name: 'github',
+    description: 'Open the GitHub profile',
+    execute: () => ({
+      type: 'external',
+      url: routes.social.github,
+      message: 'Opening GitHub profile...',
+    }),
   },
-
-  cls: {
-    name: 'cls',
-    description: 'Clear terminal output',
-    execute: () => ({ type: 'clear' }),
+  linkedin: {
+    name: 'linkedin',
+    description: 'Open the LinkedIn profile',
+    execute: () => ({
+      type: 'external',
+      url: routes.social.linkedin,
+      message: 'Opening LinkedIn profile...',
+    }),
   },
-
-  theme: {
-    name: 'theme',
-    description: 'Toggle site theme',
-    execute: (_args: string[], context: CommandContext): CommandResult => {
-      context.toggleTheme()
-      return { type: 'output', content: 'Site theme toggled.' }
-    },
+  email: {
+    name: 'email',
+    description: 'Open a new email draft',
+    execute: () => ({
+      type: 'external',
+      url: routes.social.email,
+      message: `Opening email draft for ${emailAddress}...`,
+    }),
   },
-
   date: {
     name: 'date',
-    description: 'Show current date and time',
+    description: 'Print local date and time',
     execute: () => ({
       type: 'output',
-      content: new Intl.DateTimeFormat('en', {
+      content: new Intl.DateTimeFormat(undefined, {
         dateStyle: 'full',
         timeStyle: 'medium',
       }).format(new Date()),
     }),
   },
-
+  theme: {
+    name: 'theme',
+    description: 'Toggle the workspace theme',
+    execute: (_args: string[], context: CommandContext): CommandResult => {
+      context.toggleTheme()
+      return { type: 'output', content: 'Theme switched.' }
+    },
+  },
+  clear: {
+    name: 'clear',
+    description: 'Clear terminal output',
+    execute: () => ({ type: 'clear' }),
+  },
+  cls: {
+    name: 'cls',
+    description: 'Alias for clear',
+    execute: () => ({ type: 'clear' }),
+  },
+  secret: {
+    name: 'secret',
+    description: 'Hidden command',
+    hidden: true,
+    execute: () => ({
+      type: 'output',
+      content: (
+        <div className='grid gap-1'>
+          <p>You found nothing.</p>
+          <p className={mutedClass}>Which means you found something.</p>
+        </div>
+      ),
+    }),
+  },
   coffee: {
     name: 'coffee',
     description: 'Hidden runtime dependency',
+    hidden: true,
     execute: () => {
       if (isCoffeeInstalled()) {
         return { type: 'output', content: renderCoffeeActive() }
@@ -699,50 +723,85 @@ export const commandRegistry: Record<string, TerminalCommand> = {
       return { type: 'output', content: renderCoffeeInstall() }
     },
   },
-
   uninstall: {
     name: 'uninstall',
     description: 'Hidden package command',
-    execute: (args) => {
-      if (args.join(' ').toLowerCase() !== 'coffee') {
-        return {
-          type: 'output',
-          content: 'Nothing to uninstall.',
-        }
-      }
-
-      return { type: 'output', content: renderCoffeeUninstallError() }
-    },
+    hidden: true,
+    execute: (args) =>
+      normalizeArgs(args) === 'coffee'
+        ? {
+            type: 'output',
+            content: (
+              <div className='grid gap-1'>
+                <p className='font-semibold text-red-500 dark:text-red-400'>
+                  Error:
+                </p>
+                <p className={mutedClass}>
+                  Package &quot;coffee&quot; is marked as a critical dependency
+                  and cannot be removed.
+                </p>
+              </div>
+            ),
+          }
+        : { type: 'output', content: 'Nothing to uninstall.' },
   },
-
-  secret: {
-    name: 'secret',
-    description: 'Reveal a small hidden note',
-    execute: () => ({
-      type: 'output',
-      content:
-        'Hidden note: the best UI feels obvious after it exists, but impossible before someone cares enough to shape it.',
-    }),
-  },
-
   sudo: {
     name: 'sudo',
-    description: 'Try sudo hire-me',
+    description: 'Hidden elevated commands',
+    hidden: true,
     execute: (args) => {
-      const command = args.join(' ').toLowerCase()
+      const command = normalizeArgs(args)
 
       if (command === 'uninstall coffee') {
         uninstallCoffee()
-        return { type: 'output', content: renderCoffeeSudoUninstall() }
+        return {
+          type: 'output',
+          content: (
+            <div className='grid gap-2'>
+              <p className='font-semibold text-zinc-950 dark:text-white'>
+                Coffee removed.
+              </p>
+              <DefinitionList
+                rows={[['Warning', 'System stability may be affected.']]}
+              />
+            </div>
+          ),
+        }
       }
 
-      return {
-        type: 'output',
-        content:
-          command === 'hire-me'
-            ? 'Access granted. Recommendation: interview this frontend developer.'
-            : 'Permission denied. Try: sudo hire-me',
+      if (command === 'hire-me') {
+        return {
+          type: 'output',
+          content: (
+            <div className='grid gap-4'>
+              <p className='font-semibold text-emerald-600 dark:text-emerald-400'>
+                Permission granted.
+              </p>
+              <section>
+                <p className={labelClass}>Candidate summary</p>
+                <div className='mt-2'>
+                  <BulletList
+                    items={[
+                      'Real production experience',
+                      'Built internal dashboard used by 237 employees',
+                      'Strong frontend focus',
+                      'Comfortable across backend-adjacent work',
+                      'Learns fast and cares about maintainable code',
+                    ]}
+                  />
+                </div>
+              </section>
+              <DefinitionList
+                rows={[['Recommendation', 'Proceed to interview. 🗿']]}
+              />
+            </div>
+          ),
+        }
       }
+
+      return { type: 'output', content: 'Permission denied.' }
     },
   },
 }
+
+export { commandRegistry }

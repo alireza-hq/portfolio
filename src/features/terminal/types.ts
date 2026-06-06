@@ -16,11 +16,13 @@ export type CommandResult =
   | {
       type: 'external'
       url: string
+      message?: ReactNode
     }
 
 export type TerminalCommand = {
   name: string
   description: string
+  hidden?: boolean
   execute: (args: string[], context: CommandContext) => CommandResult
 }
 

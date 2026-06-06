@@ -72,7 +72,7 @@ export function useTerminal({ onToggleTheme }: UseTerminalOptions = {}) {
       if (result.type === 'external') {
         setLines((prev) => [
           ...prev,
-          createLine('output', `Opening ${result.url}...`),
+          createLine('output', result.message ?? `Opening ${result.url}...`),
         ])
 
         if (result.url.startsWith('/') || result.url.startsWith('#')) {
