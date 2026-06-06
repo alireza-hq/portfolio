@@ -6,14 +6,6 @@ export const routes = {
   contact: '/contact',
   resume: '/resume',
   resumeFile: '/resume/Resume.pdf',
-  resumePreview: '/resume/Resume.png',
-  unavailable: '#',
-  skillsAnchors: {
-    buildRecipe: '#build-recipe',
-    stackInspector: '#stack-inspector',
-    softSkills: '#soft-skills',
-    terminalShortcut: '#terminal-shortcut',
-  },
   social: {
     github: 'https://github.com/alireza-hq',
     linkedin: 'https://www.linkedin.com/in/alireza-hq-dev/',
