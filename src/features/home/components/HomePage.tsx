@@ -13,8 +13,9 @@ export function HomePage() {
       </div>
 
       <div className='max-w-4xl'>
-        <h1 className='text-4xl leading-[0.98] font-semibold tracking-normal text-zinc-950 sm:text-6xl lg:text-7xl dark:text-white'>
-          Build. Learn. Improve. Repeat.
+        <h1 className='font-mono text-4xl leading-[0.98] font-semibold tracking-normal text-zinc-950 sm:text-6xl lg:text-7xl dark:text-white'>
+          <span className='block'>Build. Learn. Improve.</span>
+          <span className='block'>Repeat.</span>
         </h1>
         <p className='mx-auto mt-5 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-400'>
           Start with the terminal. Type <span className='font-mono'>help</span>,
@@ -30,7 +31,7 @@ export function HomePage() {
       <div className='flex flex-wrap justify-center gap-3'>
         <Link
           href={routes.about}
-          className='inline-flex items-center gap-2 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-zinc-950/10 transition duration-200 hover:-translate-y-0.5 hover:opacity-95 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:bg-white dark:text-zinc-950'
+          className='inline-flex items-center gap-2 rounded-full bg-zinc-950 px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-zinc-950/10 transition duration-200 hover:-translate-y-0.5 hover:opacity-95 focus-visible:ring-1 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:bg-white dark:text-zinc-950'
         >
           About me
           <ArrowUpRight className='h-4 w-4' />

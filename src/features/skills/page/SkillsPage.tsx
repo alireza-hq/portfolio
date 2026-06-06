@@ -1,9 +1,7 @@
 'use client'
 
-import { BuildRecipe } from '../components/BuildRecipe'
 import { LiveReadout } from '../components/LiveReadout'
 import { MissionControl } from '../components/MissionControl'
-import { QuickActions } from '../components/QuickActions'
 import { SkillsHero } from '../components/SkillsHero'
 import { SkillsScrollHint } from '../components/SkillsScrollHint'
 import { SoftSkillModules } from '../components/SoftSkillModules'
@@ -55,15 +53,6 @@ export function SkillsPage() {
             activeStack={workspace.previewTool}
           />
         </section>
-
-        <div className='mt-4 grid gap-4 lg:grid-cols-[1fr_1fr]'>
-          <BuildRecipe
-            activeMission={workspace.activeMission}
-            activeSoftSkill={workspace.activeSoftSkill}
-            activeStack={workspace.previewTool}
-          />
-          <QuickActions />
-        </div>
       </section>
     </main>
   )
