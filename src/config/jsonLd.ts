@@ -1,4 +1,5 @@
 import { siteConfig } from './site'
+import { routes } from '@/lib/routes'
 
 export const personJsonLd = {
   '@context': 'https://schema.org',
@@ -15,10 +16,7 @@ export const personJsonLd = {
     'Express',
     'PostgreSQL',
   ],
-  sameAs: [
-    'https://github.com/alireza-hq',
-    'https://www.linkedin.com/in/alireza-hq-dev',
-  ],
+  sameAs: [routes.social.github, routes.social.linkedin],
 }
 
 export const websiteJsonLd = {
