@@ -114,8 +114,6 @@ export const projects: Project[] = [
     statusLabels: ['In development', 'Case study'],
     icon: LayoutDashboard,
     image: '/projects/e-commerce.png',
-    liveUrl: routes.unavailable,
-    githubUrl: routes.social.github,
     description:
       'A production-style e-commerce application with customer-facing shopping flows and admin-side management tools.',
     stack: [
@@ -217,8 +215,6 @@ export const projects: Project[] = [
     statusLabels: ['Internal tool', 'Real-world dashboard app'],
     icon: Boxes,
     image: '/projects/internal-panel.png',
-    liveUrl: routes.unavailable,
-    githubUrl: routes.social.github,
     description:
       'An internal dashboard for operational workflows, user management, tickets, roles, contact lists, forms, and monitoring.',
     stack: [

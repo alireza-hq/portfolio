@@ -30,8 +30,8 @@ export type Project = {
   statusLabels: string[]
   icon: LucideIcon
   image: string
-  liveUrl: string
-  githubUrl: string
+  liveUrl?: string
+  githubUrl?: string
   description: string
   stack: string[]
   frontendStack: string[]

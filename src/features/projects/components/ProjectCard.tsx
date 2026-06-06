@@ -26,16 +26,9 @@ export function ProjectCard({ project, isActive, onSelect }: ProjectCardProps) {
       <ProjectPreview project={project} compact />
       <div className='mt-4 flex items-start justify-between gap-3 px-1 pb-1'>
         <div>
-          <div className='flex flex-wrap gap-1.5'>
-            {project.statusLabels.map((label) => (
-              <span
-                key={label}
-                className='rounded-full border border-sky-500/15 bg-sky-500/10 px-2 py-0.5 text-[0.68rem] font-semibold text-sky-700 dark:text-sky-200'
-              >
-                {label}
-              </span>
-            ))}
-          </div>
+          <span className='font-mono text-[0.68rem] font-semibold text-sky-700 dark:text-sky-200'>
+            {project.status}
+          </span>
           <p className='mt-3 font-semibold text-zinc-950 dark:text-white'>
             {project.title}
           </p>
