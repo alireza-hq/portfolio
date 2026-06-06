@@ -4,7 +4,9 @@ export const routes = {
   skills: '/skills',
   projects: '/projects',
   contact: '/contact',
-  resume: '/resume.pdf',
+  resume: '/resume',
+  resumeFile: '/resume/Resume.pdf',
+  resumePreview: '/resume/Resume.png',
   unavailable: '#',
   skillsAnchors: {
     buildRecipe: '#build-recipe',
