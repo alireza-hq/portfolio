@@ -84,7 +84,7 @@ export function Navbar() {
         <div className='flex shrink-0 items-center justify-end gap-1'>
           <Link
             href={routes.resume}
-            className='hidden items-center gap-2 rounded-full border border-zinc-900/10 bg-zinc-950/85 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-zinc-900/10 backdrop-blur-xl transition duration-200 hover:border-sky-400/45 hover:bg-sky-600/25 hover:shadow-[0_8px_24px_rgb(14_165_233/0.14)] focus-visible:ring-1 focus-visible:ring-sky-500/60 focus-visible:outline-none md:inline-flex dark:border-white/12 dark:bg-white/8 dark:text-white dark:hover:border-sky-300/35 dark:hover:bg-sky-400/15'
+            className='hidden items-center gap-2 rounded-full border border-zinc-900/10 bg-zinc-950/85 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-zinc-900/10 backdrop-blur-xl transition duration-200 hover:border-sky-400/45 hover:bg-sky-100 hover:text-sky-800 hover:shadow-[0_8px_24px_rgb(14_165_233/0.14)] focus-visible:ring-1 focus-visible:ring-sky-500/60 focus-visible:outline-none md:inline-flex dark:border-white/12 dark:bg-white/8 dark:text-white dark:hover:border-sky-300/35 dark:hover:bg-sky-400/15 dark:hover:text-sky-200'
           >
             <FileText className='h-4 w-4' />
             Resume

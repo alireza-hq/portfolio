@@ -2,22 +2,13 @@
 
 import { useEffect, useState } from 'react'
 
-const introSeenKey = 'portfolio:intro-seen'
-
 export function AppIntro() {
   const [isLeaving, setIsLeaving] = useState(false)
   const [isMounted, setIsMounted] = useState(true)
 
   useEffect(() => {
-    if (window.sessionStorage.getItem(introSeenKey) === 'true') {
-      const seenTimer = window.setTimeout(() => setIsMounted(false), 0)
-      return () => window.clearTimeout(seenTimer)
-    }
-
-    window.sessionStorage.setItem(introSeenKey, 'true')
-
-    const leaveTimer = window.setTimeout(() => setIsLeaving(true), 3200)
-    const unmountTimer = window.setTimeout(() => setIsMounted(false), 4050)
+    const leaveTimer = window.setTimeout(() => setIsLeaving(true), 3300)
+    const unmountTimer = window.setTimeout(() => setIsMounted(false), 4150)
     const fallbackTimer = window.setTimeout(() => setIsMounted(false), 5000)
 
     return () => {

@@ -60,10 +60,12 @@ export function ResumePage() {
             />
           </section>
 
-          <aside className='h-fit overflow-hidden rounded-3xl border border-zinc-900/10 bg-zinc-950 text-white shadow-xl shadow-zinc-950/15 dark:border-white/10'>
-            <div className='border-b border-white/10 px-5 py-4'>
-              <p className='font-mono text-xs text-sky-300'>document status</p>
-              <p className='mt-2 font-semibold'>Ready for inspection</p>
+          <aside className='h-fit overflow-hidden rounded-3xl border border-zinc-900/10 bg-white/80 text-zinc-950 shadow-xl shadow-zinc-950/10 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:shadow-zinc-950/15'>
+            <div className='border-b border-zinc-900/10 px-5 py-4 dark:border-white/10'>
+              <p className='font-mono text-xs text-sky-600 dark:text-sky-300'>
+                document status
+              </p>
+              <p className='mt-2 font-semibold'>Ready for review</p>
             </div>
             <div className='grid font-mono text-xs'>
               {[
@@ -74,10 +76,14 @@ export function ResumePage() {
               ].map(([label, value]) => (
                 <div
                   key={label}
-                  className='grid gap-1 border-b border-white/8 px-5 py-4 last:border-b-0'
+                  className='grid gap-1 border-b border-zinc-900/8 px-5 py-4 last:border-b-0 dark:border-white/8'
                 >
-                  <span className='text-sky-300'>{label}</span>
-                  <span className='text-zinc-300'>{value}</span>
+                  <span className='text-sky-600 dark:text-sky-300'>
+                    {label}
+                  </span>
+                  <span className='text-zinc-600 dark:text-zinc-300'>
+                    {value}
+                  </span>
                 </div>
               ))}
             </div>
