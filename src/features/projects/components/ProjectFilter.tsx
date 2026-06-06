@@ -26,7 +26,7 @@ export function ProjectFilter({ activeFilter, onChange }: ProjectFilterProps) {
             type='button'
             onClick={() => onChange(filter)}
             className={cn(
-              'rounded-full border px-4 py-2 text-sm font-semibold transition focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none active:scale-95',
+              'rounded-full border px-4 py-2 text-sm font-semibold transition focus-visible:ring-1 focus-visible:ring-sky-400/70 focus-visible:outline-none active:scale-95',
               activeFilter === filter
                 ? 'border-sky-400/40 bg-sky-500/10 text-sky-700 dark:bg-sky-400/12 dark:text-sky-200'
                 : 'border-zinc-900/10 bg-zinc-50/75 text-zinc-600 hover:border-sky-400/35 hover:text-sky-700 dark:border-white/10 dark:bg-white/6 dark:text-zinc-300 dark:hover:text-sky-200',

@@ -17,7 +17,7 @@ type ContactFloatingTextareaProps = {
 
 function fieldClass(hasError: boolean) {
   return cn(
-    'peer h-14 w-full rounded-2xl border border-zinc-900/10 bg-zinc-50/90 px-4 pt-5 pb-2 text-zinc-950 transition outline-none placeholder:text-transparent focus:border-sky-400 focus:bg-white focus:ring-4 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:focus:bg-zinc-950',
+    'peer h-14 w-full rounded-2xl border border-zinc-900/10 bg-zinc-50/90 px-4 pt-5 pb-2 text-zinc-950 transition outline-none placeholder:text-transparent focus:border-sky-400 focus:bg-white focus:ring-1 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:focus:bg-zinc-950',
     hasError &&
       'border-red-400 focus:border-red-400 focus:ring-red-400/15 dark:border-red-400 dark:focus:border-red-400',
   )
@@ -25,7 +25,7 @@ function fieldClass(hasError: boolean) {
 
 function textareaClass(hasError: boolean) {
   return cn(
-    'peer min-h-40 w-full resize-none rounded-2xl border border-zinc-900/10 bg-zinc-50/90 px-4 pt-7 pb-4 text-zinc-950 transition outline-none placeholder:text-transparent focus:border-sky-400 focus:bg-white focus:ring-4 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:focus:bg-zinc-950',
+    'peer min-h-40 w-full resize-none rounded-2xl border border-zinc-900/10 bg-zinc-50/90 px-4 pt-7 pb-4 text-zinc-950 transition outline-none placeholder:text-transparent focus:border-sky-400 focus:bg-white focus:ring-1 focus:ring-sky-400/12 dark:border-white/10 dark:bg-white/6 dark:text-white dark:focus:bg-zinc-950',
     hasError &&
       'border-red-400 focus:border-red-400 focus:ring-red-400/15 dark:border-red-400 dark:focus:border-red-400',
   )

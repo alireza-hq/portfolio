@@ -33,7 +33,7 @@ export function StackToolGrid({
             onBlur={() => onToolPreview()}
             onClick={() => onToolLock(tool)}
             className={cn(
-              'group relative aspect-square rounded-3xl border bg-zinc-50/80 p-3 transition duration-200 focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none active:scale-95 dark:bg-white/6',
+              'group relative aspect-square rounded-3xl border bg-zinc-50/80 p-3 transition duration-200 focus-visible:ring-1 focus-visible:ring-sky-300/70 focus-visible:outline-none active:scale-95 dark:bg-white/6',
               isLocked
                 ? 'border-sky-300/60 bg-sky-500/8 shadow-[0_0_40px_rgb(14_165_233/0.16)]'
                 : 'border-zinc-900/10 hover:-translate-y-1 hover:border-sky-400/35 hover:bg-white dark:border-white/10 dark:hover:border-sky-300/30 dark:hover:bg-white/9',

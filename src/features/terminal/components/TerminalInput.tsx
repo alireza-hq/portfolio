@@ -114,7 +114,7 @@ export const TerminalInput = memo(function TerminalInput({
         <span>$</span>
       </div>
 
-      <div className='relative flex-1'>
+      <div className='relative flex-1 font-mono'>
         <input
           ref={inputRef}
           value={value}
@@ -130,7 +130,7 @@ export const TerminalInput = memo(function TerminalInput({
           onSelect={syncCursor}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
-          className='relative z-10 w-full bg-transparent text-left text-transparent caret-transparent outline-none placeholder:text-zinc-400 dark:placeholder:text-zinc-600'
+          className='terminal-command-input relative z-10 w-full bg-transparent text-left text-transparent caret-transparent outline-none placeholder:text-zinc-400 dark:placeholder:text-zinc-600'
           placeholder='Type a command...'
           spellCheck={false}
           autoCapitalize='none'
@@ -142,11 +142,13 @@ export const TerminalInput = memo(function TerminalInput({
           className='pointer-events-none absolute inset-0 z-20 text-left whitespace-pre text-zinc-900 dark:text-zinc-100'
           aria-hidden='true'
         >
-          {value.slice(0, cursorPosition)}
+          {value}
           {isFocused ? (
-            <span className='animate-terminal-cursor ml-px inline-block h-5 w-2 bg-zinc-700 align-[-0.2rem] dark:bg-zinc-200' />
+            <span
+              className='animate-terminal-cursor absolute top-0 bottom-0 w-[1ch] bg-zinc-700 dark:bg-zinc-200'
+              style={{ left: `${cursorPosition}ch` }}
+            />
           ) : null}
-          {value.slice(cursorPosition)}
         </span>
       </div>
     </div>

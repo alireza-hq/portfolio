@@ -27,10 +27,14 @@ export const AboutCertifications = ({
             aria-expanded={activeCertification?.title === item.title}
             onMouseEnter={() => onCertificationEnter(item)}
             onMouseLeave={onCertificationLeave}
-            onFocus={() => onCertificationEnter(item)}
-            onBlur={onCertificationLeave}
-            onClick={() => onCertificationToggle(item)}
-            className='group rounded-2xl border border-zinc-900/10 bg-zinc-50/90 p-4 text-left shadow-sm shadow-zinc-900/5 transition hover:-translate-y-0.5 hover:border-sky-400/40 hover:bg-white focus-visible:ring-2 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10'
+            onClick={() => {
+              if (
+                window.matchMedia('(hover: none), (pointer: coarse)').matches
+              ) {
+                onCertificationToggle(item)
+              }
+            }}
+            className='group rounded-2xl border border-zinc-900/10 bg-zinc-50/90 p-4 text-left shadow-sm shadow-zinc-900/5 transition hover:-translate-y-0.5 hover:border-sky-400/40 hover:bg-white focus-visible:ring-1 focus-visible:ring-sky-400/60 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:hover:bg-white/10'
           >
             <span className='font-mono text-[0.65rem] font-semibold tracking-widest text-sky-600 uppercase dark:text-sky-300'>
               {item.issuer}

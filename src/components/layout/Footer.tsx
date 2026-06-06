@@ -1,9 +1,13 @@
+'use client'
+
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
 import { ArrowUpRight } from 'lucide-react'
 import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { MdOutlineMail } from 'react-icons/md'
 
 import { routes } from '@/lib/routes'
+import { cn } from '@/lib/utils/cn'
 
 const sitemap = [
   { href: routes.home, label: 'Home' },
@@ -40,6 +44,8 @@ const contactLinks = [
 ]
 
 export function Footer() {
+  const pathname = usePathname()
+
   return (
     <footer className='relative z-10 mt-16 overflow-hidden bg-zinc-950 px-4 py-10 text-white shadow-[0_-24px_80px_rgb(15_23_42/0.16)] sm:px-6 lg:px-8 dark:bg-zinc-950 dark:shadow-[0_-24px_80px_rgb(0_0_0/0.42)]'>
       <div className='pointer-events-none absolute inset-x-0 top-0 h-px bg-linear-to-r from-transparent via-sky-300/60 to-transparent' />
@@ -71,7 +77,11 @@ export function Footer() {
                 <Link
                   key={link.href}
                   href={link.href}
-                  className='group inline-flex w-fit items-center gap-2 rounded-lg px-1 py-1 text-sm text-zinc-300 transition hover:translate-x-1 hover:text-sky-200 focus-visible:ring-2 focus-visible:ring-sky-300/60 focus-visible:outline-none'
+                  aria-current={pathname === link.href ? 'page' : undefined}
+                  className={cn(
+                    'group inline-flex w-fit items-center gap-2 rounded-lg px-1 py-1 text-sm transition hover:translate-x-1 hover:text-sky-200 focus-visible:ring-1 focus-visible:ring-sky-300/60 focus-visible:outline-none',
+                    pathname === link.href ? 'text-zinc-600' : 'text-zinc-300',
+                  )}
                 >
                   <span className='font-mono text-xs text-sky-300/70'>/</span>
                   {link.label}
@@ -100,7 +110,7 @@ export function Footer() {
                     target={isExternal ? '_blank' : undefined}
                     rel={isExternal ? 'noreferrer' : undefined}
                     aria-label={`Open ${link.label}`}
-                    className='group grid min-w-0 grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl border border-white/12 bg-white/[0.07] px-4 py-3 text-sm text-zinc-100 transition hover:-translate-y-0.5 hover:border-sky-300/45 hover:bg-sky-300/10 hover:shadow-[0_14px_36px_rgb(14_165_233/0.12)] focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
+                    className='group grid min-w-0 grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl border border-white/12 bg-white/[0.07] px-4 py-3 text-sm text-zinc-100 transition hover:-translate-y-0.5 hover:border-sky-300/45 hover:bg-sky-300/10 hover:shadow-[0_14px_36px_rgb(14_165_233/0.12)] focus-visible:ring-1 focus-visible:ring-sky-300/70 focus-visible:outline-none'
                   >
                     <span className='grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-zinc-900 text-white transition group-hover:border-sky-300/35 group-hover:bg-sky-300/10'>
                       <Icon className='h-4 w-4' />

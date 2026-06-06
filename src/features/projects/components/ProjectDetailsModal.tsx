@@ -46,7 +46,7 @@ export function ProjectDetailsModal({
           <button
             type='button'
             onClick={onClose}
-            className='grid h-10 w-10 place-items-center rounded-full border border-zinc-900/10 bg-zinc-50 text-zinc-600 transition hover:bg-zinc-100 hover:text-zinc-950 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white'
+            className='grid h-10 w-10 place-items-center rounded-full border border-zinc-900/10 bg-zinc-50 text-zinc-600 transition hover:bg-zinc-100 hover:text-zinc-950 focus-visible:ring-1 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:border-white/10 dark:bg-white/6 dark:text-zinc-300 dark:hover:bg-white/10 dark:hover:text-white'
             aria-label='Close project details'
           >
             <X className='h-4 w-4' />
@@ -87,7 +87,7 @@ export function ProjectDetailsModal({
             {project.liveUrl ? (
               <a
                 href={project.liveUrl}
-                className='inline-flex items-center gap-2 rounded-full bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
+                className='inline-flex items-center gap-2 rounded-full bg-zinc-950 px-4 py-2 text-sm font-semibold text-white transition hover:bg-sky-700 focus-visible:ring-1 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:bg-white dark:text-zinc-950 dark:hover:bg-sky-200'
               >
                 Live <ExternalLink className='h-4 w-4' />
               </a>
@@ -97,7 +97,7 @@ export function ProjectDetailsModal({
                 href={project.githubUrl}
                 target='_blank'
                 rel='noreferrer'
-                className='inline-flex items-center gap-2 rounded-full border border-zinc-900/10 px-4 py-2 text-sm font-semibold text-zinc-700 transition hover:border-sky-400/40 hover:text-sky-700 focus-visible:ring-2 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:border-white/10 dark:text-zinc-200 dark:hover:text-sky-200'
+                className='inline-flex items-center gap-2 rounded-full border border-zinc-900/10 px-4 py-2 text-sm font-semibold text-zinc-700 transition hover:border-sky-400/40 hover:text-sky-700 focus-visible:ring-1 focus-visible:ring-sky-400/70 focus-visible:outline-none dark:border-white/10 dark:text-zinc-200 dark:hover:text-sky-200'
               >
                 GitHub <FaGithub className='h-4 w-4' />
               </a>
