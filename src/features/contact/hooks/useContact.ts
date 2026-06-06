@@ -4,12 +4,18 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-import { routes } from '@/lib/routes'
-
 import { contactFormSchema, ContactFormValues } from '../schema'
 
+export type ContactSubmitStatus = {
+  type: 'idle' | 'success' | 'error'
+  message: string
+}
+
 export const useContact = () => {
-  const [submitMessage, setSubmitMessage] = useState('')
+  const [submitStatus, setSubmitStatus] = useState<ContactSubmitStatus>({
+    type: 'idle',
+    message: '',
+  })
   const {
     register,
     handleSubmit,
@@ -18,16 +24,34 @@ export const useContact = () => {
   } = useForm<ContactFormValues>({ resolver: zodResolver(contactFormSchema) })
 
   const onSubmit = async (values: ContactFormValues) => {
-    const recipient = routes.social.email.replace('mailto:', '')
-    const subject = encodeURIComponent(`${values.project} - ${values.name}`)
-    const body = encodeURIComponent(
-      `${values.message}\n\nFrom: ${values.name}\nEmail: ${values.email}`,
-    )
+    setSubmitStatus({ type: 'idle', message: '' })
 
-    setSubmitMessage('Opening your email app...')
-    window.location.href = `mailto:${recipient}?subject=${subject}&body=${body}`
-    reset()
-    setSubmitMessage('Draft opened. Send it from your email app.')
+    try {
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(values),
+      })
+      const result = (await response.json()) as { message?: string }
+
+      if (!response.ok) {
+        throw new Error(result.message || 'Could not send the message.')
+      }
+
+      reset()
+      setSubmitStatus({
+        type: 'success',
+        message: 'Message sent. I will get back to you soon.',
+      })
+    } catch (error) {
+      setSubmitStatus({
+        type: 'error',
+        message:
+          error instanceof Error
+            ? error.message
+            : 'Could not send the message. Please try again.',
+      })
+    }
   }
 
   return {
@@ -36,7 +60,7 @@ export const useContact = () => {
     onSubmit,
     errors,
     isSubmitting,
-    submitMessage,
+    submitStatus,
     reset,
   }
 }

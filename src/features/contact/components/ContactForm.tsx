@@ -15,7 +15,7 @@ export const ContactForm = () => {
     onSubmit,
     errors,
     isSubmitting,
-    submitMessage,
+    submitStatus,
   } = useContact()
 
   return (
@@ -56,7 +56,7 @@ export const ContactForm = () => {
 
       <ContactSubmitBar
         isSubmitting={isSubmitting}
-        submitMessage={submitMessage}
+        submitStatus={submitStatus}
       />
     </form>
   )
