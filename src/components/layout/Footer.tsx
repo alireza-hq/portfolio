@@ -102,7 +102,7 @@ export function Footer() {
                     aria-label={`Open ${link.label}`}
                     className='group grid min-w-0 grid-cols-[auto_1fr_auto] items-center gap-3 rounded-2xl border border-white/12 bg-white/[0.07] px-4 py-3 text-sm text-zinc-100 transition hover:-translate-y-0.5 hover:border-sky-300/45 hover:bg-sky-300/10 hover:shadow-[0_14px_36px_rgb(14_165_233/0.12)] focus-visible:ring-2 focus-visible:ring-sky-300/70 focus-visible:outline-none'
                   >
-                    <span className='grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-zinc-900 text-sky-200 transition group-hover:border-sky-300/35 group-hover:bg-sky-300/10'>
+                    <span className='grid h-9 w-9 place-items-center rounded-xl border border-white/10 bg-zinc-900 text-white transition group-hover:border-sky-300/35 group-hover:bg-sky-300/10'>
                       <Icon className='h-4 w-4' />
                     </span>
                     <span className='min-w-0'>

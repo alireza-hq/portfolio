@@ -21,8 +21,16 @@ export function AboutPage() {
           <AboutEducation />
           <section className='grid gap-8'>
             <AboutCertifications
+              activeCertification={activeCertification}
               onCertificationEnter={setActiveCertification}
               onCertificationLeave={() => setActiveCertification(undefined)}
+              onCertificationToggle={(certification) =>
+                setActiveCertification((current) =>
+                  current?.title === certification.title
+                    ? undefined
+                    : certification,
+                )
+              }
             />
             <AboutPrinciples activeCertification={activeCertification} />
           </section>

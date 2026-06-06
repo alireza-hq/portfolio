@@ -84,7 +84,7 @@ export function Navbar() {
         <div className='flex shrink-0 items-center justify-end gap-1'>
           <Link
             href={routes.resume}
-            className='hidden items-center gap-2 rounded-full border border-zinc-900/10 bg-zinc-950 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-zinc-900/10 transition duration-200 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:outline-none md:inline-flex dark:border-white/10 dark:bg-white/8 dark:text-zinc-100 dark:shadow-inner dark:shadow-white/5 dark:hover:border-sky-300/30 dark:hover:bg-sky-400/10 dark:hover:text-white'
+            className='hidden items-center gap-2 rounded-full border border-zinc-900/10 bg-zinc-950 px-4 py-2 text-sm font-semibold text-white shadow-sm shadow-zinc-900/10 transition duration-200 hover:border-sky-500/40 hover:bg-sky-700 focus-visible:ring-2 focus-visible:ring-sky-500/60 focus-visible:outline-none md:inline-flex dark:border-white/10 dark:bg-zinc-950 dark:text-white dark:hover:border-sky-300/30 dark:hover:bg-sky-800'
           >
             <FileText className='h-4 w-4' />
             Resume

@@ -12,7 +12,7 @@ export function ContactSignalPanel() {
   const [activeChannel, setActiveChannel] = useState(channels[0])
 
   return (
-    <section className='relative isolate overflow-hidden rounded-4xl border border-zinc-950/10 bg-zinc-950/92 p-5 text-white shadow-2xl shadow-zinc-950/15 backdrop-blur-xs sm:p-6 dark:border-white/10 dark:bg-zinc-950/82 dark:shadow-black/30'>
+    <section className='relative isolate overflow-hidden rounded-4xl border border-zinc-900/10 bg-white/80 p-5 text-zinc-950 shadow-2xl shadow-zinc-950/10 backdrop-blur-xl sm:p-6 dark:border-white/10 dark:bg-zinc-950/82 dark:text-white dark:shadow-black/30'>
       <div className='absolute inset-0 -z-10 opacity-80'>
         <div className='absolute -top-20 right-0 h-64 w-64 rounded-full bg-sky-400/12 blur-3xl' />
         <div className='absolute -bottom-28 -left-20 h-80 w-80 rounded-full bg-cyan-300/10 blur-3xl' />

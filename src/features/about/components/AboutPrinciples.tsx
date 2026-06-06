@@ -48,7 +48,7 @@ export const AboutPrinciples = ({
           {values.map((item) => (
             <p
               key={item}
-              className='px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300'
+              className='flex items-center px-6 py-3 text-sm font-medium text-zinc-700 dark:text-zinc-300'
             >
               {item}
             </p>
