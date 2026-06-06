@@ -16,6 +16,7 @@ export const TerminalInput = memo(function TerminalInput({
 }: TerminalInputProps) {
   const [value, setValue] = useState('')
   const [isFocused, setIsFocused] = useState(false)
+  const [cursorPosition, setCursorPosition] = useState(0)
   const inputRef = useRef<HTMLInputElement>(null)
   const { addCommand, getPreviousCommand, getNextCommand } = useCommandHistory()
 
@@ -26,6 +27,14 @@ export const TerminalInput = memo(function TerminalInput({
   useEffect(() => {
     inputRef.current?.focus({ preventScroll: true })
   }, [focusRequest])
+
+  function replaceValue(nextValue: string) {
+    setValue(nextValue)
+    setCursorPosition(nextValue.length)
+    requestAnimationFrame(() =>
+      inputRef.current?.setSelectionRange(nextValue.length, nextValue.length),
+    )
+  }
 
   function handleKeyDown(event: React.KeyboardEvent<HTMLInputElement>) {
     if (event.key === 'Tab') {
@@ -40,7 +49,7 @@ export const TerminalInput = memo(function TerminalInput({
       )
 
       if (matches.length === 1) {
-        setValue(matches[0])
+        replaceValue(matches[0])
         return
       }
 
@@ -60,7 +69,7 @@ export const TerminalInput = memo(function TerminalInput({
         })
 
         if (sharedPrefix.length > query.length) {
-          setValue(sharedPrefix)
+          replaceValue(sharedPrefix)
         }
       }
 
@@ -75,19 +84,26 @@ export const TerminalInput = memo(function TerminalInput({
       onExecute(command)
       addCommand(command)
       setValue('')
+      setCursorPosition(0)
       return
     }
 
     if (event.key === 'ArrowUp') {
       event.preventDefault()
-      setValue(getPreviousCommand())
+      const command = getPreviousCommand()
+      replaceValue(command)
       return
     }
 
     if (event.key === 'ArrowDown') {
       event.preventDefault()
-      setValue(getNextCommand())
+      const command = getNextCommand()
+      replaceValue(command)
     }
+  }
+
+  function syncCursor() {
+    setCursorPosition(inputRef.current?.selectionStart ?? value.length)
   }
 
   return (
@@ -102,8 +118,16 @@ export const TerminalInput = memo(function TerminalInput({
         <input
           ref={inputRef}
           value={value}
-          onChange={(event) => setValue(event.target.value)}
+          onChange={(event) => {
+            setValue(event.target.value)
+            setCursorPosition(
+              event.target.selectionStart ?? event.target.value.length,
+            )
+          }}
           onKeyDown={handleKeyDown}
+          onKeyUp={syncCursor}
+          onClick={syncCursor}
+          onSelect={syncCursor}
           onFocus={() => setIsFocused(true)}
           onBlur={() => setIsFocused(false)}
           className='relative z-10 w-full bg-transparent text-left text-transparent caret-transparent outline-none placeholder:text-zinc-400 dark:placeholder:text-zinc-600'
@@ -118,10 +142,11 @@ export const TerminalInput = memo(function TerminalInput({
           className='pointer-events-none absolute inset-0 z-20 text-left whitespace-pre text-zinc-900 dark:text-zinc-100'
           aria-hidden='true'
         >
-          {value}
+          {value.slice(0, cursorPosition)}
           {isFocused ? (
             <span className='animate-terminal-cursor ml-px inline-block h-5 w-2 bg-zinc-700 align-[-0.2rem] dark:bg-zinc-200' />
           ) : null}
+          {value.slice(cursorPosition)}
         </span>
       </div>
     </div>

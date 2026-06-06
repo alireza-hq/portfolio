@@ -1,4 +1,4 @@
-import type { ReactNode } from 'react'
+import { useEffect, useState, type ReactNode } from 'react'
 
 import { channels } from '@/features/contact/data/channels'
 import { projects } from '@/features/projects/data/projects'
@@ -75,9 +75,8 @@ const terminalProjects: TerminalProject[] = [
       'JWT Auth',
     ],
     description:
-      'Company dashboard used by 237 employees for authentication, tickets, forms, contacts, monitoring, and admin workflows.',
+      'Internal dashboard for authentication, tickets, forms, contacts, monitoring, and admin workflows.',
     highlights: [
-      'Used by 237 employees',
       'LDAP login with JWT authorization',
       'Ticket management',
       'Roles and admin controls',
@@ -91,6 +90,7 @@ const helpSections: HelpSection[] = [
   {
     title: 'Core',
     commands: [
+      { command: 'help, ?', description: 'Show available commands.' },
       { command: 'about', description: 'Show a compact developer profile.' },
       { command: 'whoami', description: 'Print the human behind the prompt.' },
       { command: 'skills', description: 'Inspect the working stack.' },
@@ -132,10 +132,10 @@ const helpSections: HelpSection[] = [
 ]
 
 export const terminalCompletions = [
+  '?',
   'about',
   'clear',
   'cls',
-  'coffee',
   'contact',
   'currently',
   'date',
@@ -152,13 +152,9 @@ export const terminalCompletions = [
   'project portfolio',
   'projects',
   'resume',
-  'secret',
   'setup',
   'skills',
-  'sudo hire-me',
-  'sudo uninstall coffee',
   'theme',
-  'uninstall coffee',
   'uses',
   'whoami',
 ]
@@ -339,25 +335,46 @@ function uninstallCoffee() {
 }
 
 function CoffeeProgress() {
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    const startedAt = performance.now()
+    let frame = 0
+
+    function update(now: number) {
+      const nextProgress = Math.min(
+        100,
+        Math.round(((now - startedAt) / 5000) * 100),
+      )
+      setProgress(nextProgress)
+      if (nextProgress < 100) frame = requestAnimationFrame(update)
+    }
+
+    frame = requestAnimationFrame(update)
+    return () => cancelAnimationFrame(frame)
+  }, [])
+
   return (
-    <p className='font-mono text-sm text-zinc-700 dark:text-zinc-300'>
+    <div className='grid gap-1 font-mono text-sm text-zinc-700 dark:text-zinc-300'>
+      <p>Installing coffee... {progress}%</p>
       <span className='relative inline-block'>
         <span className='text-zinc-300 dark:text-zinc-700'>
           ████████████████
         </span>
-        <span className='coffee-progress absolute inset-0 overflow-hidden text-sky-600 dark:text-sky-300'>
+        <span
+          className='absolute inset-0 overflow-hidden text-sky-600 dark:text-sky-300'
+          style={{ clipPath: `inset(0 ${100 - progress}% 0 0)` }}
+        >
           ████████████████
         </span>
-      </span>{' '}
-      100%
-    </p>
+      </span>
+    </div>
   )
 }
 
 function renderCoffeeInstall() {
   return (
     <div className='grid gap-2'>
-      <p className={labelClass}>Installing coffee...</p>
       <CoffeeProgress />
       <DefinitionList
         rows={[
@@ -397,6 +414,11 @@ const commandRegistry: Record<string, TerminalCommand> = {
     description: 'Show available commands',
     execute: () => ({ type: 'output', content: renderHelp() }),
   },
+  '?': {
+    name: '?',
+    description: 'Alias for help',
+    execute: () => ({ type: 'output', content: renderHelp() }),
+  },
   about: {
     name: 'about',
     description: 'Show a compact developer profile',
@@ -432,7 +454,6 @@ const commandRegistry: Record<string, TerminalCommand> = {
               'Software developer who enjoys building things.',
               'Frontend is the main focus.',
               'Architecture and maintainability are the obsession.',
-              'Currently building: portfolio, ecommerce, internal dashboard systems.',
             ]}
           />
         </div>
@@ -546,14 +567,6 @@ const commandRegistry: Record<string, TerminalCommand> = {
       content: (
         <div className='grid gap-4'>
           {[
-            [
-              'Building',
-              [
-                'Interactive portfolio',
-                'E-Commerce Platform',
-                'Internal dashboard improvements',
-              ],
-            ],
             [
               'Learning',
               [
@@ -783,7 +796,7 @@ const commandRegistry: Record<string, TerminalCommand> = {
                   <BulletList
                     items={[
                       'Real production experience',
-                      'Built internal dashboard used by 237 employees',
+                      'Built and maintained a production internal dashboard',
                       'Strong frontend focus',
                       'Comfortable across backend-adjacent work',
                       'Learns fast and cares about maintainable code',
