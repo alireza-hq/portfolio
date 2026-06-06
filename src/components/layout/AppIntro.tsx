@@ -16,9 +16,9 @@ export function AppIntro() {
 
     window.sessionStorage.setItem(introSeenKey, 'true')
 
-    const leaveTimer = window.setTimeout(() => setIsLeaving(true), 4500)
-    const unmountTimer = window.setTimeout(() => setIsMounted(false), 5550)
-    const fallbackTimer = window.setTimeout(() => setIsMounted(false), 7500)
+    const leaveTimer = window.setTimeout(() => setIsLeaving(true), 3200)
+    const unmountTimer = window.setTimeout(() => setIsMounted(false), 4050)
+    const fallbackTimer = window.setTimeout(() => setIsMounted(false), 5000)
 
     return () => {
       window.clearTimeout(leaveTimer)

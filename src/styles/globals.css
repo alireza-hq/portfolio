@@ -631,7 +631,7 @@ html.dark {
   background: linear-gradient(90deg, #38bdf8, #ffffff);
   transform: scaleX(0);
   transform-origin: left;
-  animation: intro-progress 4.25s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+  animation: intro-progress 3.1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
 @keyframes background-aura {

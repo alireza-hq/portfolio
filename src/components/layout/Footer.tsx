@@ -7,7 +7,6 @@ import { FaGithub, FaLinkedinIn } from 'react-icons/fa6'
 import { MdOutlineMail } from 'react-icons/md'
 
 import { routes } from '@/lib/routes'
-import { cn } from '@/lib/utils/cn'
 
 const sitemap = [
   { href: routes.home, label: 'Home' },
@@ -73,21 +72,36 @@ export function Footer() {
               sitemap
             </p>
             <div className='mt-4 grid gap-2.5'>
-              {sitemap.map((link) => (
-                <Link
-                  key={link.href}
-                  href={link.href}
-                  aria-current={pathname === link.href ? 'page' : undefined}
-                  className={cn(
-                    'group inline-flex w-fit items-center gap-2 rounded-lg px-1 py-1 text-sm transition hover:translate-x-1 hover:text-sky-200 focus-visible:ring-1 focus-visible:ring-sky-300/60 focus-visible:outline-none',
-                    pathname === link.href ? 'text-zinc-600' : 'text-zinc-300',
-                  )}
-                >
-                  <span className='font-mono text-xs text-sky-300/70'>/</span>
-                  {link.label}
-                  <ArrowUpRight className='h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100' />
-                </Link>
-              ))}
+              {sitemap.map((link) => {
+                const isCurrent = pathname === link.href
+                const content = (
+                  <>
+                    <span className='font-mono text-xs text-sky-300/70'>/</span>
+                    {link.label}
+                    {!isCurrent ? (
+                      <ArrowUpRight className='h-3.5 w-3.5 opacity-0 transition group-hover:opacity-100' />
+                    ) : null}
+                  </>
+                )
+
+                return isCurrent ? (
+                  <span
+                    key={link.href}
+                    aria-current='page'
+                    className='inline-flex w-fit cursor-default items-center gap-2 px-1 py-1 text-sm text-zinc-600'
+                  >
+                    {content}
+                  </span>
+                ) : (
+                  <Link
+                    key={link.href}
+                    href={link.href}
+                    className='group inline-flex w-fit items-center gap-2 rounded-lg px-1 py-1 text-sm text-zinc-300 transition hover:translate-x-1 hover:text-sky-200 focus-visible:ring-1 focus-visible:ring-sky-300/60 focus-visible:outline-none'
+                  >
+                    {content}
+                  </Link>
+                )
+              })}
             </div>
           </nav>
 
