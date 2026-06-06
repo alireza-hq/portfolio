@@ -1,4 +1,4 @@
-# Alireza's Portfolio
+# Portfolio
 
 An interactive, terminal-first developer portfolio built with Next.js,
 TypeScript, and Tailwind CSS.
