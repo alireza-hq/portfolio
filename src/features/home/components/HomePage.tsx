@@ -12,9 +12,9 @@ export function HomePage() {
         Developer workspace
       </div>
 
-      <div className='max-w-4xl'>
+      <div className='max-w-4xl select-none'>
         <h1 className='font-mono text-4xl leading-[0.98] font-semibold tracking-normal text-zinc-950 sm:text-6xl lg:text-7xl dark:text-white'>
-          <span className='block'>Build. Learn. Improve.</span>
+          <span className='block'>Build. Learn. Improve. </span>
           <span className='block'>Repeat.</span>
         </h1>
         <p className='mx-auto mt-5 max-w-2xl text-lg leading-8 text-zinc-600 dark:text-zinc-400'>
