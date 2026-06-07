@@ -38,6 +38,7 @@ export async function POST(request: Request) {
     text: [
       `Name: ${name}`,
       `Email: ${email}`,
+      '',
       `Project: ${project}`,
       '',
       message,
