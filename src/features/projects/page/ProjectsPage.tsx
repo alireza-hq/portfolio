@@ -63,7 +63,7 @@ export function ProjectsPage() {
     <main
       className={cn(
         'relative min-h-screen px-4 pt-32 pb-20 sm:px-6 lg:px-8',
-        isModalOpen ? 'z-[90]' : 'z-10',
+        isModalOpen ? 'z-90' : 'z-10',
       )}
     >
       <section className='mx-auto w-full max-w-7xl'>
@@ -72,7 +72,7 @@ export function ProjectsPage() {
           <ProjectFilter activeFilter={activeFilter} onChange={selectFilter} />
         </div>
 
-        <section className='mt-12 overflow-hidden rounded-[2rem] border border-zinc-900/10 bg-white/75 shadow-2xl shadow-zinc-950/10 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
+        <section className='mt-12 overflow-hidden rounded-4xl border border-zinc-900/10 bg-white/75 shadow-2xl shadow-zinc-950/10 backdrop-blur-xl dark:border-white/10 dark:bg-zinc-950 dark:shadow-black/25'>
           <div className='grid gap-6 p-5 sm:p-6 lg:grid-cols-[1.15fr_0.85fr] lg:items-center'>
             <ProjectPreview project={activeProject} />
             <div>
