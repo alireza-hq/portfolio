@@ -51,7 +51,7 @@ export function Navbar() {
           <span className='sr-only'>Alireza</span>
         </Link>
 
-        <div className='order-3 col-span-2 flex min-w-0 scrollbar-none items-center justify-start gap-1 overflow-x-auto border-t border-zinc-900/8 pt-2 sm:order-none sm:col-span-1 sm:justify-center sm:border-t-0 sm:pt-0 dark:border-white/10 [&::-webkit-scrollbar]:hidden'>
+        <div className='order-3 col-span-2 flex min-w-0 scrollbar-none items-center justify-start gap-1 overflow-x-auto border-t border-zinc-900/8 pt-2 sm:order-0 sm:col-span-1 sm:justify-center sm:border-t-0 sm:pt-0 dark:border-white/10 [&::-webkit-scrollbar]:hidden'>
           {navLinks.map((link) => {
             const isActive = pathname === link.href
 
