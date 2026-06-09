@@ -22,7 +22,7 @@ export const projects: Project[] = [
     icon: TerminalSquare,
     image: '/projects/portfolio.png',
     liveUrl: routes.home,
-    githubUrl: routes.social.github,
+    githubUrl: 'https://github.com/alireza-hq/portfolio',
     description:
       'A terminal-first developer portfolio built to feel like an interactive workspace instead of a static personal website.',
     stack: [
@@ -114,8 +114,8 @@ export const projects: Project[] = [
     statusLabels: ['In development', 'Case study'],
     icon: LayoutDashboard,
     image: '/projects/e-commerce.png',
-    liveUrl: routes.projects,
-    githubUrl: routes.social.github,
+    liveUrl: 'https://veloura-shop-app.vercel.app/',
+    githubUrl: 'https://github.com/alireza-hq/veloura-shop',
     description:
       'A production-style e-commerce application with customer-facing shopping flows and admin-side management tools.',
     stack: [
