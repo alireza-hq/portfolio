@@ -110,8 +110,8 @@ export const projects: Project[] = [
     title: 'E-Commerce Platform',
     type: 'Full-stack commerce app',
     category: 'Dashboard',
-    status: 'In development',
-    statusLabels: ['In development', 'Case study'],
+    status: 'Live',
+    statusLabels: ['Live', 'Case study'],
     icon: LayoutDashboard,
     image: '/projects/e-commerce.png',
     liveUrl: 'https://veloura-shop-app.vercel.app/',
@@ -218,7 +218,7 @@ export const projects: Project[] = [
     icon: Boxes,
     image: '/projects/internal-panel.png',
     description:
-      'An internal dashboard used by approximately 240 users (237 exactly) for operational workflows, user management, tickets, roles, contact lists, forms, and monitoring.',
+      'An internal dashboard used by 237 users for operational workflows, user management, tickets, roles, contact lists, forms, and monitoring.',
     stack: [
       'React',
       'TypeScript',
